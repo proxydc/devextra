@@ -43,66 +43,55 @@ class DocTable {
                             children: [
                                 this.getTitle(),
                                 docData.LineBreak(),
-                                /*docData.getLine("Nom:     ", docjs.familyname),
-                                                                                            docData.getLineBreak(),
-                                                                                            docData.getLine("Prénom: ", docjs.firstname),
-                                                                                            docData.getLineBreak(),
-                                                                                            docData.getLine("Email:   ", docjs.email),*/
-
                                 docData.LineBreak(),
-                                comp.getSubTitle("Compétences fonctionnelles"),
+                                comp.getSubTitle("Compétences fonctionnelles :"),
                                 comp.getComp(docjs.functionalAbilities),
-                                docData.getHL(),
                                 docData.LineBreak(),
-                                comp.getSubTitle("Compétences techniques"),
+                                comp.getSubTitle("Compétences techniques :"),
                                 comp.getComp(docjs.technicalAbilities),
-                                docData.getHL(),
 
                                 docData.LineBreak(),
                                 certs.getSubTitle("Diplômes / Certifications"),
                                 docData.LineBreak(),
                                 certs.getCerts(docjs.certifications),
-                                docData.getHL(),
+
 
                                 docData.LineBreak(),
                                 docData.getSubTitle("Langues"),
                                 lang.getLangues(docjs.languages),
-                                docData.getHL(),
+
                                 docData.LineBreak(),
                                 docData.getSubTitle("Environnement"),
                                 docData.LineBreak(),
                                 docData.getLine2(docjs.skills.environments),
-                                docData.getHL(),
+
 
                                 docData.LineBreak(),
                                 docData.getSubTitle("Languages"),
                                 docData.LineBreak(),
                                 docData.getLine2(docjs.skills.languages),
-                                docData.getHL(),
+
 
                                 docData.LineBreak(),
                                 docData.getSubTitle("SGBD"),
                                 docData.LineBreak(),
                                 docData.getLine2(docjs.skills.databases),
-                                docData.getHL(),
+
 
                                 docData.LineBreak(),
                                 docData.getSubTitle("Outils"),
                                 docData.LineBreak(),
                                 docData.getLine2(docjs.skills.tools),
-                                docData.getHL(),
 
                                 docData.LineBreak(),
                                 docData.getSubTitle("Systèmes"),
                                 docData.LineBreak(),
                                 docData.getLine2(docjs.skills.systems),
-                                docData.getHL(),
 
                                 docData.LineBreak(),
                                 bref.getSubTitle("En bref"),
                                 docData.LineBreak(),
                                 docData.getLine2(docjs.bref),
-                                docData.getHL(),
                                 docData.LineBreak(),
                                 docData.pageBreak(),
                             ],
@@ -218,11 +207,30 @@ class DocTable {
     }
     static getTitle() {
         return new Paragraph({
-            alignment: AlignmentType.CENTER,
-            text: "Dossier de compétences",
-            heading: HeadingLevel.TITLE,
+            children: [
+                new ImageRun({
+                    type: "png",
+                    data: docData.urlToBlob(enumImg.Titlecomp),
+                    transformation: {
+                        width: 35,
+                        height: 35,
+                    },
+                }),
+                new TextRun({
+                    children: [new Tab(), new Tab(), new Tab(), new Tab(), ""],
+                }),
+                new TextRun({
+                    alignment: AlignmentType.CENTER,
+                    text: "Compétences Clés",
+                    font: "Century Gothic",
+                    bold: true,
+                    size: 28,
+                }),
+            ],
         });
     }
+
+
 }
 
 export default DocTable;

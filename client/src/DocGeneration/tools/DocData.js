@@ -24,20 +24,16 @@ class DocData {
             // The header on first page when the 'Different First Page' option is activated
             children: [
                 this.getHeader(docjs.familyname, docjs.firstname, docjs.experiencesPro),
-                this.getBufferLogo1stPage(),
+                this.getHeaderLogo1stPage(),
+                this.getHeaderGauche(),
             ],
-            /*background: {
-                            color: '#cde3d8',
-                        },*/
         });
     }
     static getDefaultPageHeader(docjs) {
         return new Header({
             // The standard default header on every page or header on odd pages when the 'Different Odd & Even Pages' option is activated
             children: [
-                this.getHeader(docjs.familyname, docjs.firstname, docjs.experiencesPro),
-                this.getBufferLogo(),
-                //docData.getHL(),
+                this.getHeaderLogoDefault(),
             ],
         });
     }
@@ -45,12 +41,9 @@ class DocData {
         return new Footer({
             // The standard default footer on every page or footer on odd pages when the 'Different Odd & Even Pages' option is activated
             children: [
+                this.getFooterBG(),
+                this.getFooterC(),
                 this.LineBreak(),
-                this.getFooterC(docjs.familyname, docjs.firstname),
-                this.LineBreak(),
-                //this.LineBreak(),
-
-                //docData.getFooterL(),
                 this.getPageNumber(),
             ],
         });
@@ -59,13 +52,36 @@ class DocData {
         return new Footer({
             // The footer on first page when the 'Different First Page' option is activated
             children: [
+                this.getFooterBG(),
+                this.getFooterC(),
                 this.LineBreak(),
-                this.getFooterC(docjs.familyname, docjs.firstname),
-                this.LineBreak(),
-                //this.LineBreak(),
-                //docData.getFooterL(),
-                //docData.getFooterR(),
                 this.getPageNumber(),
+            ],
+        });
+    }
+    static getFooterBG() {
+        return new Paragraph({
+            children: [
+                new ImageRun({
+                    type: "png",
+                    data: this.urlToBlob(enumImg.FooterBG),
+                    transformation: {
+                        width: 800,
+                        height: 100,
+                        /*position: absolute,
+                                                            top: 0,
+                                                            right: 0,*/
+                    },
+                    floating: {
+                        behindDocument: true,
+                        horizontalPosition: {
+                            align: HorizontalPositionAlign.LEFT,
+                        },
+                        verticalPosition: {
+                            align: VerticalPositionAlign.BOTTOM,
+                        },
+                    },
+                }),
             ],
         });
     }
@@ -100,7 +116,7 @@ class DocData {
             });
             nbyears = Math.round(days / 365)
             if (nbyears > 0)
-                return poste + " (" + nbyears + " années d’expériences)";
+                return poste + " (" + nbyears + " ans)";
             return poste;
             /* if (nbyears > 0)
                  return poste + " (" + nbyears + " années d’expériences)" + Math.round(days / 365);
@@ -112,8 +128,11 @@ class DocData {
         return new Paragraph({
             children: [
                 new TextRun({
-                    text: "       " + nom + " " + prenom,
+                    text: nom + " " + prenom,
                     bold: true,
+                    font: "Century Gothic",
+                    size: 36,
+                    color: "#e6f1eb",
                     alignment: AlignmentType.CENTER,
                 }),
                 new TextRun({
@@ -123,6 +142,9 @@ class DocData {
                 new TextRun({
                     text: this.getPosteAndExps(exp),
                     bold: true,
+                    font: "Century Gothic",
+                    size: 24,
+                    color: "#e6f1eb",
                     alignment: AlignmentType.CENTER,
                 }),
             ],
@@ -136,15 +158,61 @@ class DocData {
             },
         });
     }
-    static getBufferLogo1stPage() {
+    static getHeaderLogo1stPage() {
         return new Paragraph({
             children: [
                 new ImageRun({
                     type: "png",
                     data: this.urlToBlob(enumImg.Logo2),
                     transformation: {
-                        width: 120,
-                        height: 54,
+                        width: 180,
+                        height: 85,
+                    },
+
+                    floating: {
+                        horizontalPosition: {
+                            align: HorizontalPositionAlign.RIGHT,
+                        },
+                        verticalPosition: {
+                            align: VerticalPositionAlign.TOP,
+                        },
+                    },
+                }),
+            ],
+        });
+    }
+    static getHeaderGauche() {
+        return new Paragraph({
+            children: [
+                new ImageRun({
+                    type: "png",
+                    data: this.urlToBlob(enumImg.HeaderGauche),
+                    transformation: {
+                        width: 600,
+                        height: 110,
+                    },
+                    floating: {
+                        behindDocument: true,
+                        horizontalPosition: {
+                            align: HorizontalPositionAlign.LEFT,
+                        },
+                        verticalPosition: {
+                            align: VerticalPositionAlign.TOP,
+                        },
+                    },
+                }),
+            ],
+        });
+    }
+    static getHeaderLogoDefault() {
+        return new Paragraph({
+            children: [
+                new ImageRun({
+                    type: "png",
+                    data: this.urlToBlob(enumImg.Logo1),
+                    transformation: {
+                        width: 75,
+                        height: 105,
                     },
 
                     floating: {
@@ -163,45 +231,6 @@ class DocData {
              }*/
         });
     }
-    static getBufferLogo() {
-        return new Paragraph({
-            children: [
-                new ImageRun({
-                    type: "png",
-                    data: this.urlToBlob(enumImg.Logo1),
-                    transformation: {
-                        width: 80,
-                        height: 80,
-                        /*position: absolute,
-                                                            top: 0,
-                                                            right: 0,*/
-                    },
-                    floating: {
-                        horizontalPosition: {
-                            align: HorizontalPositionAlign.RIGHT,
-                        },
-                        verticalPosition: {
-                            align: VerticalPositionAlign.TOP,
-                        },
-                    },
-                }),
-            ],
-        });
-    }
-    static getHL() {
-        return new Paragraph({
-            children: [
-                new ImageRun({
-                    type: "png",
-                    data: "iVBORw0KGgoAAAANSUhEUgAABAAAAAAFCAYAAADbn54jAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAACxEAAAsRAX9kX5EAAAAGYktHRAD+AP4A/usY1IIAAAAJdnBBZwAABAAAAAJAABJgAnEAAAAldEVYdGNyZWF0ZS1kYXRlADIwMTEtMDEtMDNUMTY6MDE6NTYrMDA6MDAJWHqrAAAAJXRFWHRtb2RpZnktZGF0ZQAyMDExLTAxLTAzVDE2OjAxOjU2KzAwOjAwVukMnwAAAD9JREFUeF7t2DEBADAIxEBaS/jXRpeqeO6WeMjpnikAAAAg2v0FAAAAghkAAAAAsIABAAAAAAsYAAAAABCv6gEvzwJuN2SghwAAAABJRU5ErkJggg==",
-                    transformation: {
-                        width: 600,
-                        height: 2,
-                    },
-                }),
-            ],
-        });
-    }
     static getPageNumber() {
         return new Paragraph({
             children: [
@@ -217,7 +246,7 @@ class DocData {
             alignment: AlignmentType.RIGHT,
         });
     }
-    static getFooterC(nom, prenom) {
+    static getFooterC() {
         return new Paragraph({
             children: [
                 new ExternalHyperlink({
@@ -231,13 +260,6 @@ class DocData {
                     link: "http://www.proxiad.com",
                 }),
             ],
-            //alignment: AlignmentType.LEFT,
-            /*shading: {
-                type: ShadingType.REVERSE_DIAGONAL_STRIPE,
-                color: "00FFFF",
-                fill: "FF0000",
-                background-color: #FFFFFF;
-            },*/
         });
     }
     static getFooterL() {
@@ -273,8 +295,8 @@ class DocData {
             type: "png",
             data: this.urlToBlob(url),
             transformation: {
-                width: 8,
-                height: 8,
+                width: 5,
+                height: 5,
             },
         });
     }
