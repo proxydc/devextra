@@ -83,6 +83,22 @@ class tableRow {
             ],
         });
     }
+    static getBlankTableRowFont5LineBreak() {
+        return new TableRow({
+            children: [
+                new TableCell({
+                    children: [docData.LineBreakFont5()],
+                    columnSpan: 2,
+                    borders: {
+                        top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                        bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                        left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                        right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                    },
+                }),
+            ],
+        });
+    }
 
     static getBlankTableRowPageBreak() {
         return new TableRow({

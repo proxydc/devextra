@@ -6,6 +6,11 @@ import comp from "../../DocGeneration/cComps";
 import certs from "../../DocGeneration/cCerts";
 import bref from "../../DocGeneration/cBref";
 import lang from "../../DocGeneration/cLang";
+import system from "../../DocGeneration/cSystems.js";
+import languages from "../../DocGeneration/cLanguages.js";
+import tools from "../cTools.js";
+import databases from "../../DocGeneration/cDatabases.js";
+import environments from "../../DocGeneration/cEnvironments.js";
 import tbrow from "./tableRow";
 import {
     Header,
@@ -43,7 +48,7 @@ class DocTable {
                             children: [
                                 this.getTitle(),
                                 docData.LineBreak(),
-                                docData.LineBreak(),
+                                /*docData.LineBreak(),
                                 comp.getSubTitle("Compétences fonctionnelles :"),
                                 comp.getComp(docjs.functionalAbilities),
                                 docData.LineBreak(),
@@ -93,7 +98,7 @@ class DocTable {
                                 docData.LineBreak(),
                                 docData.getLine2(docjs.bref),
                                 docData.LineBreak(),
-                                docData.pageBreak(),
+                                docData.pageBreak(),*/
                             ],
                             columnSpan: 2,
                             borders: {
@@ -107,27 +112,73 @@ class DocTable {
                 }),
             ],
         });
-        table.addChildElement(tbrow.getBlankTableRowPageBreak());
+        if (docjs.functionalAbilities != "" && docjs.functionalAbilities != null && docjs.functionalAbilities.length > 0) {
+            table.addChildElement(comp.getCompfunctionals(docjs.functionalAbilities));
+        }
+        if (docjs.technicalAbilities != "" && docjs.technicalAbilities != null && docjs.technicalAbilities.length > 0) {
+            table.addChildElement(comp.getComptechnicals(docjs.technicalAbilities));
+        }
 
-        table.addChildElement(tbrow.getExpTitle("Expériences professionnelles"));
-        table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
-        let counterexp = 1;
-        let nbtasks = 0;
-        docjs.experiencesPro.forEach((element) => {
-            if (counterexp % 2 == 0 && docjs.experiencesPro.length - 1 != counterexp) {
-                let count = nbtasks + element.tasks.length;
-                let nbRowBreaks = this.getNbRowBreak(count);
-                alert(
-                    "nbtasks: " +
-                    nbtasks +
-                    " **** count: " +
-                    count +
-                    " **** nbRowBreaks: " +
-                    nbRowBreaks +
-                    " ***** counterexp: " +
-                    counterexp
-                );
-                for (let index = 0; index < nbRowBreaks; index++) {
+        if (docjs.skills.environments != "" && docjs.skills.environments != null && docjs.skills.environments.length > 0) {
+            table.addChildElement(environments.getEnvironmentsTableRow(docjs.skills.environments));
+            table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
+        }
+        if (docjs.skills.languages != "" && docjs.skills.languages != null && docjs.skills.languages.length > 0) {
+            table.addChildElement(languages.getLanguagesTableRow(docjs.skills.languages));
+            table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
+        }
+        if (docjs.skills.databases != "" && docjs.skills.databases != null && docjs.skills.databases.length > 0) {
+            table.addChildElement(databases.getDatabasesTableRow(docjs.skills.databases));
+            table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
+        }
+        if (docjs.skills.tools != "" && docjs.skills.tools != null && docjs.skills.tools.length > 0) {
+            table.addChildElement(tools.getToolsTableRow(docjs.skills.tools));
+            table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
+        }
+        if (docjs.skills.systems != "" && docjs.skills.systems != null && docjs.skills.systems.length > 0) {
+            table.addChildElement(system.getSystemsTableRow(docjs.skills.systems));
+            table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
+        }
+        if (docjs.languages != "" && docjs.languages != null && docjs.languages.length > 0) {
+            table.addChildElement(lang.getLanguesTableRow(docjs.languages));
+        }
+
+        if (docjs.certifications != "" && docjs.certifications != null && docjs.certifications.length > 0) {
+            table.addChildElement(tbrow.getBlankTableRowSingleLineBreak());
+            table.addChildElement(certs.getCertsTitleTableRow());
+            table.addChildElement(tbrow.getBlankTableRowSingleLineBreak());
+            table.addChildElement(certs.getCertsTableRow(docjs.certifications));
+        }
+
+        if (docjs.bref != "" && docjs.bref != null && docjs.bref.length > 0) {
+            table.addChildElement(tbrow.getBlankTableRowSingleLineBreak());
+            table.addChildElement(bref.getBrefTitleTableRow());
+            table.addChildElement(tbrow.getBlankTableRowSingleLineBreak());
+            table.addChildElement(bref.getBrefTableRow(docjs.bref));
+        }
+
+
+        /* table.addChildElement(tbrow.getBlankTableRowPageBreak());
+
+         table.addChildElement(tbrow.getExpTitle("Expériences professionnelles"));
+         table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+         let counterexp = 1;
+         let nbtasks = 0;
+         docjs.experiencesPro.forEach((element) => {
+             if (counterexp % 2 == 0 && docjs.experiencesPro.length - 1 != counterexp) {
+                 let count = nbtasks + element.tasks.length;
+                 let nbRowBreaks = this.getNbRowBreak(count);
+                 /*alert(
+                     "nbtasks: " +
+                     nbtasks +
+                     " **** count: " +
+                     count +
+                     " **** nbRowBreaks: " +
+                     nbRowBreaks +
+                     " ***** counterexp: " +
+                     counterexp
+                 );*/
+        /*for (let index = 0; index < nbRowBreaks; index++) {
                     table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
                 }
             }
@@ -140,7 +191,7 @@ class DocTable {
                         for (let index = 0; index < nbRowBreaks; index++) {
                             table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
                         }*/
-                table.addChildElement(tbrow.getBlankTableRowPageBreak());
+        /* table.addChildElement(tbrow.getBlankTableRowPageBreak());
                 nbtasks = 0;
             } else {
                 //if (!counterexp % 2 && docjs.experiencesPro.length - 1 != counterexp) {
@@ -168,7 +219,7 @@ class DocTable {
                 }
                 counterexp++;
             }
-        }
+        }*/
         return table;
     }
     static getNbRowBreak(nb) {
@@ -212,8 +263,8 @@ class DocTable {
                     type: "png",
                     data: docData.urlToBlob(enumImg.Titlecomp),
                     transformation: {
-                        width: 35,
-                        height: 35,
+                        width: 40,
+                        height: 40,
                     },
                 }),
                 new TextRun({
@@ -223,6 +274,7 @@ class DocTable {
                     alignment: AlignmentType.CENTER,
                     text: "Compétences Clés",
                     font: "Century Gothic",
+                    color: "#1d1933",
                     bold: true,
                     size: 28,
                 }),

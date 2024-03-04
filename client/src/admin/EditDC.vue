@@ -15,8 +15,23 @@
           <label for="lbemail">Email</label>
           <input type="email" v-model="model.candidat.email" placeholder="Enter Email" id="lbemail" required
             class="form-control" />
+          <label for="lbposte">Poste</label>
+          <input type="text" id="lbposte" v-model="model.candidat.poste" placeholder="Enter poste" class="form-control" />
+          <label for="lbexps">Nb.Exps</label>
+          <input type="text" id="lbexps" v-model="model.candidat.nbexps" placeholder="Enter nb exps" class="form-control" />
           <label for="lbtags">Tags</label>
           <input type="text" id="lbtags" v-model="model.candidat.tags" placeholder="Enter tags" class="form-control" />
+          <div class="example ex1">
+            <h5>Select Nom</h5>
+            <label class="radio red">
+              <input type="radio" v-model="model.candidat.filename" value="1" name="group1" />
+              <span>Complet</span>
+            </label>
+            <label class="radio blue">
+              <input type="radio" v-model="model.candidat.filename" value="2" name="group1" checked />
+              <span>Trigram</span>
+            </label>
+          </div>
           <label for="lbstatus">Status:</label>
           <div style="overflow:hidden;">
             <!--<select class="selectpicker show-tick" v-model="model.candidat.dc_status" id="lbstatus">
@@ -66,6 +81,9 @@ export default {
           firstname: { type: String, required: true },
           familyname: { type: String, required: true },
           email: { type: String, required: true },
+          poste: { type: String, required: true },
+          nbexps: { type: Number, required: true },
+          filename: 2,
           dc_status: { type: Number },
           status_name: { type: String },
           tags: { type: String },
@@ -112,6 +130,9 @@ export default {
           email: this.model.candidat.email,
           dc_status: this.model.candidat.dc_status,
           tags: this.model.candidat.tags,
+          poste: this.model.candidat.poste,
+          nbexps: this.model.candidat.nbexps,
+          filename: this.model.candidat.filename,
         });
         console.log(result);
         switch (result.status) {
@@ -131,3 +152,64 @@ export default {
   },
 };
 </script>
+<style scoped>
+.example {
+  margin: 20px;
+}
+
+.example input {
+  display: none;
+}
+
+.example label {
+  margin-right: 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.ex1 span {
+  display: block;
+  padding: 5px 10px 5px 25px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  position: relative;
+  transition: all 0.25s linear;
+}
+
+.ex1 span:before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  -webkit-transform: translatey(-50%);
+  transform: translatey(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ddd;
+  transition: all 0.25s linear;
+}
+
+.ex1 input:checked+span {
+  background-color: #fff;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+.ex1 .red input:checked+span {
+  color: red;
+  border-color: red;
+}
+
+.ex1 .red input:checked+span:before {
+  background-color: red;
+}
+
+.ex1 .blue input:checked+span {
+  color: blue;
+  border-color: blue;
+}
+
+.ex1 .blue input:checked+span:before {
+  background-color: blue;
+}
+</style>

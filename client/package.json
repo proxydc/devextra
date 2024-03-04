@@ -25,6 +25,7 @@
     "fs": "^0.0.1-security",
     "jquery": "^3.7.1",
     "promise": "^8.3.0",
+    "prototype": "^0.0.5",
     "url": "^0.11.3",
     "vue": "^3.2.13",
     "vue-router": "^4.2.5",

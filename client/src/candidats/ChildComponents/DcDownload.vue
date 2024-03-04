@@ -34,7 +34,9 @@ export default {
       try {
         const url = urldc.getDcDocUrl(this.documentId);
         axios.get(url).then((res) => {
-          console.log("docdata: " + res.data.document.projectsPerso[0].technical_env);
+          console.log(
+            "docdata: " + res.data.document.projectsPerso[0].technical_env
+          );
           this.dbDoc = res.data;
         });
       } catch (err) {
@@ -62,14 +64,18 @@ export default {
       });
       // To export into a .docx file
       var filen =
-        "DossierCompetences-" +
-        docjs.familyname.trim() +
-        "-" +
+        new Date().getFullYear() +""+
+        this.getPadding(parseInt(new Date().getMonth()+1) +"")+
+        this.getPadding(new Date().getDate()+"") +
+        " _ Profil de " +
         docjs.firstname.trim() +
-        "-" +
-        new Date().toLocaleString() +
+        docjs.familyname.trim() +
         ".docx";
-      this.saveDocumentToFile(doc, filen); 
+      this.saveDocumentToFile(doc, filen);
+    },
+    getPadding(txt)
+    {
+      return txt.padStart(2,'0');
     },
     saveDocumentToFile(doc, fileName) {
       const mimeType =

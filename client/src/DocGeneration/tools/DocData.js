@@ -383,17 +383,29 @@ class DocData {
             ],
         });
     }
+    static LineBreakFont5() {
+        return new Paragraph({
+            children: [
+                new TextRun({
+                    text: " ",
+                    size: 10,
+                    font: "Century Gothic",
+                    //break: 1,
+                }),
+            ],
+        });
+    }
     static getSubTitle(txt) {
         return new Paragraph({
             children: [
                 new TextRun({
                     text: txt,
-                    alignment: AlignmentType.LEFT,
+                    alignment: AlignmentType.CENTER,
                     heading: HeadingLevel.TITLE,
                     bold: true,
-                    underline: true,
-                    size: 30,
-                    color: "#008cba",
+                    font: "Century Gothic",
+                    size: 20,
+                    color: "#226c66", //#22636c", // "#09525c",
                 }),
             ],
         });
