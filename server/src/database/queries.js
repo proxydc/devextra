@@ -13,7 +13,7 @@ const getDCs = "select d.*, ds.label as status_name, acc.display_name as manager
 const getDCsByManagerID = "select d.*, ds.label as status_name, acc.display_name as manager_name from dc d, dc_status ds, account acc where d.dc_status = ds.id and d.manager_id = acc.id and d.manager_id = $1";
 const getDCById = "select d.*, ds.label as status_name from dc d, dc_status ds where d.id = $1 and d.dc_status = ds.id";
 const getDCByIdCandidat = "select d.*, ds.label as status_name from dc d, dc_status ds where d.id = $1 and d.dc_status = ds.id";
-const getDCDocById = "select dc.document from dc where id = $1 limit 1";
+const getDCDocById = "select dc.document, dc.familyname, dc.firstname, dc.nbexps, dc.poste from dc where id = $1 limit 1";
 const checkDCExists = "select a from dc a where a.email = $1";
 const addDC = "insert into dc(familyname, firstname, email, dc_status, document, manager_id, filename, nbexps, creation_date, modification_date) values ($1, $2, $3, $4, $5, $6, 2, 0, $7, $8)"; // add tags ici
 const updateDCByAdmin = "update dc set familyname=$2, firstname=$3, email=$4, dc_status=$5, tags = $6, filename = $7, nbexps = $8, poste = $9, modification_date = $10 where id = $1"; //controle sur email

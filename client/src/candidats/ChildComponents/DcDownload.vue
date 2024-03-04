@@ -44,6 +44,10 @@ export default {
       }
       console.log("docdata: " + this.dbDoc);
       let docjs = this.dbDoc.document;
+      const firstname = this.dbDoc.firstname;
+      const familyname = this.dbDoc.familyname;
+      const poste = this.dbDoc.poste;
+      const nbexps = this.dbDoc.nbexps; 
       const doc = new Document({
         sections: [
           {
@@ -51,12 +55,12 @@ export default {
               titlePage: true,
             },
             headers: {
-              first: docData.getFirstPageHeader(docjs),
-              default: docData.getDefaultPageHeader(docjs),
+              first: docData.getFirstPageHeader(familyname, firstname, poste, nbexps),
+              default: docData.getDefaultPageHeader(),
             },
             footers: {
-              default: docData.getDefaultPageFooter(docjs),
-              first: docData.getFirstPageFooter(docjs),
+              default: docData.getDefaultPageFooter(),
+              first: docData.getFirstPageFooter(),
             },
             children: [docTable.getTable(docjs)],
           },

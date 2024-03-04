@@ -19,17 +19,17 @@ import {
 } from "docx";
 
 class DocData {
-    static getFirstPageHeader(docjs) {
+    static getFirstPageHeader(familyname, firstname, poste, nbexps) {
         return new Header({
             // The header on first page when the 'Different First Page' option is activated
             children: [
-                this.getHeader(docjs.familyname, docjs.firstname, docjs.experiencesPro),
+                this.getHeader(familyname, firstname, poste, nbexps),
                 this.getHeaderLogo1stPage(),
                 this.getHeaderGauche(),
             ],
         });
     }
-    static getDefaultPageHeader(docjs) {
+    static getDefaultPageHeader() {
         return new Header({
             // The standard default header on every page or header on odd pages when the 'Different Odd & Even Pages' option is activated
             children: [
@@ -37,7 +37,7 @@ class DocData {
             ],
         });
     }
-    static getDefaultPageFooter(docjs) {
+    static getDefaultPageFooter() {
         return new Footer({
             // The standard default footer on every page or footer on odd pages when the 'Different Odd & Even Pages' option is activated
             children: [
@@ -48,7 +48,7 @@ class DocData {
             ],
         });
     }
-    static getFirstPageFooter(docjs) {
+    static getFirstPageFooter() {
         return new Footer({
             // The footer on first page when the 'Different First Page' option is activated
             children: [
@@ -96,39 +96,19 @@ class DocData {
         let ms = endDate.getTime() - startDate.getTime();
         return Math.round(ms / (1000 * 3600 * 24));
     }
-    static getPosteAndExps(exp) {
-        if (exp != "" && exp != null && exp.length > 0) {
-            let temp = exp.sort(function(a, b) {
-                let dateA = new Date(a.start);
-                let dateB = new Date(b.start);
-                return compareDesc(dateA - dateB);
-            });
-            let poste = temp[0].title.trim();
-            let nbyears = 0;
-            let days = 0;
-            temp.forEach((element) => {
-                /* nbyears += this.getYearDiffWithMonth(
-                     new Date(element.start),
-                     new Date(element.end)
-                 );*/
-                days += this.getDiffDays(new Date(element.start),
-                    new Date(element.end))
-            });
-            nbyears = Math.round(days / 365)
-            if (nbyears > 0)
-                return poste + " (" + nbyears + " ans)";
+    static getPosteAndExps(poste, nbexps) {
+        if (poste.length > 0) {
+            if (nbexps > 0)
+                return poste + " (" + nbexps + " ans)";
             return poste;
-            /* if (nbyears > 0)
-                 return poste + " (" + nbyears + " années d’expériences)" + Math.round(days / 365);
-             return poste;*/
         }
         return "";
     }
-    static getHeader(nom, prenom, exp) {
+    static getHeader(familyname, firstname, poste, nbexps) {
         return new Paragraph({
             children: [
                 new TextRun({
-                    text: nom + " " + prenom,
+                    text: familyname + " " + firstname,
                     bold: true,
                     font: "Century Gothic",
                     size: 36,
@@ -140,7 +120,7 @@ class DocData {
                     break: 1,
                 }),
                 new TextRun({
-                    text: this.getPosteAndExps(exp),
+                    text: this.getPosteAndExps(poste, nbexps),
                     bold: true,
                     font: "Century Gothic",
                     size: 24,
