@@ -164,6 +164,22 @@ class tableRow {
             ],
         });
     }
+    static getExpPosteTitle(txt) {
+        return new TableRow({
+            children: [
+                new TableCell({
+                    children: [exppro.getExpEnt(txt)],
+                    columnSpan: 2,
+                    borders: {
+                        top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                        bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                        left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                        right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                    },
+                }),
+            ],
+        });
+    }
 
     static getTwoExpTableRow(i, pros) {
         alert("length: " + pros.length);
@@ -254,8 +270,8 @@ class tableRow {
             children: [
                 new TableCell({
                     children: [
-                        exppro.getExpEnt(pros.company),
-                        docData.LineBreak(),
+                        /*exppro.getExpEnt(pros.company),
+                        docData.LineBreak(),*/
                         exppro.getExpPost(pros.title),
                         docData.LineBreak(),
                         exppro.getExpPeriode(pros.start, pros.end),

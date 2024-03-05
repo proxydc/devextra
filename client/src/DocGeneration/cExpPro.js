@@ -24,18 +24,18 @@ class cExpPro {
                     type: "png",
                     data: docData.urlToBlob(enumImg.TitleExp),
                     transformation: {
-                        width: 50,
-                        height: 50,
+                        width: 65,
+                        height: 65,
                     },
                 }),
                 new TextRun({
-                    text: "                        " + txt.trim(),
+                    text: "       " + txt.trim(),
                     alignment: AlignmentType.CENTER,
                     heading: HeadingLevel.TITLE,
+                    font: "Century Gothic",
+                    color: "#1d1933",
                     bold: true,
-                    //underline: true,
-                    size: 30,
-                    color: "#008cba",
+                    size: 28,
                 }),
             ],
         });
@@ -163,10 +163,13 @@ class cExpPro {
                     //smallCaps: true,
                     //bold: true,
                     //underline: true,
-                    size: 18,
+                    size: 20,
                     //color: "#008cba",
                 }),
             ],
+            spacing: {
+                line: 250,
+            },
         });
     }
     static getExpTask(task) {
@@ -198,12 +201,13 @@ class cExpPro {
                                             new TextRun({
                                                 text: task.trim(), //7 spaces,
                                                 alignment: AlignmentType.LEFT,
-                                                size: 22,
+                                                size: 20,
+                                                font: "Century Gothic",
                                                 // spacing: 10,
                                             }),
                                         ],
                                         spacing: {
-                                            line: 350,
+                                            line: 300,
                                         },
                                     }),
                                 ],

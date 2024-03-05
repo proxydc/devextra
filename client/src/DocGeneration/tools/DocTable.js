@@ -157,59 +157,177 @@ class DocTable {
             table.addChildElement(bref.getBrefTableRow(docjs.bref));
         }
 
-
-        /* table.addChildElement(tbrow.getBlankTableRowPageBreak());
-
-         table.addChildElement(tbrow.getExpTitle("Expériences professionnelles"));
-         table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
-         let counterexp = 1;
-         let nbtasks = 0;
-         docjs.experiencesPro.forEach((element) => {
-             if (counterexp % 2 == 0 && docjs.experiencesPro.length - 1 != counterexp) {
-                 let count = nbtasks + element.tasks.length;
-                 let nbRowBreaks = this.getNbRowBreak(count);
-                 /*alert(
-                     "nbtasks: " +
-                     nbtasks +
-                     " **** count: " +
-                     count +
-                     " **** nbRowBreaks: " +
-                     nbRowBreaks +
-                     " ***** counterexp: " +
-                     counterexp
-                 );*/
-        /*for (let index = 0; index < nbRowBreaks; index++) {
-                    table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
-                }
-            }
-
-            table.addChildElement(tbrow.getExpTableRow(element));
-            table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
-            if (counterexp % 2 == 0 && docjs.experiencesPro.length - 1 != counterexp) {
-                /*let count = nbtasks + element.tasks.length;
-                        let nbRowBreaks = this.getNbRowBreak(count);
-                        for (let index = 0; index < nbRowBreaks; index++) {
-                            table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
-                        }*/
-        /* table.addChildElement(tbrow.getBlankTableRowPageBreak());
-                nbtasks = 0;
-            } else {
-                //if (!counterexp % 2 && docjs.experiencesPro.length - 1 != counterexp) {
-                nbtasks = element.tasks.length;
-                //}
-            }
-            counterexp++;
-        });
-        if (docjs.experiencesPro != "" && docjs.experiencesPro.length % 2 != 0) {
+        if (docjs.experiencesPro != "" && docjs.experiencesPro != null && docjs.experiencesPro.length > 0) {
             table.addChildElement(tbrow.getBlankTableRowPageBreak());
-        }
-        counterexp = 0;
-        if (docjs.projectsPerso != "" && docjs.projectsPerso != null) {
-            for (let index = 0; index < docjs.projectsPerso.length; index++) {
-                const element = docjs.projectsPerso[index];
+            table.addChildElement(tbrow.getExpTitle("Principales Expériences Professionnelles"));
+            table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+            let nblines = 0;
+            // let nbleftcollines = 0;
+            //let nbrightcollines = 0;
+            //let expperpages = [];
+            let linesperpages = [];
+            let page = 0;
+            let nbexps = 0;
+            let nblinesaffectedsurpage = 0;
+            let exppros = [];
+            for (let index = 0; index < docjs.experiencesPro.length; index++) {
+                nbexps += 1;
+                /*//for first page title
+                 if (index == 0) { nblines += 2; }
+                 //for entreprise
+                 nblines += 1;
+                 //for space line
+                 nblines += 1;
+                 // LEFT COLUMNS LINES /
+                //for poste
+                 nbleftcollines += docjs.experiencesPro[index].title.length > 25 ? 2 : 1;
+                 //for period
+                 nbleftcollines += exppro.getExpPeriode(docjs.experiencesPro[index].start, docjs.experiencesPro[index].end).length > 31 ? 2 : 1;
+                 //for environnment technique title
+                 nbleftcollines += 1;
+                 //for environnment context
+                 nbleftcollines += Math.ceil(docjs.experiencesPro[index].technical_env.length / 25);
+                 //for space lines
+                 nbleftcollines += 1;
+                 // RIGHT COLUMNS LINES /
+                nbrightcollines += Math.ceil(docjs.experiencesPro[index].context.length / 65);
+                docjs.experiencesPro[index].tasks.forEach(element => {
+                    nbrightcollines += element.length > 64 ? 2 : 1;
+                });
+
+                if (nbleftcollines > nbrightcollines) { nblines += nbleftcollines; } else { nblines += nbrightcollines; }*/
+
+                nblines += this.getNblines(docjs.experiencesPro[index], index);
+                let lens = docjs.experiencesPro.length - 1;
+                //alert("index: " + index + "****  length: " + lens + "****  nblines: " + nblines);
+                if (nblines > 40 || index == lens) {
+                    alert("Iam here: " + index);
+                    if (index == lens && nblines < 41) {
+                        nblinesaffectedsurpage = nblines;
+                    }
+                    nbexps -= 1;
+                    if (nbexps == 0) {
+                        nbexps = 1;
+                        exppros.push(docjs.experiencesPro[index]);
+                    }
+                    page += 1;
+                    // expperpages.push({ num: page, exp: nbexps });
+                    //alert("page: " + page);
+                    //alert("nbexps: " + nbexps);                    
+                    //alert("pages: " + pages);
+                    //console.log("Pages: " + expperpages);
+
+                    linesperpages.push({ num: page, nblinespage: nblinesaffectedsurpage, profexp: exppros });
+                    let temp = 0;
+                    linesperpages.forEach(element => {
+                        temp += element.profexp.length;
+                    });
+                    let compare = index + 1;
+                    if (temp != compare) {
+                        index -= 1;
+                    }
+                    nblines = 0;
+                    nbexps = 0;
+                    exppros = [];
+                    // if (index != lens) { index -= 1; }
+                } else {
+                    nblinesaffectedsurpage = nblines;
+                    exppros.push(docjs.experiencesPro[index]);
+                }
+                //nbleftcollines = 0;
+                //nbrightcollines = 0;
+            }
+            for (let k = 0; k < linesperpages.length; k++) {
+                alert("Page num: " + linesperpages[k].num);
+                alert("nblinespage: " + linesperpages[k].nblinespage);
+                alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
+            }
+            linesperpages.forEach(function(element, idx, array) {
+                element.profexp.forEach(element => {
+                    table.addChildElement(tbrow.getExpPosteTitle(element.company));
+                    table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
+                    table.addChildElement(tbrow.getExpTableRow(element));
+                    table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                });
+                if (idx != array.length - 1) {
+                    table.addChildElement(tbrow.getBlankTableRowPageBreak());
+                }
+            });
+
+            //exp personnelles
+            nblines = 0;
+            // let nbleftcollines = 0;
+            //let nbrightcollines = 0;
+            //let expperpages = [];
+            linesperpages = [];
+            page = 0;
+            nbexps = 0;
+            nblinesaffectedsurpage = 0;
+            exppros = [];
+            //let counterexp = 0;
+            if (docjs.projectsPerso != "" && docjs.projectsPerso != null && docjs.projectsPerso.length > 0) {
+                table.addChildElement(tbrow.getBlankTableRowPageBreak());
+                table.addChildElement(tbrow.getExpTitle("Principales Expériences Personnelles"));
+                table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                for (let index = 0; index < docjs.projectsPerso.length; index++) {
+                    nbexps += 1;
+                    nblines += this.getNblinesPerso(docjs.projectsPerso[index], index);
+                    let lens = docjs.projectsPerso.length - 1;
+                    if (nblines > 40 || index == lens) {
+                        alert("Iam here: " + index);
+                        if (index == lens && nblines < 41) {
+                            nblinesaffectedsurpage = nblines;
+                        }
+                        nbexps -= 1;
+                        if (nbexps == 0) {
+                            nbexps = 1;
+                            exppros.push(docjs.projectsPerso[index]);
+                        }
+                        page += 1;
+                        linesperpages.push({ num: page, nblinespage: nblinesaffectedsurpage, profexp: exppros });
+                        let temp = 0;
+                        linesperpages.forEach(element => {
+                            temp += element.profexp.length;
+                        });
+                        let compare = index + 1;
+                        if (temp != compare) {
+                            index -= 1;
+                        }
+                        nblines = 0;
+                        nbexps = 0;
+                        exppros = [];
+                    } else {
+                        nblinesaffectedsurpage = nblines;
+                        exppros.push(docjs.projectsPerso[index]);
+                    }
+                }
+                for (let k = 0; k < linesperpages.length; k++) {
+                    alert("Page num: " + linesperpages[k].num);
+                    alert("nblinespage: " + linesperpages[k].nblinespage);
+                    alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
+                }
+                linesperpages.forEach(function(element, idx, array) {
+                    element.profexp.forEach(element => {
+                        // table.addChildElement(tbrow.getExpPosteTitle(element.company));
+                        // table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
+                        table.addChildElement(tbrow.getProjectsTableRow(element));
+                        table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                    });
+                    if (idx != array.length - 1) {
+                        table.addChildElement(tbrow.getBlankTableRowPageBreak());
+                    }
+                });
+
+
+
+
+
+
+
+                /*const element = docjs.projectsPerso[index];
                 if (index == 0) {
-                    //table.addChildElement(tbrow.getBlankTableRowPageBreak());
-                    table.addChildElement(tbrow.getExpTitle("Expériences personnelles"));
+                    //
+                    table.addChildElement(tbrow.getExpTitle("Principales Expériences Personnelles"));
                     table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
                 }
                 table.addChildElement(tbrow.getProjectsTableRow(element));
@@ -218,9 +336,68 @@ class DocTable {
                     table.addChildElement(tbrow.getBlankTableRowPageBreak());
                 }
                 counterexp++;
+            }*/
             }
-        }*/
+        }
         return table;
+    }
+    static getNblinesPerso(exp, idx) {
+        let nblines = 0;
+        let nbleftcollines = 0;
+        let nbrightcollines = 0;
+        //for first page title
+        if (idx == 0) { nblines += 2; }
+        //for entreprise
+        nblines += 1;
+        //for space line
+        nblines += 1;
+        //******* LEFT COLUMNS LINES ******** */
+        //for poste
+        nbleftcollines += exp.title.length > 25 ? 2 : 1;
+        //for period
+        nbleftcollines += exppro.getExpPeriode(exp.period, '').length > 31 ? 2 : 1;
+        //for environnment technique title
+        nbleftcollines += 1;
+        //for environnment context
+        nbleftcollines += Math.ceil(exp.technical_env.length / 25);
+        //for space lines
+        nbleftcollines += 1;
+        //******* RIGHT COLUMNS LINES ******** */
+        nbrightcollines += Math.ceil(exp.context.length / 65);
+        exp.tasks.forEach(element => {
+            nbrightcollines += element.length > 64 ? 2 : 1;
+        });
+        if (nbleftcollines > nbrightcollines) { nblines += nbleftcollines; } else { nblines += nbrightcollines; }
+        return nblines;
+    }
+    static getNblines(exp, idx) {
+        let nblines = 0;
+        let nbleftcollines = 0;
+        let nbrightcollines = 0;
+        //for first page title
+        if (idx == 0) { nblines += 2; }
+        //for entreprise
+        nblines += 1;
+        //for space line
+        nblines += 1;
+        //******* LEFT COLUMNS LINES ******** */
+        //for poste
+        nbleftcollines += exp.title.length > 25 ? 2 : 1;
+        //for period
+        nbleftcollines += exppro.getExpPeriode(exp.start, exp.end).length > 31 ? 2 : 1;
+        //for environnment technique title
+        nbleftcollines += 1;
+        //for environnment context
+        nbleftcollines += Math.ceil(exp.technical_env.length / 25);
+        //for space lines
+        nbleftcollines += 1;
+        //******* RIGHT COLUMNS LINES ******** */
+        nbrightcollines += Math.ceil(exp.context.length / 65);
+        exp.tasks.forEach(element => {
+            nbrightcollines += element.length > 64 ? 2 : 1;
+        });
+        if (nbleftcollines > nbrightcollines) { nblines += nbleftcollines; } else { nblines += nbrightcollines; }
+        return nblines;
     }
     static getNbRowBreak(nb) {
         if (nb > 15) return 0;

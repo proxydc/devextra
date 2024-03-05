@@ -21,7 +21,7 @@ class cCerts {
         for (var i = 0; i < funcs.length; i++) {
             cf.addChildElement(
                 new TextRun({
-                    text: funcs[i].year + ": ",
+                    text: funcs[i].year + " : ",
                     size: 20,
                     bold: true,
                     font: "Century Gothic",
