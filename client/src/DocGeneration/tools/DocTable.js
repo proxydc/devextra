@@ -130,7 +130,7 @@ class DocTable {
                         nbexps = 1;
                         exppros.push(docjs.experiencesPro[index]);
                     } else {
-                        if (index == lens && nblines <= 38) {
+                        if (index == lens && nblines <= 40) {
                             exppros.push(docjs.experiencesPro[index]);
                         }
                     }
@@ -160,18 +160,31 @@ class DocTable {
                  alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
              }*/
             linesperpages.forEach(function(element, idx, array) {
-                element.profexp.forEach(element => {
-                    table.addChildElement(tbrow.getExpPosteTitle(element.company));
+                element.profexp.forEach(function(elem, ind, arr) {
+                    table.addChildElement(tbrow.getExpPosteTitle(elem.company));
                     table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
-                    table.addChildElement(tbrow.getExpTableRow(element));
-                    //if (idx != array.length - 1) {
-                    table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
-                    // }
+                    table.addChildElement(tbrow.getExpTableRow(elem));
+                    if (ind != arr.length - 1) {
+                        table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                    }
                 });
                 if (idx != array.length - 1) {
                     table.addChildElement(tbrow.getBlankTableRowPageBreak());
                 }
             });
+            /* linesperpages.forEach(function(element, idx, array) {
+                 element.profexp.forEach(element => {
+                     table.addChildElement(tbrow.getExpPosteTitle(element.company));
+                     table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
+                     table.addChildElement(tbrow.getExpTableRow(element));
+                     //if (idx != array.length - 1) {
+                     table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                     // }
+                 });
+                 if (idx != array.length - 1) {
+                     table.addChildElement(tbrow.getBlankTableRowPageBreak());
+                 }
+             });*/
 
             //exp personnelles
             nblines = 0;
@@ -197,6 +210,10 @@ class DocTable {
                         if (nbexps == 0) {
                             nbexps = 1;
                             exppros.push(docjs.projectsPerso[index]);
+                        } else {
+                            if (index == lens && nblines <= 40) {
+                                exppros.push(docjs.experiencesPro[index]);
+                            }
                         }
                         page += 1;
                         linesperpages.push({ num: page, nblinespage: nblinesaffectedsurpage, profexp: exppros });
@@ -222,9 +239,9 @@ class DocTable {
                     alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
                 }*/
                 linesperpages.forEach(function(element, idx, array) {
-                    element.profexp.forEach(element => {
-                        table.addChildElement(tbrow.getProjectsTableRow(element));
-                        if (idx != array.length - 1) {
+                    element.profexp.forEach(function(elem, ind, arr) {
+                        table.addChildElement(tbrow.getProjectsTableRow(elem));
+                        if (ind != arr.length - 1) {
                             table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
                         }
                     });
