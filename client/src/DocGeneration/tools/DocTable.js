@@ -121,6 +121,7 @@ class DocTable {
                 nblines += exppro.getNblinesPro(docjs.experiencesPro[index], index);
                 let lens = docjs.experiencesPro.length - 1;
                 if (nblines > 40 || index == lens) {
+                    //alert("Iam here: " + index + "  nblines: " + nblines + "lens: " + lens);
                     if (index == lens && nblines < 41) {
                         nblinesaffectedsurpage = nblines;
                     }
@@ -128,14 +129,20 @@ class DocTable {
                     if (nbexps == 0) {
                         nbexps = 1;
                         exppros.push(docjs.experiencesPro[index]);
+                    } else {
+                        if (index == lens && nblines <= 38) {
+                            exppros.push(docjs.experiencesPro[index]);
+                        }
                     }
                     page += 1;
                     linesperpages.push({ num: page, nblinespage: nblinesaffectedsurpage, profexp: exppros });
                     let temp = 0;
                     linesperpages.forEach(element => {
+                        //alert("element.profexp.length: " + element.profexp.length);
                         temp += element.profexp.length;
                     });
                     let compare = index + 1;
+                    //alert("temp: " + temp + "**** compare: " + compare)
                     if (temp != compare) {
                         index -= 1;
                     }
@@ -147,19 +154,19 @@ class DocTable {
                     exppros.push(docjs.experiencesPro[index]);
                 }
             }
-            for (let k = 0; k < linesperpages.length; k++) {
-                alert("Page num: " + linesperpages[k].num);
-                alert("nblinespage: " + linesperpages[k].nblinespage);
-                alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
-            }
+            /* for (let k = 0; k < linesperpages.length; k++) {
+                 alert("Page num: " + linesperpages[k].num);
+                 alert("nblinespage: " + linesperpages[k].nblinespage);
+                 alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
+             }*/
             linesperpages.forEach(function(element, idx, array) {
                 element.profexp.forEach(element => {
                     table.addChildElement(tbrow.getExpPosteTitle(element.company));
                     table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
                     table.addChildElement(tbrow.getExpTableRow(element));
-                    if (idx != array.length - 1) {
-                        table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
-                    }
+                    //if (idx != array.length - 1) {
+                    table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                    // }
                 });
                 if (idx != array.length - 1) {
                     table.addChildElement(tbrow.getBlankTableRowPageBreak());
@@ -209,11 +216,11 @@ class DocTable {
                         exppros.push(docjs.projectsPerso[index]);
                     }
                 }
-                for (let k = 0; k < linesperpages.length; k++) {
+                /*for (let k = 0; k < linesperpages.length; k++) {
                     alert("Page num: " + linesperpages[k].num);
                     alert("nblinespage: " + linesperpages[k].nblinespage);
                     alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
-                }
+                }*/
                 linesperpages.forEach(function(element, idx, array) {
                     element.profexp.forEach(element => {
                         table.addChildElement(tbrow.getProjectsTableRow(element));
