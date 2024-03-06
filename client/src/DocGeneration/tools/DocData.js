@@ -97,7 +97,7 @@ class DocData {
         return Math.round(ms / (1000 * 3600 * 24));
     }
     static getPosteAndExps(poste, nbexps) {
-        if (poste.length > 0) {
+        if (poste != "" && poste != null && poste.length > 0) {
             if (nbexps > 0)
                 return poste + " (" + nbexps + " ans)";
             return poste;

@@ -48,7 +48,7 @@ export default {
         const url = urldc.getDcDocUrl(this.documentId);
         axios.get(url).then((res) => {
           console.log(
-            "docdata: " + res.data.document.projectsPerso[0].technical_env
+            "docdata: " + res.data.document
           );
           this.dbDoc = res.data;
         });
@@ -81,7 +81,7 @@ export default {
       });
       // To export into a .docx file
 
-      var filen = this.getFileName(docjs.familyname, docjs.firstname);
+      var filen = this.getFileName(familyname, firstname);
        /* new Date().getFullYear() +""+
         this.getPadding(parseInt(new Date().getMonth()+1) +"")+
         this.getPadding(new Date().getDate()+"") +
