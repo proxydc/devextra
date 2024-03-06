@@ -158,14 +158,12 @@ class DocTable {
                     table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
                     table.addChildElement(tbrow.getExpTableRow(element));
                     if (idx != array.length - 1) {
-                        table.addChildElement(tbrow.getBlankTableRowPageBreak());
-                    } else {
                         table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
                     }
                 });
-                /*if (idx != array.length - 1) {
+                if (idx != array.length - 1) {
                     table.addChildElement(tbrow.getBlankTableRowPageBreak());
-                }*/
+                }
             });
 
             //exp personnelles
@@ -220,14 +218,12 @@ class DocTable {
                     element.profexp.forEach(element => {
                         table.addChildElement(tbrow.getProjectsTableRow(element));
                         if (idx != array.length - 1) {
-                            table.addChildElement(tbrow.getBlankTableRowPageBreak());
-                        } else {
                             table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
                         }
                     });
-                    /*if (idx != array.length - 1) {
+                    if (idx != array.length - 1) {
                         table.addChildElement(tbrow.getBlankTableRowPageBreak());
-                    }*/
+                    }
                 });
             }
         }
