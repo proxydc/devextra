@@ -155,11 +155,11 @@ class DocTable {
                     exppros.push(docjs.experiencesPro[index]);
                 }
             }
-            /*for (let k = 0; k < linesperpages.length; k++) {
+            for (let k = 0; k < linesperpages.length; k++) {
                 alert("Page num: " + linesperpages[k].num);
                 alert("nblinespage: " + linesperpages[k].nblinespage);
                 alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
-            }*/
+            }
             linesperpages.forEach(function(element, idx, array) {
                 element.profexp.forEach(element => {
                     table.addChildElement(tbrow.getExpPosteTitle(element.company));
@@ -215,11 +215,11 @@ class DocTable {
                         exppros.push(docjs.projectsPerso[index]);
                     }
                 }
-                /*for (let k = 0; k < linesperpages.length; k++) {
+                for (let k = 0; k < linesperpages.length; k++) {
                     alert("Page num: " + linesperpages[k].num);
                     alert("nblinespage: " + linesperpages[k].nblinespage);
                     alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
-                }*/
+                }
                 linesperpages.forEach(function(element, idx, array) {
                     element.profexp.forEach(element => {
                         table.addChildElement(tbrow.getProjectsTableRow(element));
