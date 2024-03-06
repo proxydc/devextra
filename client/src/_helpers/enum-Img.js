@@ -1,6 +1,6 @@
 const BulletImage = Object.freeze({
     Comp: "https://raw.githubusercontent.com/proxydc/Templates/main/bullet.png",
-    ExpProTask: "https://raw.githubusercontent.com/proxydc/Templates/main/bullet1.png",
+    ExpProTask: "https://raw.githubusercontent.com/proxydc/Templates/main/greenBullet.png",
     ExpPersoTask: "https://raw.githubusercontent.com/proxydc/Templates/main/bullet2.png",
     Langues: "https://raw.githubusercontent.com/proxydc/Templates/main/bullet3.png",
     TitleExp: "https://raw.githubusercontent.com/proxydc/Templates/main/exp.png",

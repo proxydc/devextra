@@ -269,7 +269,6 @@ class DocData {
             alignment: AlignmentType.RIGHT,
         });
     }
-
     static getBulletImg(url) {
         return new ImageRun({
             type: "png",
@@ -277,6 +276,16 @@ class DocData {
             transformation: {
                 width: 5,
                 height: 5,
+            },
+        });
+    }
+    static getBulletImgExp(url) {
+        return new ImageRun({
+            type: "png",
+            data: this.urlToBlob(url),
+            transformation: {
+                width: 15,
+                height: 15,
             },
         });
     }

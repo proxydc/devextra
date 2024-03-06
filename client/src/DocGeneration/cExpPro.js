@@ -67,7 +67,7 @@ class cExpPro {
                     font: "Century Gothic",
                     //underline: true,
                     size: 20,
-                    color: "#055029",
+                    color: "#0c6164", //#055558", //#10b0b7", //#055029",
                 }),
             ],
         });
@@ -127,7 +127,7 @@ class cExpPro {
                         //bold: true,
                         //underline: true,
                         size: 18,
-                        color: "#066735",
+                        color: "#0c6164",
                     }),
                 ],
             });
@@ -147,7 +147,7 @@ class cExpPro {
                     //bold: true,
                     //underline: true,
                     size: 20,
-                    color: "#066735",
+                    color: "#0c6164",
                 }),
             ],
         });
@@ -190,8 +190,6 @@ class cExpPro {
                                     left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
                                     right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
                                 },
-                                //verticalAlign: "center",
-                                //margins: "10px",
                                 width: { size: 400, type: WidthType.DXA },
                             }),
                             new TableCell({

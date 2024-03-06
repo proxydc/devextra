@@ -201,7 +201,7 @@ class DocTable {
                 let lens = docjs.experiencesPro.length - 1;
                 //alert("index: " + index + "****  length: " + lens + "****  nblines: " + nblines);
                 if (nblines > 40 || index == lens) {
-                    alert("Iam here: " + index);
+                    // alert("Iam here: " + index);
                     if (index == lens && nblines < 41) {
                         nblinesaffectedsurpage = nblines;
                     }
@@ -237,11 +237,11 @@ class DocTable {
                 //nbleftcollines = 0;
                 //nbrightcollines = 0;
             }
-            for (let k = 0; k < linesperpages.length; k++) {
+            /*for (let k = 0; k < linesperpages.length; k++) {
                 alert("Page num: " + linesperpages[k].num);
                 alert("nblinespage: " + linesperpages[k].nblinespage);
                 alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
-            }
+            }*/
             linesperpages.forEach(function(element, idx, array) {
                 element.profexp.forEach(element => {
                     table.addChildElement(tbrow.getExpPosteTitle(element.company));
@@ -256,15 +256,11 @@ class DocTable {
 
             //exp personnelles
             nblines = 0;
-            // let nbleftcollines = 0;
-            //let nbrightcollines = 0;
-            //let expperpages = [];
             linesperpages = [];
             page = 0;
             nbexps = 0;
             nblinesaffectedsurpage = 0;
             exppros = [];
-            //let counterexp = 0;
             if (docjs.projectsPerso != "" && docjs.projectsPerso != null && docjs.projectsPerso.length > 0) {
                 table.addChildElement(tbrow.getBlankTableRowPageBreak());
                 table.addChildElement(tbrow.getExpTitle("Principales Expériences Personnelles"));
@@ -274,7 +270,7 @@ class DocTable {
                     nblines += this.getNblinesPerso(docjs.projectsPerso[index], index);
                     let lens = docjs.projectsPerso.length - 1;
                     if (nblines > 40 || index == lens) {
-                        alert("Iam here: " + index);
+                        // alert("Iam here: " + index);
                         if (index == lens && nblines < 41) {
                             nblinesaffectedsurpage = nblines;
                         }
@@ -301,15 +297,13 @@ class DocTable {
                         exppros.push(docjs.projectsPerso[index]);
                     }
                 }
-                for (let k = 0; k < linesperpages.length; k++) {
+                /*for (let k = 0; k < linesperpages.length; k++) {
                     alert("Page num: " + linesperpages[k].num);
                     alert("nblinespage: " + linesperpages[k].nblinespage);
                     alert("Nb exps pour ce page: " + linesperpages[k].profexp.length);
-                }
+                }*/
                 linesperpages.forEach(function(element, idx, array) {
                     element.profexp.forEach(element => {
-                        // table.addChildElement(tbrow.getExpPosteTitle(element.company));
-                        // table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
                         table.addChildElement(tbrow.getProjectsTableRow(element));
                         table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
                     });
@@ -317,26 +311,6 @@ class DocTable {
                         table.addChildElement(tbrow.getBlankTableRowPageBreak());
                     }
                 });
-
-
-
-
-
-
-
-                /*const element = docjs.projectsPerso[index];
-                if (index == 0) {
-                    //
-                    table.addChildElement(tbrow.getExpTitle("Principales Expériences Personnelles"));
-                    table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
-                }
-                table.addChildElement(tbrow.getProjectsTableRow(element));
-                table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
-                if (counterexp % 2 && docjs.experiencesPro.length - 1 != counterexp) {
-                    table.addChildElement(tbrow.getBlankTableRowPageBreak());
-                }
-                counterexp++;
-            }*/
             }
         }
         return table;
