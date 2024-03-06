@@ -1,135 +1,98 @@
 import {
-  Header,
-  ImageRun,
-  AlignmentType,
-  Document,
-  HeadingLevel,
-  Packer,
-  Paragraph,
-  Tab,
-  TabStopPosition,
-  TabStopType,
-  TextRun,
-  HorizontalPositionAlign,
-  VerticalPositionAlign,
-  ExternalHyperlink,
-  PageNumber,
-  FrameAnchorType,
-  ShadingType,
+    Header,
+    ImageRun,
+    AlignmentType,
+    HeadingLevel,
+    Paragraph,
+    Tab,
+    TextRun,
+    HorizontalPositionAlign,
+    VerticalPositionAlign,
+    ExternalHyperlink,
+    PageNumber,
+    ShadingType,
+    Hyperlink,
+    Footer,
 } from "docx";
+import docData from "./tools/DocData";
+import enumImg from "../_helpers/enum-Img.js";
 class cFooter {
-  static async urlToBlob(url) {
-    return (await fetch(url)).blob();
-  }
-  static getFooterC(nom, prenom) {
-    return new Paragraph({
-      /* frame: {
-        position: {
-            x: -100,
-            y: 20000,
-        },
-        width: 4000,
-        height: 10,
-        anchor: {
-            horizontal: FrameAnchorType.MARGIN,
-            vertical: FrameAnchorType.MARGIN,
-        },
-        alignment: {
-            x: HorizontalPositionAlign.CENTER,
-            y: VerticalPositionAlign.BOTTOM,
-        },
-    },
-    border: {
-        top: {
-            color: "auto",
-            space: 1,
-            value: "single",
-            size: 6,
-        },
-        bottom: {
-            color: "auto",
-            space: 1,
-            value: "single",
-            size: 6,
-        },
-        left: {
-            color: "auto",
-            space: 1,
-            value: "single",
-            size: 6,
-        },
-        right: {
-            color: "auto",
-            space: 1,
-            value: "single",
-            size: 6,
-        },
-    },*/
-      children: [
-        new TextRun({
-          text: "M : " + nom + " " + prenom,
-          bold: true,
-        }),
-      ],
-      alignment: AlignmentType.CENTER,
-      shading: {
-        type: ShadingType.REVERSE_DIAGONAL_STRIPE,
-        color: "00FFFF",
-        fill: "FF0000",
-      },
-    });
-  }
-
-  static getFooterL() {
-    return new Paragraph({
-      children: [
-        new TextRun({
-          text: "Proxiad Est",
-          bold: true,
-        }),
-      ],
-      alignment: AlignmentType.LEFT,
-    });
-  }
-  static getFooterR() {
-    return new Paragraph({
-      children: [
-        new TextRun({
-          text: "E : (commercial (e)",
-          bold: true,
-          break: 1,
-        }),
-        new TextRun({
-          text: "www.proxiad.com",
-          bold: true,
-        }),
-      ],
-      alignment: AlignmentType.RIGHT,
-    });
-  }
-  static getPageNumber() {
-    return new Paragraph({
-      children: [
-        new TextRun({
-          children: [
-            "Page ",
-            PageNumber.CURRENT,
-            " of ",
-            PageNumber.TOTAL_PAGES,
-          ],
-        }),
-      ],
-      alignment: AlignmentType.RIGHT,
-      /*floating: {
-        horizontalPosition: {
-          align: HorizontalPositionAlign.RIGHT,
-        },
-        verticalPosition: {
-          align: VerticalPositionAlign.BOTTOM,
-        },
-      },*/
-    });
-  }
+    static getDefaultPageFooter() {
+        return new Footer({
+            // The standard default footer on every page or footer on odd pages when the 'Different Odd & Even Pages' option is activated
+            children: [
+                this.getFooterBG(),
+                this.getFooterC(),
+                docData.LineBreak(),
+                this.getPageNumber(),
+            ],
+        });
+    }
+    static getFirstPageFooter() {
+        return new Footer({
+            // The footer on first page when the 'Different First Page' option is activated
+            children: [
+                this.getFooterBG(),
+                this.getFooterC(),
+                docData.LineBreak(),
+                this.getPageNumber(),
+            ],
+        });
+    }
+    static getFooterBG() {
+        return new Paragraph({
+            children: [
+                new ImageRun({
+                    type: "png",
+                    data: docData.urlToBlob(enumImg.FooterBG),
+                    transformation: {
+                        width: 800,
+                        height: 100,
+                    },
+                    floating: {
+                        behindDocument: true,
+                        horizontalPosition: {
+                            align: HorizontalPositionAlign.LEFT,
+                        },
+                        verticalPosition: {
+                            align: VerticalPositionAlign.BOTTOM,
+                        },
+                    },
+                }),
+            ],
+        });
+    }
+    static getPageNumber() {
+        return new Paragraph({
+            children: [
+                new TextRun({
+                    children: [
+                        "Page ",
+                        PageNumber.CURRENT,
+                        " of ",
+                        PageNumber.TOTAL_PAGES,
+                    ],
+                }),
+            ],
+            alignment: AlignmentType.RIGHT,
+        });
+    }
+    static getFooterC() {
+        return new Paragraph({
+            children: [
+                new ExternalHyperlink({
+                    children: [
+                        new TextRun({
+                            text: "Proxiad Est                                                                                                                                 www.proxiad.com",
+                            bold: true,
+                            style: Hyperlink,
+                        }),
+                    ],
+                    link: "http://www.proxiad.com",
+                }),
+            ],
+        });
+    }
 
 }
 

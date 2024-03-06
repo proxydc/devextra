@@ -1,15 +1,11 @@
 import {
     Paragraph,
     TextRun,
-    ImageRun,
     AlignmentType,
-    HeadingLevel,
-    Tab,
     TableCell,
     TableRow,
     BorderStyle,
     WidthType,
-    Table,
 } from "docx";
 import docData from "./tools/DocData";
 class cLanguages {

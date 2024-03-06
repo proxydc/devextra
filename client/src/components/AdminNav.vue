@@ -12,7 +12,6 @@
           <li class="nav-item" v-if="getUser() == 'admin'">
             <button class="nav-link active" aria-current="page" v-on:click="pageAdmin">Users</button>
           </li>
-
         </ul>
         <div class="nav justify-content-end">
           <a class="nav-link" aria-current="page" href="/">Se déconnecter</a>
@@ -39,10 +38,6 @@ export default {
     {
       this.$router.push({ name: "admin" });
     },
-    /*RedirectUser(){
-      let self = this;
-      self.$router.push({ name: "user" });
-    }*/
   }
 }
 </script>

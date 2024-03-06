@@ -51,9 +51,6 @@ class cCerts {
             width: { size: 68, type: WidthType.PERCENTAGE },
         });
         tablecell.addChildElement(this.getCerts(certs));
-        /*certs.forEach(element => {
-            tablecell.addChildElement(this.getCerts(element))
-        });*/
         return tablecell;
     }
     static getCertsTitleTableRow() {

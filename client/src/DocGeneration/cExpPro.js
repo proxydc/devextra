@@ -122,11 +122,8 @@ class cExpPro {
                     new TextRun({
                         text: periode,
                         alignment: AlignmentType.LEFT,
-                        //heading: HeadingLevel.TITLE,
                         font: "Century Gothic",
-                        //bold: true,
-                        //underline: true,
-                        size: 18,
+                        size: 20,
                         color: "#0c6164",
                     }),
                 ],
@@ -173,217 +170,85 @@ class cExpPro {
         });
     }
     static getExpTask(task) {
-            return new Table({
-                rows: [
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [
-                                    new Paragraph({
-                                        children: [docData.getBulletImg(enumImg.ExpProTask)],
-                                        alignment: AlignmentType.CENTER,
-                                    }),
-                                ],
-                                borders: {
-                                    top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                },
-                                width: { size: 400, type: WidthType.DXA },
-                            }),
-                            new TableCell({
-                                children: [
-                                    new Paragraph({
-                                        children: [
-                                            new TextRun({
-                                                text: task.trim(), //7 spaces,
-                                                alignment: AlignmentType.LEFT,
-                                                size: 20,
-                                                font: "Century Gothic",
-                                                // spacing: 10,
-                                            }),
-                                        ],
-                                        spacing: {
-                                            line: 300,
-                                        },
-                                    }),
-                                ],
-                                borders: {
-                                    top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                    right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                },
-                                width: { size: 6000, type: WidthType.DXA },
-                            }),
-                        ],
-                    }),
-                ],
-            });
-        }
-        /*static getExpTask(i, tasks) {
-                            if (tasks != "" && tasks.length > i) {
-                                return new Table({
-                                    rows: [
-                                        new TableRow({
-                                            children: [
-                                                new TableCell({
-                                                    children: [
-                                                        new Paragraph({
-                                                            children: [docData.getBulletImg(enumImg.ExpProTask)],
-                                                            alignment: AlignmentType.CENTER,
-                                                        }),
-                                                    ],
-                                                    borders: {
-                                                        top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                                        bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                                        left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                                        right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                                    },
-                                                    //verticalAlign: "center",
-                                                    //margins: "10px",
-                                                    width: { size: 5, type: WidthType.PERCENTAGE },
-                                                }),
-                                                new TableCell({
-                                                    children: [
-                                                        new Paragraph({
-                                                            children: [
-                                                                new TextRun({
-                                                                    text: tasks[i], //7 spaces,
-                                                                    alignment: AlignmentType.LEFT,
-                                                                    size: 22,
-                                                                }),
-                                                            ],
-                                                        }),
-                                                    ],
-                                                    borders: {
-                                                        top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                                        bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                                        left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                                        right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                                    },
-                                                    width: { size: 95, type: WidthType.PERCENTAGE },
-                                                }),
-                                            ],
+        return new Table({
+            rows: [
+                new TableRow({
+                    children: [
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    children: [docData.getBulletImg(enumImg.ExpProTask)],
+                                    alignment: AlignmentType.CENTER,
+                                }),
+                            ],
+                            borders: {
+                                top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                            },
+                            width: { size: 400, type: WidthType.DXA },
+                        }),
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    children: [
+                                        new TextRun({
+                                            text: task.trim(), //7 spaces,
+                                            alignment: AlignmentType.LEFT,
+                                            size: 20,
+                                            font: "Century Gothic",
+                                            // spacing: 10,
                                         }),
                                     ],
-                                });
-                            }
-                            return ""; //new TableCell({ children: [] })'';
-                        }*/
-
-    static getExpPro(pros) {
-        //alert("len: " + pros.length);
-        if (pros.length > 0) {
-            const cf = new Paragraph({
-                children: [],
-            });
-            for (var i = 0; i < pros.length; i++) {
-                cf.addChildElement(docData.getSubTitle1("Expérience " + (i + 1)));
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.LineBreakTR());
-                /*
-cf.addChildElement(
-        new TextRun({
-          text: pros[i].title,
-          bold: true,
-          alignment: AlignmentType.LEFT,
-          size: 26,
-          allCaps: true,
-          break: 1
-        })
-      );
-      cf.addChildElement(docData.LineBreakTR());
-      cf.addChildElement(
-        new TextRun({
-          text: "  De: " + pros[i].start + "    A: " + pros[i].end,
-          alignment: AlignmentType.RIGHT,
-          size: 22,
-          smallCaps: true,
-          bold: true,
-        })
-      );
-*/
-
-                cf.addChildElement(docData.getSubTitle2("Période"));
-                cf.addChildElement(
-                    new TextRun({
-                        text: "De: " + pros[i].start + "    A: " + pros[i].end,
-                        break: 1,
-                        //bullet: {level: 0},
-                    })
-                );
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.getSubTitle2("Poste"));
-                /*cf.addChildElement(
-                                          new TextRun({
-                                            text: "Poste: ",
-                                            bold: true,
-                                          })
-                                        );*/
-                cf.addChildElement(
-                    new TextRun({
-                        text: pros[i].title,
-                        break: 1,
-                    })
-                );
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.getSubTitle2("Entreprise"));
-                /*cf.addChildElement(
-                                          new TextRun({
-                                            text: "Entreprise: ",
-                                            bold: true,
-                                          })
-                                        );*/
-                cf.addChildElement(
-                    new TextRun({
-                        text: pros[i].company,
-                        break: 1,
-                    })
-                );
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.getSubTitle2("Contexte"));
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(
-                    new TextRun({
-                        text: pros[i].context,
-                        break: 1,
-                    })
-                );
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.getSubTitle2("Environnement technique"));
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(
-                    new TextRun({
-                        text: pros[i].technical_env,
-                    })
-                );
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.LineBreakTR());
-                cf.addChildElement(docData.getSubTitle2("Compétences/ Tâches"));
-                cf.addChildElement(docData.LineBreakTR());
-                for (var j = 0; j < pros[i].tasks.length; j++) {
-                    cf.addChildElement(docData.getBulletImg(enumImg.ExpProTask)); //bullet
-                    cf.addChildElement(
-                        new TextRun({
-                            text: "       " + pros[i].tasks[j], //7 spaces,
-                            alignment: AlignmentType.LEFT,
-                            size: 22,
-                        })
-                    );
-                    cf.addChildElement(docData.LineBreakTR());
-                }
-                cf.addChildElement(docData.LineBreakTR());
-            }
-            return cf;
-        }
-        return "";
+                                    spacing: {
+                                        line: 300,
+                                    },
+                                }),
+                            ],
+                            borders: {
+                                top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                            },
+                            width: { size: 6000, type: WidthType.DXA },
+                        }),
+                    ],
+                }),
+            ],
+        });
     }
+    static getNblinesPro(exp, idx) {
+        let nblines = 0;
+        let nbleftcollines = 0;
+        let nbrightcollines = 0;
+        //for first page title
+        if (idx == 0) { nblines += 2; }
+        //for entreprise
+        nblines += 1;
+        //for space line
+        nblines += 1;
+        //******* LEFT COLUMNS LINES ******** */
+        //for poste
+        nbleftcollines += exp.title.length > 25 ? 2 : 1;
+        //for period
+        nbleftcollines += this.getExpPeriode(exp.start, exp.end).length > 31 ? 2 : 1;
+        //for environnment technique title
+        nbleftcollines += 1;
+        //for environnment context
+        nbleftcollines += Math.ceil(exp.technical_env.length / 25);
+        //for space lines
+        nbleftcollines += 1;
+        //******* RIGHT COLUMNS LINES ******** */
+        nbrightcollines += Math.ceil(exp.context.length / 65);
+        exp.tasks.forEach(element => {
+            nbrightcollines += element.length > 64 ? 2 : 1;
+        });
+        if (nbleftcollines > nbrightcollines) { nblines += nbleftcollines; } else { nblines += nbrightcollines; }
+        return nblines;
+    }
+
 }
 
 export default cExpPro;

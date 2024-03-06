@@ -12,20 +12,10 @@
         <div class="login">
           <label for="lblogin">Login</label>
           <input type="text" id="lblogin" v-model="login_name" placeholder="Enter Login" class="form-control" required />
-          <!--  <div class="invalid-feedback">
-          Please enter the login.
-        </div>-->
           <label for="lbpw">Password</label>
           <input type="password" id="lbpw" v-model="pass_word" placeholder="Enter Password" class="form-control"
             required />
-          <!--   <div class="invalid-feedback">
-          Please enter the password.
-        </div>-->
-          <!--  <button type="submit" class="js-new" v-on:click="login" >Login!</button> -->
           <button type="submit" class="js-new">Login!</button>
-          <!-- <p>
-          <router-link to="/">Home</router-link>
-        </p>-->
         </div>
       </form>
     </div>

@@ -59,7 +59,6 @@ class cBref {
         });
         return tablerow;
     }
-
     static getTitle() {
         return new Paragraph({
             children: [
@@ -86,5 +85,4 @@ class cBref {
         });
     }
 }
-
 export default cBref;
