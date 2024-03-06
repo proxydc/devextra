@@ -184,7 +184,7 @@ const updateDCDoc = (req, res) => {
 const updateDCByAdmin = (req, res) => {
     try {
         const id = req.params.id;
-        const { familyname, firstname, email, dc_status, tags, filename, nbexps, poste } = req.body;
+        const { familyname, firstname, email, dc_status, tags, nbexps, poste } = req.body;
         const modification_date = new Date().toLocaleString();
         pool.query(queries.getDCById, [id], (error, results) => {
             const noDCFound = !results.rows.length;
@@ -192,7 +192,7 @@ const updateDCByAdmin = (req, res) => {
                 res.status(202).send("Candidat does not exist in the database");
             } else {
                 pool.query(
-                    queries.updateDCByAdmin, [id, familyname, firstname, email, dc_status, tags, filename, nbexps, poste, modification_date],
+                    queries.updateDCByAdmin, [id, familyname, firstname, email, dc_status, tags, nbexps, poste, modification_date],
                     (error, results) => {
                         try {
                             if (error) throw error;

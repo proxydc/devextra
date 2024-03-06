@@ -15,8 +15,8 @@ const getDCById = "select d.*, ds.label as status_name from dc d, dc_status ds w
 const getDCByIdCandidat = "select d.*, ds.label as status_name from dc d, dc_status ds where d.id = $1 and d.dc_status = ds.id";
 const getDCDocById = "select dc.document, dc.familyname, dc.firstname, dc.nbexps, dc.poste from dc where id = $1 limit 1";
 const checkDCExists = "select a from dc a where a.email = $1";
-const addDC = "insert into dc(familyname, firstname, email, dc_status, document, manager_id, filename, nbexps, creation_date, modification_date) values ($1, $2, $3, $4, $5, $6, 2, 0, $7, $8)"; // add tags ici
-const updateDCByAdmin = "update dc set familyname=$2, firstname=$3, email=$4, dc_status=$5, tags = $6, filename = $7, nbexps = $8, poste = $9, modification_date = $10 where id = $1"; //controle sur email
+const addDC = "insert into dc(familyname, firstname, email, dc_status, document, manager_id, nbexps, creation_date, modification_date) values ($1, $2, $3, $4, $5, $6, 0, $7, $8)"; // add tags ici
+const updateDCByAdmin = "update dc set familyname=$2, firstname=$3, email=$4, dc_status=$5, tags = $6, nbexps = $7, poste = $8, modification_date = $9 where id = $1"; //controle sur email
 const updateDCDoc = "update dc set document = $2, dc_status=$3 where id = $1";
 const deleteDCById = "delete from dc where id = $1";
 

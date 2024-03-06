@@ -21,7 +21,7 @@
           <input type="text" id="lbexps" v-model="model.candidat.nbexps" placeholder="Enter nb exps" class="form-control" />
           <label for="lbtags">Tags</label>
           <input type="text" id="lbtags" v-model="model.candidat.tags" placeholder="Enter tags" class="form-control" />
-          <div class="example ex1">
+         <!-- <div class="example ex1">
             <h5>Select Nom</h5>
             <label class="radio red">
               <input type="radio" v-model="model.candidat.filename" value="1" name="group1" />
@@ -31,7 +31,7 @@
               <input type="radio" v-model="model.candidat.filename" value="2" name="group1" checked />
               <span>Trigram</span>
             </label>
-          </div>
+          </div>-->
           <label for="lbstatus">Status:</label>
           <div style="overflow:hidden;">
             <!--<select class="selectpicker show-tick" v-model="model.candidat.dc_status" id="lbstatus">
@@ -83,7 +83,7 @@ export default {
           email: { type: String, required: true },
           poste: { type: String, required: true },
           nbexps: { type: Number, required: true },
-          filename: 2,
+          //filename: 2,
           dc_status: { type: Number },
           status_name: { type: String },
           tags: { type: String },
@@ -132,7 +132,7 @@ export default {
           tags: this.model.candidat.tags,
           poste: this.model.candidat.poste,
           nbexps: this.model.candidat.nbexps,
-          filename: this.model.candidat.filename,
+          //filename: this.model.candidat.filename,
         });
         console.log(result);
         switch (result.status) {
