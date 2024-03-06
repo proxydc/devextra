@@ -55,21 +55,6 @@ class cLang {
             rows: [
                 new TableRow({
                     children: [
-                        /*new TableCell({
-                            children: [
-                                new Paragraph({
-                                    children: [docData.getBulletImg(enumImg.Langues)],
-                                    alignment: AlignmentType.CENTER,
-                                }),
-                            ],
-                            borders: {
-                                top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                                right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-                            },
-                            width: { size: 400, type: WidthType.DXA },
-                        }),*/
                         new TableCell({
                             children: [
                                 new Paragraph({
