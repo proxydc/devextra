@@ -120,9 +120,7 @@ class DocTable {
                 nbexps += 1;
                 nblines += exppro.getNblinesPro(docjs.experiencesPro[index], index);
                 let lens = docjs.experiencesPro.length - 1;
-                //alert("index: " + index + "****  length: " + lens + "****  nblines: " + nblines);
                 if (nblines > 40 || index == lens) {
-                    // alert("Iam here: " + index);
                     if (index == lens && nblines < 41) {
                         nblinesaffectedsurpage = nblines;
                     }
@@ -132,12 +130,6 @@ class DocTable {
                         exppros.push(docjs.experiencesPro[index]);
                     }
                     page += 1;
-                    // expperpages.push({ num: page, exp: nbexps });
-                    //alert("page: " + page);
-                    //alert("nbexps: " + nbexps);                    
-                    //alert("pages: " + pages);
-                    //console.log("Pages: " + expperpages);
-
                     linesperpages.push({ num: page, nblinespage: nblinesaffectedsurpage, profexp: exppros });
                     let temp = 0;
                     linesperpages.forEach(element => {
@@ -165,11 +157,15 @@ class DocTable {
                     table.addChildElement(tbrow.getExpPosteTitle(element.company));
                     table.addChildElement(tbrow.getBlankTableRowFont5LineBreak());
                     table.addChildElement(tbrow.getExpTableRow(element));
-                    table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                    if (idx != array.length - 1) {
+                        table.addChildElement(tbrow.getBlankTableRowPageBreak());
+                    } else {
+                        table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                    }
                 });
-                if (idx != array.length - 1) {
+                /*if (idx != array.length - 1) {
                     table.addChildElement(tbrow.getBlankTableRowPageBreak());
-                }
+                }*/
             });
 
             //exp personnelles
@@ -223,11 +219,15 @@ class DocTable {
                 linesperpages.forEach(function(element, idx, array) {
                     element.profexp.forEach(element => {
                         table.addChildElement(tbrow.getProjectsTableRow(element));
-                        table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                        if (idx != array.length - 1) {
+                            table.addChildElement(tbrow.getBlankTableRowPageBreak());
+                        } else {
+                            table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                        }
                     });
-                    if (idx != array.length - 1) {
+                    /*if (idx != array.length - 1) {
                         table.addChildElement(tbrow.getBlankTableRowPageBreak());
-                    }
+                    }*/
                 });
             }
         }
