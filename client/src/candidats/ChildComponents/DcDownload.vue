@@ -63,6 +63,7 @@ export default {
       const familyname = this.dbDoc.familyname;
       const poste = this.dbDoc.poste;
       const nbexps = this.dbDoc.nbexps; 
+      let name = docData.getName(familyname, firstname, this.filename);
       const doc = new Document({
         sections: [
           {
@@ -70,7 +71,7 @@ export default {
               titlePage: true,
             },
             headers: {
-              first: header.getFirstPageHeader(familyname, firstname, poste, nbexps),
+              first: header.getFirstPageHeader(name, poste, nbexps),
               default: header.getDefaultPageHeader(),
             },
             footers: {
@@ -82,9 +83,10 @@ export default {
         ],
       });
       // To export into a .docx file
-      var filen = docData.getFileName(familyname, firstname, this.filename);
+      var filen = docData.getFileName(name);
       this.saveDocumentToFile(doc, filen);
     },
+   
     saveDocumentToFile(doc, fileName) {
       const mimeType =
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document";

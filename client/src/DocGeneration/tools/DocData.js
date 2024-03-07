@@ -10,11 +10,14 @@ import {
 } from "docx";
 
 class DocData {
-    static getFileName(familyname, firstname, filename) {
-        let name = firstname.trim() + familyname.trim();
+    static getName(familyname, firstname, filename) {
+        let name = firstname.trim() + " " + familyname.trim().toUpperCase();
         if (filename == 2) {
             name = firstname.trim().substr(0, 1).toUpperCase() + familyname.trim().substr(0, 2).toUpperCase();
         }
+        return name;
+    }
+    static getFileName(name) {
         return new Date().getFullYear() + "" +
             this.getPadding(parseInt(new Date().getMonth() + 1) + "") +
             this.getPadding(new Date().getDate() + "") +

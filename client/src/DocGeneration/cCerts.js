@@ -61,7 +61,7 @@ class cCerts {
                             left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
                             right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
                         },
-                        width: { size: 400, type: WidthType.DXA },
+                        width: { size: 20, type: WidthType.PERCENTAGE },
                     }),
                     new TableCell({
                         children: [
@@ -85,7 +85,7 @@ class cCerts {
                             left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
                             right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
                         },
-                        width: { size: 6000, type: WidthType.DXA },
+                        width: { size: 80, type: WidthType.PERCENTAGE },
                     }),
                 ],
             });
@@ -124,7 +124,7 @@ class cCerts {
                 left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
                 right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
             },
-            width: { size: 68, type: WidthType.PERCENTAGE },
+            //width: { size: 80, type: WidthType.PERCENTAGE },
         });
         tablecell.addChildElement(this.getCerts(certs));
         return tablecell;
