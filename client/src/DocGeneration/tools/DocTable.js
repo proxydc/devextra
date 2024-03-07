@@ -1,5 +1,3 @@
-const FileSaver = require("file-saver");
-//import enumImg from "../../_helpers/enum-Img.js";
 import exppro from "../../DocGeneration/cExpPro";
 import expperso from "../../DocGeneration/cExpPerso";
 import comp from "../../DocGeneration/cComps";
@@ -13,24 +11,6 @@ import databases from "../../DocGeneration/cDatabases.js";
 import environments from "../../DocGeneration/cEnvironments.js";
 import tbrow from "./tableRow";
 import {
-    Header,
-    ImageRun,
-    AlignmentType,
-    Document,
-    HeadingLevel,
-    Packer,
-    Paragraph,
-    Tab,
-    TabStopPosition,
-    TabStopType,
-    TextRun,
-    HorizontalPositionAlign,
-    VerticalPositionAlign,
-    ExternalHyperlink,
-    PageNumber,
-    FrameAnchorType,
-    ShadingType,
-    Hyperlink,
     Table,
     TableRow,
     TableCell,
