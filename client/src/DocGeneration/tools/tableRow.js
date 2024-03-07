@@ -3,6 +3,9 @@ import {
     TableCell,
     BorderStyle,
     WidthType,
+    Paragraph,
+    TextRun,
+    AlignmentType,
 } from "docx";
 import docData from "./DocData";
 import exppro from "../../DocGeneration/cExpPro";
@@ -104,9 +107,23 @@ class tableRow {
             ],
         });
     }
-    static getExpTasksTableCell(tasks) {
+    static getExpTasksTableCell(tasks, context) {
         const tablecell = new TableCell({
-            children: [],
+            children: [
+                new Paragraph({
+                    children: [
+                        new TextRun({
+                            text: context.trim(),
+                            alignment: AlignmentType.LEFT,
+                            font: "Century Gothic",
+                            size: 20,
+                        }),
+                    ],
+                    spacing: {
+                        line: 300,
+                    },
+                }),
+            ],
             borders: {
                 top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
                 bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
@@ -153,7 +170,7 @@ class tableRow {
                 }),
             ],
         });
-        tablerow.addChildElement(this.getExpTasksTableCell(pros.tasks));
+        tablerow.addChildElement(this.getExpTasksTableCell(pros.tasks, pros.context));
         return tablerow;
     }
     static getProjectsTableRow(pros) {
@@ -186,7 +203,7 @@ class tableRow {
                 }),
             ],
         });
-        tablerow.addChildElement(this.getExpTasksTableCell(pros.tasks));
+        tablerow.addChildElement(this.getExpTasksTableCell(pros.tasks, pros.context));
         return tablerow;
     }
 }

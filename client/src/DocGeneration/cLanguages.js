@@ -14,7 +14,7 @@ class cLanguages {
             children: [
                 new TableCell({
                     children: [
-                        docData.getSubTitle("Languages :"),
+                        docData.getSubTitle("Langages :"),
                     ],
                     borders: {
                         top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },

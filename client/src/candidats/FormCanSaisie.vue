@@ -53,12 +53,12 @@
           <ExperiencePro
             :experiences="dc.document.experiencesPro"
             :xpAddedCounter="0"
-            :maxILength="maxInputLength"
+            :maxILength="maxInputLengthTasks"
           />
           <ExperiencePerso
             :projects="dc.document.projectsPerso"
             :xpAddedCounter="0"
-            :maxILength="maxInputLength"
+            :maxILength="maxInputLengthTasks"
           />
 
           <div class="container dc-section">
@@ -79,7 +79,7 @@
             </div>
             <div class="row align-items-center dc-syn-item">
               <div class="col-2">
-                <label class="col-form-label" for="syn_lang">Languages</label>
+                <label class="col-form-label" for="syn_lang">Langages</label>
               </div>
               <div class="col-8">
                 <input
@@ -197,6 +197,7 @@ export default {
       xpAddedCounter: 0,
       errormsg: "",
       maxInputLength: 85,
+      maxInputLengthTasks: 120,
     };
   },
   setup() {
