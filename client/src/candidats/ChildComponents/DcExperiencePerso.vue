@@ -31,10 +31,10 @@ export default {
       newNode.classList = "project dc-tmp";
       document.getElementById("projects").appendChild(newNode);
       var button = document.getElementById("proj_taskbutton_" + xpAddedCounter.value);
-      alert("counter: " + xpAddedCounter.value);
+      //alert("counter: " + xpAddedCounter.value);
       var id = "proj_taskinputlist_" + xpAddedCounter.value;
       button.addEventListener("click", function () {
-        alert("button was clicked id: " + id);
+        //alert("button was clicked id: " + id);
         var container = document.getElementById(id);
         var newInput = document.createElement("input");
         newInput.classList = "form-control dc-vlist dc-tmp";

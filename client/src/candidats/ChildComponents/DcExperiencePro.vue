@@ -24,10 +24,10 @@ export default {
       newNode.classList = "xp dc-tmp";
       document.getElementById("xps").appendChild(newNode);
       var button = document.getElementById("xp_taskbutton_" + xpAddedCounter.value);
-      alert("counter: " + xpAddedCounter.value);
+      //alert("counter: " + xpAddedCounter.value);
       var id = "xp_taskinputlist_" + xpAddedCounter.value;
       button.addEventListener("click", function () {
-        alert("button was clicked id: " + id);
+        //alert("button was clicked id: " + id);
         var container = document.getElementById(id);
         var newInput = document.createElement("input");
         newInput.classList = "form-control dc-vlist dc-tmp";

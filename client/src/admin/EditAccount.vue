@@ -68,7 +68,7 @@ export default {
   methods: {
     getAccountData(accountId) {
       const url = urlacc.getEditDelAccUrl(accountId);
-      alert("url: " + url);
+      //alert("url: " + url);
       axios.get(url).then(res => {
         console.log(res.data);
         if (res.status == 200)

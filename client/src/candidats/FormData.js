@@ -6,8 +6,7 @@ class FormData {
         try {
             let generatedDocumentObj = this.getDocumentObject(dc, document);
             this.updateDC(id, generatedDocumentObj, status);
-        }
-        catch (err) {
+        } catch (err) {
             throw err;
         }
 
@@ -15,7 +14,7 @@ class FormData {
 
     static async updateDC(id, generatedDoc, status) {
         try {
-            const url = urldc.getDcUrl(id);//`dc/${id}`;
+            const url = urldc.getDcUrl(id); //`dc/${id}`;
             let result = await axios.put(url, {
                 dc_status: status,
                 document: generatedDoc,
@@ -23,10 +22,8 @@ class FormData {
             console.warn(result);
             if (result.status == 201) {
                 alert(result.data);
-            }
-            else { throw result; }
-        }
-        catch (err) {
+            } else { throw result; }
+        } catch (err) {
             throw err;
         }
     }
@@ -37,13 +34,13 @@ class FormData {
         // alert("iam in functional");
         var domNodes = document.querySelectorAll("#fonct input");
         var nodes = [...domNodes];
-        dc.functionalAbilities = nodes.map((x) => x.value).filter(function (i) { return i.trim() != ""; });
+        dc.functionalAbilities = nodes.map((x) => x.value).filter(function(i) { return i.trim() != ""; });
         console.log("functional: " + dc.functionalAbilities);
 
         /* Comp techniques */
         var domNodes = document.querySelectorAll("#techn input");
         var nodes = [...domNodes];
-        dc.technicalAbilities = nodes.map((x) => x.value).filter(function (i) { return i.trim() != ""; });
+        dc.technicalAbilities = nodes.map((x) => x.value).filter(function(i) { return i.trim() != ""; });
         console.log("technical: " + dc.technicalAbilities);
 
         /* Diplomes */
@@ -64,7 +61,7 @@ class FormData {
         /* Langues */
         var domNodes = document.querySelectorAll("#langs input");
         var nodes = [...domNodes];
-        dc.languages = nodes.map((x) => x.value).filter(function (i) { return i.trim() != ""; });
+        dc.languages = nodes.map((x) => x.value).filter(function(i) { return i.trim() != ""; });
 
         console.log("languages: " + dc.languages);
 
@@ -72,7 +69,7 @@ class FormData {
         var experiencesPro = [];
         var domNodes = document.querySelectorAll("#xps .xp");
         var allNodes = [...domNodes]; // converts a Node list to an array
-        var nodes = allNodes.filter(function (i) { return i.id == "" }) // remove ghost template which have ID
+        var nodes = allNodes.filter(function(i) { return i.id == "" }) // remove ghost template which have ID
 
         for (let i = 0; i < nodes.length; i++) {
             var startValue = nodes[i].childNodes[0].childNodes[0].childNodes[1].value;
@@ -104,13 +101,13 @@ class FormData {
             }
         }
         dc.experiencesPro = experiencesPro;
-        console.log("document experiences values: " + dc.experiencesPro[0]?.start);
-        alert("document experiences values: " + dc.experiencesPro[0]?.end);
+        //console.log("document experiences values: " + dc.experiencesPro[0] ? .start);
+        //alert("document experiences values: " + dc.experiencesPro[0] ? .end);
         /* Projects perso */
         var personalProjects = [];
         var domNodes = document.querySelectorAll("#projects .project");
         var allNodes = [...domNodes];
-        var nodes = allNodes.filter(function (i) { return i.id == "" }) // remove ghost template which have ID
+        var nodes = allNodes.filter(function(i) { return i.id == "" }) // remove ghost template which have ID
 
         for (let i = 0; i < nodes.length; i++) {
             var periodValue = nodes[i].childNodes[0].childNodes[0].childNodes[1].value;
@@ -141,7 +138,7 @@ class FormData {
         }
 
         dc.projectsPerso = personalProjects;
-        console.log("document projects values: " + dc.projectsPerso[0]?.period);
+        //console.log("document projects values: " + dc.projectsPerso[0] ? .period);
         //alert("document projects values: " + dc.projectsPerso[0]?.title);
         return dc;
     }

@@ -254,7 +254,7 @@ export default {
     },
     save(dc) {
       try {
-        alert("idwork: " + this.documentId);
+        //alert("idwork: " + this.documentId);
         //const status = 2;
         FormData.save(
           this.$route.params.id,
@@ -269,7 +269,7 @@ export default {
     },
     saveAndClose(dc) {
       try {
-        alert("idwork: " + this.documentId);
+        //alert("idwork: " + this.documentId);
         //const status = 3;
         FormData.save(
           this.$route.params.id,
@@ -278,7 +278,7 @@ export default {
           enumDcStatus.Finalisé
         );
         const acc = localStorage.getItem("useraccount");
-        alert("user: " + acc);
+        //alert("user: " + acc);
         if (acc == "admin" || acc == "user") {
           this.$router.push({ name: "user" });
         } else {
