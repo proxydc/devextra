@@ -2,20 +2,11 @@ const FileSaver = require("file-saver");
 //import enumImg from "../../_helpers/enum-Img.js";
 //import { compareDesc } from 'date-fns'
 import {
-    Header,
     ImageRun,
     AlignmentType,
     HeadingLevel,
     Paragraph,
-    Tab,
     TextRun,
-    HorizontalPositionAlign,
-    VerticalPositionAlign,
-    ExternalHyperlink,
-    PageNumber,
-    ShadingType,
-    Hyperlink,
-    Footer,
 } from "docx";
 
 class DocData {
