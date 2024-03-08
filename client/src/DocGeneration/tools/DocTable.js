@@ -78,12 +78,12 @@ class DocTable {
                 table.addChildElement(tbrow.getBlankTableRowSingleLineBreak());
                 table.addChildElement(certs.getCertsTableRow(docjs.certifications));
             }
-
-            if (docjs.bref != "" && docjs.bref != null && docjs.bref.length > 0) {
+            //Bref calculation from experiences
+            if (docjs.experiencesPro != "" && docjs.experiencesPro != null && docjs.experiencesPro.length > 0) {
                 table.addChildElement(tbrow.getBlankTableRowSingleLineBreak());
                 table.addChildElement(bref.getBrefTitleTableRow());
                 table.addChildElement(tbrow.getBlankTableRowSingleLineBreak());
-                table.addChildElement(bref.getBrefTableRow(docjs.bref));
+                table.addChildElement(bref.getBrefTableRow(docjs.experiencesPro));
             }
             //EXP PROFESSIONNELLES *********    START   *****************
             let nblines = 0;
@@ -95,7 +95,7 @@ class DocTable {
             if (docjs.experiencesPro != "" && docjs.experiencesPro != null && docjs.experiencesPro.length > 0) {
                 table.addChildElement(tbrow.getBlankTableRowPageBreak());
                 table.addChildElement(tbrow.getExpTitle("Principales Expériences Professionnelles"));
-                table.addChildElement(tbrow.getBlankTableRowDoubleLineBreak());
+                table.addChildElement(tbrow.getBlankTableRowSingleLineBreak());
 
                 for (let index = 0; index < docjs.experiencesPro.length; index++) {
                     nbexps += 1;

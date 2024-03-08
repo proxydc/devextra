@@ -77,7 +77,7 @@ class cComps {
                     },
                 }),
                 new TextRun({
-                    children: [new Tab(), new Tab(), new Tab(), new Tab(), ""],
+                    children: [new Tab(), new Tab(), new Tab(), new Tab(), "         "],
                 }),
                 new TextRun({
                     alignment: AlignmentType.CENTER,

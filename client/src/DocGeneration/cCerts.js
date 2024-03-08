@@ -150,7 +150,7 @@ class cCerts {
             children: [
 
                 new TextRun({
-                    children: [new Tab(), new Tab(), new Tab(), ""],
+                    children: [new Tab(), new Tab(), new Tab(), new Tab(), ""],
                 }),
                 new TextRun({
                     text: txt,
@@ -163,7 +163,7 @@ class cCerts {
 
                 }),
                 new TextRun({
-                    children: [new Tab(), new Tab(), new Tab(), new Tab(), ""],
+                    children: [new Tab(), new Tab(), new Tab(), ""],
                 }),
                 new ImageRun({
                     type: "png",

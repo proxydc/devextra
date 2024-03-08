@@ -24,13 +24,13 @@ class cExpPro {
                     type: "png",
                     data: docData.urlToBlob(enumImg.TitleExp),
                     transformation: {
-                        width: 65,
-                        height: 65,
+                        width: 60,
+                        height: 60,
                     },
                 }),
                 new TextRun({
                     text: "       " + txt.trim(),
-                    alignment: AlignmentType.CENTER,
+                    alignment: AlignmentType.TOP,
                     heading: HeadingLevel.TITLE,
                     font: "Century Gothic",
                     color: "#1d1933",

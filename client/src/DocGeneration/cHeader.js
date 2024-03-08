@@ -80,7 +80,7 @@ class cHeader {
                     data: docData.urlToBlob(enumImg.Logo2),
                     transformation: {
                         width: 180,
-                        height: 85,
+                        height: 110,
                     },
 
                     floating: {

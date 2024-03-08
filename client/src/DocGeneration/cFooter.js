@@ -22,9 +22,9 @@ class cFooter {
             // The standard default footer on every page or footer on odd pages when the 'Different Odd & Even Pages' option is activated
             children: [
                 this.getFooterBG(),
+                //docData.LineBreak(),
                 this.getFooterC(),
-                docData.LineBreak(),
-                this.getPageNumber(),
+                // this.getPageNumber(),
             ],
         });
     }
@@ -33,9 +33,10 @@ class cFooter {
             // The footer on first page when the 'Different First Page' option is activated
             children: [
                 this.getFooterBG(),
+                //docData.LineBreak(),
                 this.getFooterC(),
-                docData.LineBreak(),
-                this.getPageNumber(),
+
+                // this.getPageNumber(),
             ],
         });
     }
@@ -83,9 +84,11 @@ class cFooter {
                 new ExternalHyperlink({
                     children: [
                         new TextRun({
-                            text: "Proxiad Est                                                                                                                                 www.proxiad.com",
+                            text: "Proxiad Est                                                                                                             www.proxiad.com",
                             bold: true,
                             style: Hyperlink,
+                            font: "Century Gothic",
+                            size: 20,
                         }),
                     ],
                     link: "http://www.proxiad.com",

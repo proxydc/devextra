@@ -6,10 +6,14 @@ import {
     Paragraph,
     TextRun,
     AlignmentType,
+    ImageRun,
+    HeadingLevel,
+    Table,
 } from "docx";
 import docData from "./DocData";
 import exppro from "../../DocGeneration/cExpPro";
 import expperso from "../../DocGeneration/cExpPerso";
+import enumImg from "../../_helpers/enum-Img";
 class tableRow {
     static getBlankTableRowDoubleLineBreak() {
         return new TableRow({
@@ -79,7 +83,58 @@ class tableRow {
         return new TableRow({
             children: [
                 new TableCell({
-                    children: [exppro.getSubTitle(txt)],
+                    children: [new Table({
+                        rows: [
+                            new TableRow({
+                                children: [
+                                    new TableCell({
+                                        children: [new Paragraph({
+                                            children: [
+                                                new ImageRun({
+                                                    type: "png",
+                                                    data: docData.urlToBlob(enumImg.TitleExp),
+                                                    transformation: {
+                                                        width: 60,
+                                                        height: 60,
+                                                    },
+                                                }),
+                                            ],
+                                        })],
+                                        borders: {
+                                            top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                            bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                            left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                            right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                        },
+                                        width: { size: 25, type: WidthType.PERCENTAGE },
+                                    }),
+                                    new TableCell({
+                                        children: [new Paragraph({
+                                            children: [
+                                                new TextRun({
+                                                    text: txt.trim(),
+                                                    alignment: AlignmentType.CENTER,
+                                                    heading: HeadingLevel.TITLE,
+                                                    font: "Century Gothic",
+                                                    color: "#1d1933",
+                                                    bold: true,
+                                                    size: 28,
+                                                }),
+                                            ],
+                                        })],
+                                        borders: {
+                                            top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                            bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                            left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                            right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
+                                        },
+                                        width: { size: 75, type: WidthType.PERCENTAGE },
+                                    }),
+                                ],
+                            }),
+                        ],
+                    }), ],
+
                     columnSpan: 2,
                     borders: {
                         top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
@@ -90,6 +145,7 @@ class tableRow {
                 }),
             ],
         });
+
     }
     static getExpPosteTitle(txt) {
         return new TableRow({
@@ -119,6 +175,9 @@ class tableRow {
                             size: 20,
                         }),
                     ],
+                    indent: {
+                        left: 150,
+                    },
                     spacing: {
                         line: 300,
                     },
