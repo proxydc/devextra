@@ -36,19 +36,19 @@
             <td class="text-start">{{ acRow.tags }}</td>
             <td class="text-start">{{ acRow.manager_name }}</td>
             <td>
-              <a class="bi bi-pencil-square btn btn-success mx-2" :href="'/#/editDC/' + acRow.id" v-b-tooltip.hover title="Edit the candidat!">
+              <a class="bi bi-pencil-square btn btn-outline-success btn-sm" :href="'/#/editDC/' + acRow.id" v-b-tooltip.hover title="Edit the candidat!">
                 <!--Edit-->
               </a>
-              <b-button type="button" class="bi bi-trash3 btn btn-danger mx-2" @click="deleteDC(acRow.id)" v-b-tooltip.hover title="Delete the candidat!">
+              <b-button type="button" class="bi bi-trash3 btn btn-outline-danger btn-sm mx-1" @click="deleteDC(acRow.id)" v-b-tooltip.hover title="Delete the candidat!">
                 <!--Delete-->
               </b-button>
-              <a class="bi bi-eye-fill btn btn-outline-success btn-sm" :href="'/#/formCandidatSaisie/' + acRow.id" target="_blank" v-b-tooltip.hover title="See the candidat!">
+              <a class="bi bi-eye-fill btn btn-outline-success btn-sm mx-1" :href="'/#/formCandidatSaisie/' + acRow.id" target="_blank" v-b-tooltip.hover title="See the candidat!">
                 <!--Voir le dossier-->
               </a>
-              <button class="bi bi-copy btn btn-success mx-2" @click="CopyUrl(acRow.id)" v-b-tooltip.hover title="Copy the URL"></button> 
+              <button class="bi bi-copy btn btn-outline-success btn-sm mx-1" @click="CopyUrl(acRow.id)" v-b-tooltip.hover title="Copy the URL"></button> 
               <!--<img type="button" class="btn btn-outline-warning btn-sm" src="../assets/copyimage.png"
                 @click="CopyUrl(acRow.id)" />-->
-              <a class="bi bi-download btn btn-outline-primary btn-sm mx-2" :href="'/#/dcDownload/' + acRow.id" target="_blank" v-b-tooltip.hover title="Download the document!">
+              <a class="bi bi-download btn btn-outline-primary btn-sm mx-1" :href="'/#/dcDownload/' + acRow.id" target="_blank" v-b-tooltip.hover title="Download the document!">
                 <!--Download-->
               </a>
             </td>
