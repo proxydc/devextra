@@ -8,6 +8,15 @@ class urllist {
     static getBackEndURL() {
         return backEndURL;
     }
+    static getCongesUrl() {
+        return baseURL + "conges";
+    }
+    static getAddCongesUrl() {
+        return baseURL + "conges/add";
+    }
+    static getEditDelCongesUrl(id) {
+        return baseURL + "conges/" + id;
+    }
     static getLoginUrl() {
         return baseURL + "account";
     }

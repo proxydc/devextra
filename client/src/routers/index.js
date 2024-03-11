@@ -13,6 +13,9 @@ import AdminLayout from "../admin/admin_Layout.vue";
 import user from "../User/user.vue";
 import FormCandidatSaisie from "../candidats/FormCanSaisie.vue";
 import DcDownload from "../candidats/ChildComponents/DcDownload.vue";
+import conges from "../conges/conges.vue";
+import AddConges from "../conges/AddConges.vue";
+import EditConges from "../conges/EditConges.vue";
 const routes = [
     {
         path: '/adminLayout',
@@ -27,6 +30,9 @@ const routes = [
             { name: "EditDC", component: EditDC, path: "/editDC/:id", beforeEnter: authGuard, },
             { name: "FormCandidatSaisie", component: FormCandidatSaisie, path: "/formCandidatSaisie/:id", },
             { name: "DcDownload", component: DcDownload, path: "/dcDownload/:id", beforeEnter: authGuard, },
+            { name: "conges", component: conges, path: "/conges", beforeEnter: authGuard, },
+            { name: "AddConges", component: AddConges, path: "/addConges", beforeEnter: authGuard, },
+            { name: "EditConges", component: EditConges, path: "/editConges/:id", beforeEnter: authGuard, },
         ]
     },
     {

@@ -12,6 +12,9 @@
           <li class="nav-item" v-if="getUser() == 'admin'">
             <button class="nav-link active" aria-current="page" v-on:click="pageAdmin">Users</button>
           </li>
+          <li class="nav-item">
+            <button class="nav-link active" aria-current="page" v-on:click="pageConges">Conges</button>
+          </li>
         </ul>
         <div class="nav justify-content-end">
           <a class="nav-link" aria-current="page" href="/">Se déconnecter</a>
@@ -37,6 +40,10 @@ export default {
     pageAdmin()
     {
       this.$router.push({ name: "admin" });
+    },
+    pageConges()
+    {
+      this.$router.push({ name: "conges" });
     },
   }
 }

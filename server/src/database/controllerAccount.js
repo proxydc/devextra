@@ -14,6 +14,8 @@ const getAuthentification = (req, res) => {
                     pass_word,
                     results.rows[0].pass_word
                 );
+                console.log("password: "+results.rows[0].pass_word);
+                console.log("password1: "+ pass_word);
                 //console.log("comp: " + comp);
                 if (comp == true) {
                     res.status(200).json({

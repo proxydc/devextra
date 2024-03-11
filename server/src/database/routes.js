@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const controller = require("./controllerAccount");
 const controllerDC = require("./controllerDC");
+const controllerConges = require("./controllerConges");
 const router =  Router();
 router.post("/account", controller.getAuthentification);
 router.get("/account", controller.getAccounts);
@@ -21,5 +22,13 @@ router.put("/dcAdmin/:id", controllerDC.updateDCByAdmin);
 router.delete("/dc/:id", controllerDC.deleteDCById);
 
 router.get("/dc-status", controllerDC.getAllDcStatus);
+
+router.get("/conges", controllerConges.getConges);
+router.post("/conges/add", controllerConges.addConges);
+router.get("/conges/:id", controllerConges.getCongesById);
+router.put("/conges/:id", controllerConges.updateConges);
+router.delete("/conges/:id", controllerConges.deleteCongesById);
+
+router.get("/type_conges", controllerConges.getAllTypeConges);
 
 module.exports = router;

@@ -57,3 +57,19 @@ set document = jsonb_set(document, '{}', '{
     "systems": "Linux RHEL8"
   }}', 'false')
   where id = '4f94c89c-ebb5-43a6-a5b7-89d8ec10d90c'
+
+  CREATE TABLE conges(
+    id serial PRIMARY KEY,
+    date_debut timestamp without time zone NOT NULL,
+    date_fin timestamp without time zone NOT NULL
+    type_conges INTEGER NOT NULL,
+	nbjours INTEGER NOT NULL,
+    descriptions VARCHAR(256)
+);
+
+CREATE TABLE type_conges(
+    id INT PRIMARY KEY,
+    label VARCHAR(4) NOT NULL
+);
+
+INSERT INTO public.type_conges(id, label)	VALUES (1, 'CP'),(2, 'RTT'), (3, 'RTTE'), (4, 'AM');
