@@ -80,7 +80,7 @@ export default {
       try {
         this.error = "";
         this.warning = "";
-        alert("res: " + this.model.conges.date_debut);
+       // alert("res: " + this.model.conges.date_debut);
         const url = urlacc.getAddCongesUrl();
         let result = await axios.post(url, {
           date_debut: this.model.conges.date_debut,

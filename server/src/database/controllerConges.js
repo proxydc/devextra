@@ -6,7 +6,7 @@ const getConges = (req, res) => {
     pool.query(queries.getConges, (error, results) => {
         try {
             if (error) throw error;
-            console.log("dtdebut: "+ new Date(results.rows[0].date_debut).toLocaleDateString());
+            //console.log("dtdebut: "+ new Date(results.rows[0].date_debut).toLocaleDateString());
             res.status(200).json(results.rows);
         } catch (err) {
             console.log("catch: " + err);
@@ -32,8 +32,8 @@ const getCongesById = (req, res) => {
 //post-201
 const addConges = async (req, res) => {
     const { date_debut, date_fin, type_conges, nbjours, descriptions } = req.body;
-    console.log("dtdebut: "+ date_debut);
-    console.log("dtfin: "+date_fin);
+    //console.log("dtdebut: "+ date_debut);
+   // console.log("dtfin: "+date_fin);
     //check if conges name exists
     pool.query(queries.checkCongesExists, [date_debut], (error, results) => {
         try {
