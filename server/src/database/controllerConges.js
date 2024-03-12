@@ -126,6 +126,18 @@ const getAllTypeConges = (req, res) => {
         res.status(203).json({ error: "Error Database! " + err });
     }
 };
+//get-200
+const getSoldes = (req, res) => {
+    try {
+        pool.query(queries.getSoldes, (error, results) => {
+            if (error) throw error;
+            res.status(200).json(results.rows);
+        });
+    } catch (err) {
+        console.log("catch: " + err);
+        res.status(203).json({ error: "Error Database! " + err });
+    }
+};
 module.exports = {
     getConges,
     getCongesById,
@@ -133,4 +145,5 @@ module.exports = {
     deleteCongesById,
     updateConges,
     getAllTypeConges,
+    getSoldes,
 };

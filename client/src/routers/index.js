@@ -16,6 +16,7 @@ import DcDownload from "../candidats/ChildComponents/DcDownload.vue";
 import conges from "../conges/conges.vue";
 import AddConges from "../conges/AddConges.vue";
 import EditConges from "../conges/EditConges.vue";
+import Soldes from "../conges/Soldes.vue";
 const routes = [
     {
         path: '/adminLayout',
@@ -33,6 +34,7 @@ const routes = [
             { name: "conges", component: conges, path: "/conges", beforeEnter: authGuard, },
             { name: "AddConges", component: AddConges, path: "/addConges", beforeEnter: authGuard, },
             { name: "EditConges", component: EditConges, path: "/editConges/:id", beforeEnter: authGuard, },
+            { name: "Soldes", component: Soldes, path: "/soldes", beforeEnter: authGuard, },
         ]
     },
     {

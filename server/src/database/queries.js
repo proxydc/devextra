@@ -25,7 +25,7 @@ const getAllDcStatus = "select * from dc_status";
 
 
 //queries reg conges 
-const getConges = "select a.date_debut, a.date_fin, a.type_conges, a.nbjours, a.descriptions, r.label from conges a, type_conges r where a.type_conges = r.id order by a.id asc";
+const getConges = "select a.id, a.date_debut, a.date_fin, a.type_conges, a.nbjours, a.descriptions, r.label from conges a, type_conges r where a.type_conges = r.id order by a.id asc";
 const getCongesById = "select * from conges where id = $1";
 const checkCongesExists = "select * from conges a where a.date_debut = $1";
 const addConges = "insert into conges(date_debut, date_fin, type_conges, nbjours, descriptions) values ($1, $2, $3, $4, $5)";
@@ -34,6 +34,9 @@ const deleteCongesById = "delete from conges where id = $1";
 
 //queries reg type_conges
 const getAllTypeConges = "select * from type_conges";
+
+//queries reg soldes
+const getSoldes = "select * from compteur";
 
 module.exports = {
     getAuthentification,
@@ -64,5 +67,6 @@ module.exports = {
     deleteCongesById,
 
     getAllTypeConges,
+    getSoldes,
 
 };

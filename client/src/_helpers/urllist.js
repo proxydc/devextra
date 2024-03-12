@@ -8,6 +8,9 @@ class urllist {
     static getBackEndURL() {
         return backEndURL;
     }
+    static getSoldesUrl() {
+        return baseURL + "soldes";
+    }
     static getCongesUrl() {
         return baseURL + "conges";
     }

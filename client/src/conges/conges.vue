@@ -13,6 +13,9 @@
         <button type="button" class="btn btn-outline-primary" @click="openAddConges()">
           Nouveau conges
         </button>
+        <button type="button" class="btn btn-outline-primary" @click="openSoldes()">
+          Solde
+        </button>
       </div>
       <div class="container p-3 my-2 bg-light border border-primary">
         <div class="row">
@@ -106,7 +109,10 @@
       openAddConges() {
         this.$router.push({ name: "AddConges" });
       },
-      deleteAccount(congesId) {
+      openSoldes() {
+        this.$router.push({ name: "Soldes" });
+      },
+      deleteConge(congesId) {
         try {
           this.success = "";
           this.warning = "";
