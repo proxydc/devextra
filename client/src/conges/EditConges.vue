@@ -49,6 +49,7 @@ export default {
         { value: 2, text: "RTT" },
         { value: 3, text: "RTTE" },
         { value: 4, text: "AM" },
+        { value: 5, text: "JF" },
       ],
       model: {
         conges: {

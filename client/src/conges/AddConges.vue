@@ -18,9 +18,11 @@
             </select>
           </div>
           <label for="lbdatedebut">Date début</label>
-          <input type="date" v-model="model.conges.date_debut" id="lbdatedebut" class="form-control" required @blur="getNbjours(model.conges.date_debut, model.conges.date_fin)" />
+          <input type="date" v-model="model.conges.date_debut" id="lbdatedebut" class="form-control" required
+            @blur="getNbjours(model.conges.date_debut, model.conges.date_fin)" />
           <label for="lbdatefin">Date fin</label>
-          <input type="date" v-model="model.conges.date_fin" id="lbdatefin" class="form-control" required @blur="getNbjours(model.conges.date_debut, model.conges.date_fin)" />
+          <input type="date" v-model="model.conges.date_fin" id="lbdatefin" class="form-control" required
+            @blur="getNbjours(model.conges.date_debut, model.conges.date_fin)" />
           <label for="lbnbjours">Nb. jours</label>
           <input type="text" v-model="model.conges.nbjours" id="lbnbjours" class="form-control"
             @blur="getNbjours(model.conges.date_debut, model.conges.date_fin)" required />
@@ -45,11 +47,13 @@ export default {
     return {
       error: "",
       warning: "",
+      JFDates: [],
       TypeCongesList: [
         { value: 1, text: "CP" },
         { value: 2, text: "RTT" },
         { value: 3, text: "RTTE" },
         { value: 4, text: "AM" },
+        { value: 5, text: "JF" },
       ],
 
       model: {
@@ -66,6 +70,7 @@ export default {
   },
   mounted() {
     //  document.getElementById("lbdatedebut").focus();
+    this.getConges();
     $(document).keypress(function (e) {
       if (e.which === 13) {
         // enter has been pressed, execute a click on .js-new:
@@ -74,42 +79,83 @@ export default {
     });
   },
   methods: {
-    async addConges() {
+    getConges() {
       try {
-        this.error = "";
-        this.warning = "";
-        // alert("res: " + this.model.conges.date_debut);
-        const url = urlconges.getAddCongesUrl();
-        let result = await axios.post(url, {
-          date_debut: this.model.conges.date_debut,
-          date_fin: this.model.conges.date_fin,
-          type_conges: this.model.conges.type_conges,
-          nbjours: this.model.conges.nbjours,//this.getNbjours(this.model.conges.date_debut, this.model.conges.date_fin),
-          descriptions: this.model.conges.descriptions,
+        const url = urlconges.getCongesUrl();
+        axios.get(url).then(res => {
+          console.log(res.data);
+          switch (res.status) {
+            case 200:
+              res.data.forEach(element => {
+                if (element.type_conges == 5) {
+                  this.JFDates.push(element.date_debut);
+                }
+              });
+              break;
+            default:
+              this.error = "Database error! Status: " + res.status + " Error: " + res.data;
+              break;
+          }
         });
-        console.warn(result);
-        switch (result.status) {
-          case 201:
-            this.$router.push({ name: 'conges' });
-            break;
-          case 202:
-            this.warning = result.data;
-            break;
-          default:
-            this.error = "Database error! Status: " + result.status + " Error: " + result.data;
-            break;
-        }
       }
       catch (err) {
-        this.error = err
+        this.error = err;
       }
     },
-    getNbjours(dtdebut, dtfin) {
-      if (dtdebut != null && dtdebut != "" && dtfin != null && dtfin != "")
-        if (dtdebut == dtfin) this.model.conges.nbjours = 1;
-        else {
-          this.model.conges.nbjours = this.calcBusinessDays(dtdebut, dtfin);
+    async addConges() {
+      if (this.model.conges.nbjours > 0) {
+        try {
+          this.error = "";
+          this.warning = "";
+          // alert("res: " + this.model.conges.date_debut);
+          const url = urlconges.getAddCongesUrl();
+          let result = await axios.post(url, {
+            date_debut: this.model.conges.date_debut,
+            date_fin: this.model.conges.date_fin,
+            type_conges: this.model.conges.type_conges,
+            nbjours: this.model.conges.nbjours,//this.getNbjours(this.model.conges.date_debut, this.model.conges.date_fin),
+            descriptions: this.model.conges.descriptions,
+          });
+          console.warn(result);
+          switch (result.status) {
+            case 201:
+              this.$router.push({ name: 'conges' });
+              break;
+            case 202:
+              this.warning = result.data;
+              break;
+            default:
+              this.error = "Database error! Status: " + result.status + " Error: " + result.data;
+              break;
+          }
         }
+        catch (err) {
+          this.error = err
+        }
+      }
+    },
+    getNbJoursFeries(dtdebut, dtfin) {
+      let nbjoursferies = 0;
+      this.JFDates.forEach(element => {
+        if (new Date(element) >= new Date(dtdebut) && new Date(element) <= new Date(dtfin))
+          nbjoursferies += 1;
+      });
+      return nbjoursferies;
+    },
+    getNbjours(dtdebut, dtfin) {
+      if (dtdebut != null && dtdebut != "" && dtfin != null && dtfin != "") {
+        if (new Date(dtdebut) > new Date(dtfin)) {
+          this.error = "Date de début est inferièure à date de fin!"
+        }
+        else {
+          let nbjourferies = this.getNbJoursFeries(dtdebut, dtfin);
+          if (dtdebut == dtfin) this.model.conges.nbjours = 1;
+          else {
+            this.model.conges.nbjours = this.calcBusinessDays(dtdebut, dtfin);
+          }
+          this.model.conges.nbjours -= nbjourferies;
+        }
+      }
     },
     calcBusinessDays(dDate1, dDate2) {         // input given as Date objects
 
