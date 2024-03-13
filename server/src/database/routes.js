@@ -32,5 +32,7 @@ router.delete("/conges/:id", controllerConges.deleteCongesById);
 router.get("/type_conges", controllerConges.getAllTypeConges);
 
 router.get("/soldes", controllerConges.getSoldes);
+router.get("/soldes/:id", controllerConges.getSoldesById);
+router.put("/soldes/:id", controllerConges.updateSoldes);
 
 module.exports = router;

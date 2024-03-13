@@ -11,6 +11,9 @@ class urllist {
     static getSoldesUrl() {
         return baseURL + "soldes";
     }
+    static updateSoldesUrl(id) {
+        return baseURL + "soldes/" + id;
+    }
     static getCongesUrl() {
         return baseURL + "conges";
     }

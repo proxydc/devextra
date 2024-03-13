@@ -18,14 +18,12 @@
             </select>
           </div>
           <label for="lbdatedebut">Date début</label>
-          <input type="date" v-model="model.conges.date_debut" id="lbdatedebut" class="form-control" required />
+          <input type="date" v-model="model.conges.date_debut" id="lbdatedebut" class="form-control" required @blur="getNbjours(model.conges.date_debut, model.conges.date_fin)" />
           <label for="lbdatefin">Date fin</label>
-          <input type="date" v-model="model.conges.date_fin" id="lbdatefin" class="form-control" required />
-          <button class="bi bi-copy btn btn-outline-success btn-sm mx-1"
-            @click="getNbjours(model.conges.date_debut, model.conges.date_fin)" v-b-tooltip.hover
-            title="Copy the URL"></button>
+          <input type="date" v-model="model.conges.date_fin" id="lbdatefin" class="form-control" required @blur="getNbjours(model.conges.date_debut, model.conges.date_fin)" />
           <label for="lbnbjours">Nb. jours</label>
-          <input type="text" v-model="model.conges.nbjours" id="lbnbjours" class="form-control" required />
+          <input type="text" v-model="model.conges.nbjours" id="lbnbjours" class="form-control"
+            @blur="getNbjours(model.conges.date_debut, model.conges.date_fin)" required />
 
           <label for="lbdescription">Description</label>
           <input type="text" v-model="model.conges.descriptions" placeholder="Enter decription" id="lbdescription"
@@ -39,7 +37,7 @@
 
 <script>
 import axios from "axios";
-import urlacc from "../_helpers/urllist.js";
+import urlconges from "../_helpers/urllist.js";
 import $ from "jquery";
 export default {
   name: "AddConges",
@@ -80,8 +78,8 @@ export default {
       try {
         this.error = "";
         this.warning = "";
-       // alert("res: " + this.model.conges.date_debut);
-        const url = urlacc.getAddCongesUrl();
+        // alert("res: " + this.model.conges.date_debut);
+        const url = urlconges.getAddCongesUrl();
         let result = await axios.post(url, {
           date_debut: this.model.conges.date_debut,
           date_fin: this.model.conges.date_fin,
@@ -107,10 +105,11 @@ export default {
       }
     },
     getNbjours(dtdebut, dtfin) {
-      if (dtdebut == dtfin) this.model.conges.nbjours = 1;
-      else {
-        this.model.conges.nbjours = this.calcBusinessDays(dtdebut, dtfin);
-      }
+      if (dtdebut != null && dtdebut != "" && dtfin != null && dtfin != "")
+        if (dtdebut == dtfin) this.model.conges.nbjours = 1;
+        else {
+          this.model.conges.nbjours = this.calcBusinessDays(dtdebut, dtfin);
+        }
     },
     calcBusinessDays(dDate1, dDate2) {         // input given as Date objects
 

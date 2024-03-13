@@ -89,7 +89,7 @@ const deleteCongesById = (req, res) => {
 //put 201
 const updateConges = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { type_conges, descriptions } = req.body;
+    const {date_debut, date_fin, type_conges, nbjours, descriptions } = req.body;
     pool.query(queries.getCongesById, [id], (error, results) => {
         try {
             const noCongesFound = !results.rows.length;
@@ -97,7 +97,7 @@ const updateConges = async (req, res) => {
                 res.status(202).json("Conges does not exist in the database");
             } else {
                 pool.query(
-                    queries.updateConges, [id, type_conges, descriptions],
+                    queries.updateConges, [id, date_debut, date_fin, type_conges, nbjours, descriptions ],
                     (error, results) => {
                         try {
                             if (error) throw error;
@@ -138,6 +138,49 @@ const getSoldes = (req, res) => {
         res.status(203).json({ error: "Error Database! " + err });
     }
 };
+//get 200
+const getSoldesById = (req, res) => {
+    const id = parseInt(req.params.id);
+    pool.query(queries.getSoldesById, [id], (error, results) => {
+        try {
+            if (error) throw error;
+            res.status(200).json(results.rows);
+        } catch (err) {
+            console.log("catch: " + err);
+            res.status(203).json({ error: "Error Database! " + err });
+        }
+    });
+};
+
+//put 201
+const updateSoldes = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { cpanneeencours, cpanneeprecedent, cppris, cprestant, rtttotal, rttpris, rttrestant, rttetotal, rttepris, rtterestant } = req.body;
+    pool.query(queries.getSoldesById, [id], (error, results) => {
+        try {
+            const noSoldesFound = !results.rows.length;
+            if (noSoldesFound) {
+                res.status(202).json("Soldes does not exist in the database");
+            } else {
+                let datederniermod = new Date().toLocaleString();
+                pool.query(
+                    queries.updateSoldes, [id, cpanneeencours, cpanneeprecedent, cppris, cprestant, rtttotal, rttpris, rttrestant, rttetotal, rttepris, rtterestant, datederniermod ],
+                    (error, results) => {
+                        try {
+                            if (error) throw error;
+                            res.status(201).send("Soldes updated Successfully!");
+                        } catch (err) {
+                            res.status(203).json({ error: "Error Database! " + err });
+                        }
+                    }
+                );
+            }
+        } catch (err) {
+            console.log("catch: " + err);
+            res.status(203).json({ error: "Error Database! " + err });
+        }
+    });
+};
 module.exports = {
     getConges,
     getCongesById,
@@ -146,4 +189,6 @@ module.exports = {
     updateConges,
     getAllTypeConges,
     getSoldes,
+    updateSoldes,
+    getSoldesById,
 };

@@ -29,7 +29,7 @@ const getConges = "select a.id, a.date_debut, a.date_fin, a.type_conges, a.nbjou
 const getCongesById = "select * from conges where id = $1";
 const checkCongesExists = "select * from conges a where a.date_debut = $1";
 const addConges = "insert into conges(date_debut, date_fin, type_conges, nbjours, descriptions) values ($1, $2, $3, $4, $5)";
-const updateConges = "update conges set type_conges = $2, descriptions = $3 where id = $1";
+const updateConges = "update conges set date_debut = $2, date_fin = $3,  type_conges = $4, nbjours = $5, descriptions = $6 where id = $1";
 const deleteCongesById = "delete from conges where id = $1";
 
 //queries reg type_conges
@@ -37,6 +37,8 @@ const getAllTypeConges = "select * from type_conges";
 
 //queries reg soldes
 const getSoldes = "select * from compteur";
+const getSoldesById = "select * from compteur where id = $1";
+const updateSoldes = "update compteur set cpanneeencours = $2, cpanneeprecedent = $3, cppris = $4, cprestant = $5, rtttotal = $6, rttpris = $7, rttrestant = $8, rttetotal = $9,rttepris = $10, rtterestant = $11, datederniermodification = $12 where id = $1";
 
 module.exports = {
     getAuthentification,
@@ -68,5 +70,7 @@ module.exports = {
 
     getAllTypeConges,
     getSoldes,
+    updateSoldes,
+    getSoldesById,
 
 };
