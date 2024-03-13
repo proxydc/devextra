@@ -19,8 +19,8 @@ CREATE TABLE account(
     pass_word VARCHAR(128) NOT NULL,
 	role_id INTEGER NOT NULL
 );
-INSERT INTO account(login_name, display_name, pass_word, role_id) VALUES('proxydc_admin', 'Admin', '_ProxyDC_Config', 2);
-INSERT INTO account(login_name, display_name, pass_word, role_id) VALUES('Alex', 'Alex', '12345', 1); -- TODO hash
+INSERT INTO account(login_name, display_name, pass_word, role_id) VALUES('Alex', 'Alex', '$2b$10$Us5z/5AHLJ7bgZv15XR7QeZLWGI0IXIEPdO.dHs2ab3xpYsg0x/L2', 1); -- pass_word:12345
+
 
 CREATE TABLE dc_status(
     id INT PRIMARY KEY,
@@ -35,29 +35,15 @@ CREATE TABLE dc(
     firstname VARCHAR(32) NOT NULL,
     familyname VARCHAR(32) NOT NULL,
     email VARCHAR(256) NOT NULL,
-    dc_status INT REFERENCES dc_status (id), -- Default = 2 ?
+    dc_status INT REFERENCES dc_status (id),
     tags VARCHAR(256),
     document JSONB NULL,
-    manager_id INTEGER NOT NULL
+    manager_id INTEGER NOT NULL,
+    nbexps integer NOT NULL DEFAULT 0,
+    poste character varying(128) NULL,
+    creation_date timestamp without time zone NOT NULL,
+    modification_date timestamp without time zone NOT NULL
 );
-update dc
-set document = jsonb_set(document, '{}', '{
-  "technicalAbilities": ["SCRUM", "Java"],
-  "functionalAbilities": ["Banking", "CMS", "CRM & ERP"],
-  "languages": ["français", "anglais"],
-  "certifications": [{"year": 2021, "title": "CISCO"}, {"year": 2018, "title": "CNA5"}],
-  "bref": "lorem ipsum dolor",
-  "experiencesPro": [],
-  "projectsPerso": [],
-  "skills": {
-    "environments": "Java JEE",
-    "languages": "Java JEE",
-    "databases": "PostgreSQL, MySQL",
-    "tools": "Zabbix, Nagios",
-    "systems": "Linux RHEL8"
-  }}', 'false')
-  where id = '4f94c89c-ebb5-43a6-a5b7-89d8ec10d90c'
-
   CREATE TABLE conges(
     id serial PRIMARY KEY,
     date_debut timestamp without time zone NOT NULL,
