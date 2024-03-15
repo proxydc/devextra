@@ -15,6 +15,9 @@
           <li class="nav-item">
             <button class="nav-link active" aria-current="page" v-on:click="pageConges">Conges</button>
           </li>
+          <li class="nav-item">
+            <button class="nav-link active" aria-current="page" v-on:click="pageExpenses">Expenses</button>
+          </li>
         </ul>
         <div class="nav justify-content-end">
           <a class="nav-link" aria-current="page" href="/">Se déconnecter</a>
@@ -44,6 +47,10 @@ export default {
     pageConges()
     {
       this.$router.push({ name: "conges" });
+    },
+    pageExpenses()
+    {
+      this.$router.push({ name: "expenses" });
     },
   }
 }

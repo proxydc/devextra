@@ -35,4 +35,12 @@ router.get("/soldes", controllerConges.getSoldes);
 router.get("/soldes/:id", controllerConges.getSoldesById);
 router.put("/soldes/:id", controllerConges.updateSoldes);
 
+router.get("/expenses", controllerExpenses.getExpenses);
+router.post("/expenses/add", controllerExpenses.addExpenses);
+router.get("/expenses/:id", controllerExpenses.getExpensesById);
+router.put("/expenses/:id", controllerExpenses.updateExpenses);
+router.delete("/expenses/:id", controllerExpenses.deleteExpensesById);
+
+router.get("/type_expenses", controllerExpenses.getAllTypeExpenses);
+
 module.exports = router;

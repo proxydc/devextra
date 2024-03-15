@@ -17,6 +17,9 @@ import conges from "../conges/conges.vue";
 import AddConges from "../conges/AddConges.vue";
 import EditConges from "../conges/EditConges.vue";
 import Soldes from "../conges/Soldes.vue";
+import expenses from "../expenses/expenses.vue";
+import AddExp from "../expenses/AddExp.vue";
+import EditExp from "../expenses/EditExp.vue";
 const routes = [
     {
         path: '/adminLayout',
@@ -35,6 +38,9 @@ const routes = [
             { name: "AddConges", component: AddConges, path: "/addConges", beforeEnter: authGuard, },
             { name: "EditConges", component: EditConges, path: "/editConges/:id", beforeEnter: authGuard, },
             { name: "Soldes", component: Soldes, path: "/soldes", beforeEnter: authGuard, },
+            { name: "expenses", component: expenses, path: "/expenses", beforeEnter: authGuard, },
+            { name: "AddExp", component: AddExp, path: "/addExpenses", beforeEnter: authGuard, },
+            { name: "EditExp", component: EditExp, path: "/editExpenses/:id", beforeEnter: authGuard, },
         ]
     },
     {

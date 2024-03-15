@@ -40,6 +40,17 @@ const getSoldes = "select * from compteur";
 const getSoldesById = "select * from compteur where id = $1";
 const updateSoldes = "update compteur set cpanneeencours = $2, cpanneeprecedent = $3, cppris = $4, cprestant = $5, rtttotal = $6, rttpris = $7, rttrestant = $8, rttetotal = $9,rttepris = $10, rtterestant = $11, datederniermodification = $12 where id = $1";
 
+//queries reg Expenses 
+const getExpenses = "select a.id, a.date_debut, a.date_fin, a.type_Expenses, a.nbjours, a.descriptions, r.label from Expenses a, type_Expenses r where a.type_Expenses = r.id order by a.id asc";
+const getExpensesById = "select * from Expenses where id = $1";
+const checkExpensesExists = "select * from Expenses a where a.date_debut = $1";
+const addExpenses = "insert into Expenses(date_debut, date_fin, type_Expenses, nbjours, descriptions) values ($1, $2, $3, $4, $5)";
+const updateExpenses = "update Expenses set date_debut = $2, date_fin = $3,  type_Expenses = $4, nbjours = $5, descriptions = $6 where id = $1";
+const deleteExpensesById = "delete from Expenses where id = $1";
+
+//queries reg type_Expenses
+const getAllTypeExpenses = "select * from type_Expenses";
+
 module.exports = {
     getAuthentification,
     getAccounts,
@@ -72,5 +83,14 @@ module.exports = {
     getSoldes,
     updateSoldes,
     getSoldesById,
+
+    getExpenses,
+    getExpensesById,
+    checkExpensesExists,
+    addExpenses,
+    updateExpenses,
+    deleteExpensesById,
+
+    getAllTypeExpenses,
 
 };
