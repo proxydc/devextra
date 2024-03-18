@@ -4,7 +4,7 @@ const app = express();
 const PORT = 3000;
 const cors = require('cors');
 const siteUrlDev="http://localhost:8080";
-const siteUrlProd="https://mysitevue.onrender.com";
+const siteUrlProd=process.env.VUE_APP_SITEURLPROD;
 
 app.use(express.json());
 app.use(cors({
