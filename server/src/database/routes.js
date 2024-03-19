@@ -46,8 +46,8 @@ router.put("/expenses/:id", controllerExpenses.updateExpenses);
 router.delete("/expenses/:id", controllerExpenses.deleteExpensesById);
 
 router.get("/type_expenses", controllerExpenses.getAllTypeExpenses);
-router.post("/type_expenses/add", controllerExpenses.addExpenseTypes);
 router.get("/type_expenses/:id", controllerExpenses.getExpenseTypesById);
+router.post("/type_expenses/add", controllerExpenses.addExpenseTypes);
 router.delete("/type_expenses/:id", controllerExpenses.deleteExpenseTypesById);
 
 router.get("/shops", controllerExpenses.getAllShops);
