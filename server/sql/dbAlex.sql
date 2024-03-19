@@ -44,28 +44,30 @@ CREATE TABLE dc(
     creation_date timestamp without time zone NOT NULL,
     modification_date timestamp without time zone NOT NULL
 );
+
+/****** CONGES *****************************/
   CREATE TABLE conges(
     id serial PRIMARY KEY,
     date_debut timestamp without time zone NOT NULL,
     date_fin timestamp without time zone NOT NULL,
     type_conges INTEGER NOT NULL,
-	nbjours INTEGER NOT NULL,
+	nbjours double precision NOT NULL,
     descriptions VARCHAR(256)
 );
 
   CREATE TABLE compteur(
     id serial PRIMARY KEY,
-    CPAnneeEncours INTEGER NOT NULL,
-    CPAnneePrecedent INTEGER NOT NULL,
-    CPPris INTEGER NOT NULL,
-	CPRestant INTEGER NOT NULL,
-    RTTTotal INTEGER NOT NULL,
-    RTTPris INTEGER NOT NULL,
-	RTTRestant INTEGER NOT NULL,
-    RTTETotal INTEGER NOT NULL,
-    RTTEPris INTEGER NOT NULL,
-	RTTERestant INTEGER NOT NULL,
-    DateDernierModification timestamp without time zone NOT NULL Default = CURRENT_TIMESTAMP
+    CPAnneeEncours double precision NOT NULL,
+    CPAnneePrecedent double precision NOT NULL,
+    CPPris double precision NOT NULL,
+	CPRestant double precision NOT NULL,
+    RTTTotal double precision NOT NULL,
+    RTTPris double precision NOT NULL,
+	RTTRestant double precision NOT NULL,
+    RTTETotal double precision NOT NULL,
+    RTTEPris double precision NOT NULL,
+	RTTERestant double precision NOT NULL,
+    DateDernierModification timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP
 );
 1	18.72	38	0	0	5	0	0	5	0	0	"2024-03-12 11:08:07.499088"
 CREATE TABLE type_conges(
@@ -74,3 +76,60 @@ CREATE TABLE type_conges(
 );
 
 INSERT INTO public.type_conges(id, label)	VALUES (1, 'CP'),(2, 'RTT'), (3, 'RTTE'), (4, 'AM'), (5, 'JF');
+
+/****** EXPENSES *****************************/
+  CREATE TABLE expense(
+    id serial PRIMARY KEY,
+    expense_type_id INTEGER NOT NULL,
+    shop_id INTEGER NOT NULL,
+    person_id INTEGER NOT NULL,
+    bank_id INTEGER NOT NULL,
+	payment_id INTEGER NOT NULL,
+    Amount double precision NOT NULL,
+    details VARCHAR(256) NULL,
+    DatePurchase timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP
+);
+CREATE TABLE shop(
+    id serial PRIMARY KEY,
+    label VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE person(
+    id serial PRIMARY KEY,
+    firstname VARCHAR(32) NOT NULL,
+    familyname VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE expense_types(
+    id serial PRIMARY KEY,
+    label VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE payment_types(
+    id serial PRIMARY KEY,
+    label VARCHAR(32) NOT NULL    
+);
+CREATE TABLE banks(
+    id serial PRIMARY KEY,
+    bankname VARCHAR(32) NOT NULL
+);
+
+  CREATE TABLE income(
+    id serial PRIMARY KEY,
+    provider_id INTEGER NOT NULL,
+    person_id INTEGER NOT NULL,
+    credited_bank_id INTEGER NOT NULL,
+    income_type_Id INTEGER NOT NULL,
+    amount double precision NOT NULL,
+    details VARCHAR(256) NULL,
+    daterecieved timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP
+);
+
+CREATE TABLE income_types(
+    id serial PRIMARY KEY,
+    label VARCHAR(128) NOT NULL    
+);
+CREATE TABLE provider_types(
+    id serial PRIMARY KEY,
+    label VARCHAR(128) NOT NULL    
+);

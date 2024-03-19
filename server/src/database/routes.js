@@ -3,7 +3,10 @@ const controller = require("./controllerAccount");
 const controllerDC = require("./controllerDC");
 const controllerConges = require("./controllerConges");
 const controllerExpenses = require("./controllerExpenses");
+const controllerIncome = require("./controllerIncome");
+
 const router =  Router();
+
 router.post("/account", controller.getAuthentification);
 router.get("/account", controller.getAccounts);
 router.post("/account/add", controller.addAccount);
@@ -43,5 +46,44 @@ router.put("/expenses/:id", controllerExpenses.updateExpenses);
 router.delete("/expenses/:id", controllerExpenses.deleteExpensesById);
 
 router.get("/type_expenses", controllerExpenses.getAllTypeExpenses);
+router.post("/type_expenses/add", controllerExpenses.addExpenseTypes);
+router.get("/type_expenses/:id", controllerExpenses.getExpenseTypesById);
+router.delete("/type_expenses/:id", controllerExpenses.deleteExpenseTypesById);
+
+router.get("/shops", controllerExpenses.getAllShops);
+router.get("/shops/:id", controllerExpenses.getShopById);
+router.post("/shops/add", controllerExpenses.addShop);
+router.delete("/shops/:id", controllerExpenses.deleteShopById);
+
+router.get("/payment_types", controllerExpenses.getAllPaymentTypes);
+router.get("/payment_types/:id", controllerExpenses.getPaymentTypesById);
+router.post("/payment_types/add", controllerExpenses.addPaymentTypes);
+router.delete("/payment_types/:id", controllerExpenses.deletePaymentTypesById);
+
+router.get("/income", controllerIncome.getIncomes);
+router.get("/income/:id", controllerIncome.getIncomeById);
+router.post("/income/add", controllerIncome.addIncome);
+router.put("/income/:id", controllerIncome.updateIncome);
+router.delete("/income/:id", controllerIncome.deleteIncomeById);
+
+router.get("/person", controllerIncome.getAllPerson);
+router.get("/person/:id", controllerIncome.getPersonById);
+router.post("/person/add", controllerIncome.addPerson);
+router.delete("/person/:id", controllerIncome.deletePersonById);
+
+router.get("/banks", controllerIncome.getAllBanks);
+router.get("/banks/:id", controllerIncome.getBankById);
+router.post("/banks/add", controllerIncome.addBank);
+router.delete("/banks/:id", controllerIncome.deleteBankById);
+
+router.get("/provider_types", controllerIncome.getAllProviderTypes);
+router.get("/provider_types/:id", controllerIncome.getProviderTypesById);
+router.post("/provider_types/add", controllerIncome.addProviderTypes);
+router.delete("/provider_types/:id", controllerIncome.deleteProviderTypesById);
+
+router.get("/income_types", controllerIncome.getAllIncomeTypes);
+router.get("/income_types/:id", controllerIncome.getIncomeTypesById);
+router.post("/income_types/add", controllerIncome.addIncomeTypes);
+router.delete("/income_types/:id", controllerIncome.deleteIncomeTypesById);
 
 module.exports = router;

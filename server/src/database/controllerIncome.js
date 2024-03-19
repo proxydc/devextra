@@ -2,11 +2,10 @@ const pool = require("../../db");
 const queries = require("./queries");
 const tools = require("./tools");
 //get 200
-const getExpenses = (req, res) => {
-    pool.query(queries.getExpenses, (error, results) => {
+const getIncomes = (req, res) => {
+    pool.query(queries.getIncomes, (error, results) => {
         try {
             if (error) throw error;
-            //console.log("dtdebut: "+ new Date(results.rows[0].date_debut).toLocaleDateString());
             res.status(200).json(results.rows);
         } catch (err) {
             console.log("catch: " + err);
@@ -16,9 +15,9 @@ const getExpenses = (req, res) => {
 };
 
 //get 200
-const getExpensesById = (req, res) => {
+const getIncomeById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query(queries.getExpensesById, [id], (error, results) => {
+    pool.query(queries.getIncomeById, [id], (error, results) => {
         try {
             if (error) throw error;
             res.status(200).json(results.rows);
@@ -30,38 +29,36 @@ const getExpensesById = (req, res) => {
 };
 
 //post-201
-const addExpenses = async (req, res) => {
-    const { expense_type_id, shop_id, person_id, bank_id, payment_id, amount, details, datepurchase } = req.body;
-    //add Expenses to db
+const addIncome = async (req, res) => {
+    const { provider_id, person_id, credited_bank_id, income_type_id, amount, details, daterecieved } = req.body;
     pool.query(
-        queries.addExpenses, [expense_type_id, shop_id, person_id, bank_id, payment_id, amount, details, datepurchase],
+        queries.addIncome, [provider_id, person_id, credited_bank_id, income_type_id, amount, details, daterecieved],
         (error, results) => {
             try {
                 if (error) throw error;
-                res.status(201).send("Expenses created Successfully!");
+                res.status(201).send("Income added Successfully!");
             } catch (err) {
                 res.status(203).json({ error: "Error Database! " + err.message });
             }
         }
     );
-
 };
 
 //delete-200with content or 204 without content
-const deleteExpensesById = (req, res) => {
+const deleteIncomeById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query(queries.getExpensesById, [id], (error, results) => {
+    pool.query(queries.getIncomeById, [id], (error, results) => {
         try {
             const noExpensesFound = !results.rows.length;
             if (noExpensesFound) {
-                res.status(202).json("Expenses does not exist in the database");
+                res.status(202).json("Income does not exist in the database");
             } else {
-                pool.query(queries.deleteExpensesById, [id], (error, results) => {
+                pool.query(queries.deleteIncomeById, [id], (error, results) => {
                     try {
                         if (error) throw error;
                         res
                             .status(200)
-                            .send("Expenses id: " + id + " deleted Successfully!");
+                            .send("Income id: " + id + " deleted Successfully!");
                     } catch (err) {
                         res.status(203).json({ error: "Error Database! " + err });
                     }
@@ -75,21 +72,21 @@ const deleteExpensesById = (req, res) => {
 };
 
 //put 201
-const updateExpenses = async (req, res) => {
+const updateIncome = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { expense_type_id, shop_id, person_id, bank_id, payment_id, amount, details, datepurchase } = req.body;
-    pool.query(queries.getExpensesById, [id], (error, results) => {
+    const { provider_id, person_id, credited_bank_id, income_type_id, amount, details, daterecieved } = req.body;
+    pool.query(queries.getIncomeById, [id], (error, results) => {
         try {
             const noExpensesFound = !results.rows.length;
             if (noExpensesFound) {
-                res.status(202).json("Expenses does not exist in the database");
+                res.status(202).json("Income does not exist in the database");
             } else {
                 pool.query(
-                    queries.updateExpenses, [id, expense_type_id, shop_id, person_id, bank_id, payment_id, amount, details, datepurchase],
+                    queries.updateExpenses, [id, provider_id, person_id, credited_bank_id, income_type_id, amount, details, daterecieved],
                     (error, results) => {
                         try {
                             if (error) throw error;
-                            res.status(201).send("Expenses updated Successfully!");
+                            res.status(201).send("Income updated Successfully!");
                         } catch (err) {
                             res.status(203).json({ error: "Error Database! " + err });
                         }
@@ -103,23 +100,23 @@ const updateExpenses = async (req, res) => {
     });
 };
 
-//get-200
-const getAllTypeExpenses = (req, res) => {
-    try {
-        pool.query(queries.getAllTypeExpenses, (error, results) => {
+//get 200
+const getAllPerson = (req, res) => {
+    pool.query(queries.getAllPerson, (error, results) => {
+        try {
             if (error) throw error;
             res.status(200).json(results.rows);
-        });
-    } catch (err) {
-        console.log("catch: " + err);
-        res.status(203).json({ error: "Error Database! " + err });
-    }
+        } catch (err) {
+            console.log("catch: " + err);
+            res.status(203).json({ error: "Error Database! " + err });
+        }
+    });
 };
 
 //get 200
-const getExpenseTypesById = (req, res) => {
+const getPersonById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query(queries.getExpenseTypesById, [id], (error, results) => {
+    pool.query(queries.getPersonById, [id], (error, results) => {
         try {
             if (error) throw error;
             res.status(200).json(results.rows);
@@ -131,15 +128,15 @@ const getExpenseTypesById = (req, res) => {
 };
 
 //post-201
-const addExpenseTypes = async (req, res) => {
-    const { label } = req.body;
-    //add Expenses to db
+const addPerson = async (req, res) => {
+    const { firstname, familyname } = req.body;
+    //add shop to db
     pool.query(
-        queries.addExpenseTypes, [label],
+        queries.addPerson, [firstname, familyname],
         (error, results) => {
             try {
                 if (error) throw error;
-                res.status(201).send("Expense type created Successfully!");
+                res.status(201).send("Person added Successfully!");
             } catch (err) {
                 res.status(203).json({ error: "Error Database! " + err.message });
             }
@@ -149,20 +146,20 @@ const addExpenseTypes = async (req, res) => {
 };
 
 //delete-200with content or 204 without content
-const deleteExpenseTypesById = (req, res) => {
+const deletePersonById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query(queries.getExpenseTypesById, [id], (error, results) => {
+    pool.query(queries.getPersonById, [id], (error, results) => {
         try {
             const noExpensesFound = !results.rows.length;
             if (noExpensesFound) {
-                res.status(202).json("Expenses does not exist in the database");
+                res.status(202).json("Person does not exist in the database");
             } else {
-                pool.query(queries.deleteExpenseTypesById, [id], (error, results) => {
+                pool.query(queries.deletePersonById, [id], (error, results) => {
                     try {
                         if (error) throw error;
                         res
                             .status(200)
-                            .send("Expenses id: " + id + " deleted Successfully!");
+                            .send("Person id: " + id + " deleted Successfully!");
                     } catch (err) {
                         res.status(203).json({ error: "Error Database! " + err });
                     }
@@ -176,8 +173,8 @@ const deleteExpenseTypesById = (req, res) => {
 };
 
 //get 200
-const getAllShops = (req, res) => {
-    pool.query(queries.getAllShops, (error, results) => {
+const getAllBanks = (req, res) => {
+    pool.query(queries.getAllBanks, (error, results) => {
         try {
             if (error) throw error;
             res.status(200).json(results.rows);
@@ -189,9 +186,9 @@ const getAllShops = (req, res) => {
 };
 
 //get 200
-const getShopById = (req, res) => {
+const getBankById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query(queries.getShopById, [id], (error, results) => {
+    pool.query(queries.getBankById, [id], (error, results) => {
         try {
             if (error) throw error;
             res.status(200).json(results.rows);
@@ -203,15 +200,87 @@ const getShopById = (req, res) => {
 };
 
 //post-201
-const addShop = async (req, res) => {
+const addBank = async (req, res) => {
+    const { bankname } = req.body;
+    //add shop to db
+    pool.query(
+        queries.addBank, [bankname],
+        (error, results) => {
+            try {
+                if (error) throw error;
+                res.status(201).send("Bank added Successfully!");
+            } catch (err) {
+                res.status(203).json({ error: "Error Database! " + err.message });
+            }
+        }
+    );
+
+};
+
+//delete-200with content or 204 without content
+const deleteBankById = (req, res) => {
+    const id = parseInt(req.params.id);
+    pool.query(queries.getBankById, [id], (error, results) => {
+        try {
+            const noExpensesFound = !results.rows.length;
+            if (noExpensesFound) {
+                res.status(202).json("Bank does not exist in the database");
+            } else {
+                pool.query(queries.deleteBankById, [id], (error, results) => {
+                    try {
+                        if (error) throw error;
+                        res
+                            .status(200)
+                            .send("Bank id: " + id + " deleted Successfully!");
+                    } catch (err) {
+                        res.status(203).json({ error: "Error Database! " + err });
+                    }
+                });
+            }
+        } catch (err) {
+            console.log("catch: " + err);
+            res.status(203).json({ error: "Error Database! " + err });
+        }
+    });
+};
+
+//get 200
+const getAllProviderTypes = (req, res) => {
+    pool.query(queries.getAllProviderTypes, (error, results) => {
+        try {
+            if (error) throw error;
+            res.status(200).json(results.rows);
+        } catch (err) {
+            console.log("catch: " + err);
+            res.status(203).json({ error: "Error Database! " + err });
+        }
+    });
+};
+
+//get 200
+const getProviderTypesById = (req, res) => {
+    const id = parseInt(req.params.id);
+    pool.query(queries.getProviderTypesById, [id], (error, results) => {
+        try {
+            if (error) throw error;
+            res.status(200).json(results.rows);
+        } catch (err) {
+            console.log("catch: " + err);
+            res.status(203).json({ error: "Error Database! " + err });
+        }
+    });
+};
+
+//post-201
+const addProviderTypes= async (req, res) => {
     const { label } = req.body;
     //add shop to db
     pool.query(
-        queries.addShop, [label],
+        queries.addProviderTypes, [label],
         (error, results) => {
             try {
                 if (error) throw error;
-                res.status(201).send("Shop added Successfully!");
+                res.status(201).send("Provider type added Successfully!");
             } catch (err) {
                 res.status(203).json({ error: "Error Database! " + err.message });
             }
@@ -221,20 +290,20 @@ const addShop = async (req, res) => {
 };
 
 //delete-200with content or 204 without content
-const deleteShopById = (req, res) => {
+const deleteProviderTypesById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query(queries.getShopById, [id], (error, results) => {
+    pool.query(queries.getProviderTypesById, [id], (error, results) => {
         try {
             const noExpensesFound = !results.rows.length;
             if (noExpensesFound) {
-                res.status(202).json("Shop does not exist in the database");
+                res.status(202).json("Provider type does not exist in the database");
             } else {
-                pool.query(queries.deleteShopById, [id], (error, results) => {
+                pool.query(queries.deleteProviderTypesById, [id], (error, results) => {
                     try {
                         if (error) throw error;
                         res
                             .status(200)
-                            .send("Shop id: " + id + " deleted Successfully!");
+                            .send("Providr type id: " + id + " deleted Successfully!");
                     } catch (err) {
                         res.status(203).json({ error: "Error Database! " + err });
                     }
@@ -248,8 +317,8 @@ const deleteShopById = (req, res) => {
 };
 
 //get 200
-const getAllPaymentTypes = (req, res) => {
-    pool.query(queries.getAllPaymentTypes, (error, results) => {
+const getAllIncomeTypes = (req, res) => {
+    pool.query(queries.getAllIncomeTypes, (error, results) => {
         try {
             if (error) throw error;
             res.status(200).json(results.rows);
@@ -261,9 +330,9 @@ const getAllPaymentTypes = (req, res) => {
 };
 
 //get 200
-const getPaymentTypesById = (req, res) => {
+const getIncomeTypesById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query(queries.getPaymentTypesById, [id], (error, results) => {
+    pool.query(queries.getIncomeTypesById, [id], (error, results) => {
         try {
             if (error) throw error;
             res.status(200).json(results.rows);
@@ -275,15 +344,15 @@ const getPaymentTypesById = (req, res) => {
 };
 
 //post-201
-const addPaymentTypes = async (req, res) => {
+const addIncomeTypes = async (req, res) => {
     const { label } = req.body;
     //add shop to db
     pool.query(
-        queries.addPaymentTypes, [label],
+        queries.addIncomeTypes, [label],
         (error, results) => {
             try {
                 if (error) throw error;
-                res.status(201).send("Payment type added Successfully!");
+                res.status(201).send("Income type added Successfully!");
             } catch (err) {
                 res.status(203).json({ error: "Error Database! " + err.message });
             }
@@ -293,20 +362,20 @@ const addPaymentTypes = async (req, res) => {
 };
 
 //delete-200with content or 204 without content
-const deletePaymentTypesById = (req, res) => {
+const deleteIncomeTypesById = (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query(queries.getPaymentTypesById, [id], (error, results) => {
+    pool.query(queries.getIncomeTypesById, [id], (error, results) => {
         try {
             const noExpensesFound = !results.rows.length;
             if (noExpensesFound) {
-                res.status(202).json("Payment type does not exist in the database");
+                res.status(202).json("Income type does not exist in the database");
             } else {
-                pool.query(queries.deletePaymentTypesById, [id], (error, results) => {
+                pool.query(queries.deleteIncomeTypesById, [id], (error, results) => {
                     try {
                         if (error) throw error;
                         res
                             .status(200)
-                            .send("Payment type id: " + id + " deleted Successfully!");
+                            .send("Income type id: " + id + " deleted Successfully!");
                     } catch (err) {
                         res.status(203).json({ error: "Error Database! " + err });
                     }
@@ -318,24 +387,32 @@ const deletePaymentTypesById = (req, res) => {
         }
     });
 };
+
 
 module.exports = {
-    getExpenses,
-    getExpensesById,
-    addExpenses,
-    deleteExpensesById,
-    updateExpenses,
-    getAllTypeExpenses,
-    getExpenseTypesById,
-    addExpenseTypes,
-    deleteExpenseTypesById,
-    getAllShops,
-    getShopById,
-    addShop,
-    deleteShopById,
-    getAllPaymentTypes,
-    getPaymentTypesById,
-    addPaymentTypes,
-    deletePaymentTypesById,
+    getIncomes,
+    getIncomeById,
+    addIncome,
+    updateIncome,
+    deleteIncomeById,
 
+    getAllPerson,
+    getPersonById,
+    addPerson,
+    deletePersonById,
+   
+    getAllBanks,
+    getBankById,
+    addBank,
+    deleteBankById,
+
+    getAllProviderTypes,
+    getProviderTypesById,
+    addProviderTypes,
+    deleteProviderTypesById,
+
+    getIncomeTypesById,
+    getAllIncomeTypes,
+    addIncomeTypes,
+    deleteIncomeTypesById,
 };

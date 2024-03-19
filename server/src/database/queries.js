@@ -41,15 +41,90 @@ const getSoldesById = "select * from compteur where id = $1";
 const updateSoldes = "update compteur set cpanneeencours = $2, cpanneeprecedent = $3, cppris = $4, cprestant = $5, rtttotal = $6, rttpris = $7, rttrestant = $8, rttetotal = $9,rttepris = $10, rtterestant = $11, datederniermodification = $12 where id = $1";
 
 //queries reg Expenses 
-const getExpenses = "select a.id, a.date_debut, a.date_fin, a.type_Expenses, a.nbjours, a.descriptions, r.label from Expenses a, type_Expenses r where a.type_Expenses = r.id order by a.id asc";
-const getExpensesById = "select * from Expenses where id = $1";
-const checkExpensesExists = "select * from Expenses a where a.date_debut = $1";
-const addExpenses = "insert into Expenses(date_debut, date_fin, type_Expenses, nbjours, descriptions) values ($1, $2, $3, $4, $5)";
-const updateExpenses = "update Expenses set date_debut = $2, date_fin = $3,  type_Expenses = $4, nbjours = $5, descriptions = $6 where id = $1";
-const deleteExpensesById = "delete from Expenses where id = $1";
+const getExpenses = "select a.*, et.label as expense_type_label, s.label as shop_label, p.firstname, b.bankname, py.label as payment_type_label "+
+                        "from expense a "+
+                        "inner join expense_types et on et.id=a.expense_type_id "+
+                        "inner join shop s on s.id=a.shop_id "+
+                        "inner join person p on p.id=a.person_id "+
+                        "inner join banks b on b.id=a.bank_id "+
+                        "inner join payment_types py on py.id=a.payment_id "+
+                        "order by a.datepurchase desc";
+const getExpensesById = "select a.*, et.label as expense_type_label, s.label as shop_label, p.firstname, b.bankname, py.label as payment_type_label "+
+                        "from expense a "+
+                        "inner join expense_types et on et.id=a.expense_type_id "+
+                        "inner join shop s on s.id=a.shop_id "+
+                        "inner join person p on p.id=a.person_id "+
+                        "inner join banks b on b.id=a.bank_id "+
+                        "inner join payment_types py on py.id=a.payment_id "+ 
+                        "where a.id = $1";
+const addExpenses = "insert into expense(expense_type_id, shop_id, person_id, bank_id, payment_id, amount, details, datepurchase) values ($1, $2, $3, $4, $5, $6, $7, $8)";
+const updateExpenses = "update expense set expense_type_id = $2, shop_id = $3, person_id = $4, bank_id = $5, payment_id = $6, amount = $7, datepurchase = $8, details = $9 where id = $1";
+const deleteExpensesById = "delete from expense where id = $1";
 
 //queries reg type_Expenses
-const getAllTypeExpenses = "select * from type_Expenses";
+const getAllTypeExpenses = "select * from expense_types";
+const getExpenseTypesById = "select * from expense_types  where id = $1";
+const addExpenseTypes = "insert into expense_types(label) values ($1)";
+const deleteExpenseTypesById = "delete from expense_types where id = $1";
+
+//queries reg shops
+const getAllShops = "select * from shop";
+const getShopById = "select * from shop where id = $1";
+const addShop = "insert into shop(label) values ($1)";
+const deleteShopById = "delete from shop where id = $1";
+
+//queries reg person
+const getAllPerson = "select * from person";
+const getPersonById = "select * from person where id = $1";
+const addPerson = "insert into person(firstname, familyname) values ($1, $2)";
+const deletePersonById = "delete from person where id = $1";
+
+//queries reg banks
+const getAllBanks = "select * from banks";
+const getBankById = "select * from banks where id = $1";
+const addBank = "insert into banks(bankname) values ($1)";
+const deleteBankById = "delete from banks where id = $1";
+
+//queries reg payment_types
+const getAllPaymentTypes = "select * from payment_types";
+const getPaymentTypesById = "select * from payment_types where id = $1";
+const addPaymentTypes = "insert into payment_types(label) values ($1)";
+const deletePaymentTypesById = "delete from payment_types where id = $1";
+
+//queries reg income 
+const getIncomes = "select a.*, pr.label as provider_label, p.firstname, b.bankname, i.label as income_type_label "+
+                        "from income a "+
+                        "inner join provider_types pr on pr.id=a.provider_id "+
+                        "inner join person p on p.id=a.person_id "+
+                        "inner join banks b on b.id=a.credited_bank_id "+
+                        "inner join income_types i on i.id=a.income_type_id "+
+                        "order by a.daterecieved desc";
+const getIncomeById = "select a.*, pr.label as provider_label, p.firstname, b.bankname, i.label as income_type_label "+
+                        "from income a "+
+                        "inner join provider_types pr on pr.id=a.provider_id "+
+                        "inner join person p on p.id=a.person_id "+
+                        "inner join banks b on b.id=a.credited_bank_id "+
+                        "inner join income_types i on i.id=a.income_type_id "+
+                        "order by a.daterecieved desc"+
+                        "where a.id = $1";
+
+const addIncome = "insert into income(provider_id, person_id, credited_bank_id, income_type_id, amount, details, daterecieved) values ($1, $2, $3, $4, $5, $6, $7)";
+const updateIncome = "update income set provider_id = $2, person_id = $3, credited_bank_id = $4, income_type_id = $5, amount = $6, details = $7, daterecieved = $8 where id = $1";
+const deleteIncomeById = "delete from income where id = $1";
+
+
+//queries reg provider_types
+const getAllProviderTypes = "select * from provider_types";
+const getProviderTypesById = "select * from provider_types where id = $1";
+const addProviderTypes = "insert into provider_types(label) values ($1)";
+const deleteProviderTypesById = "delete from provider_types where id = $1";
+
+
+//queries reg income_types
+const getAllIncomeTypes = "select * from income_types";
+const getIncomeTypesById = "select * from income_types where id = $1";
+const addIncomeTypes = "insert into income_types(label) values ($1)";
+const deleteIncomeTypesById = "delete from income_types where id = $1";
 
 module.exports = {
     getAuthentification,
@@ -86,11 +161,48 @@ module.exports = {
 
     getExpenses,
     getExpensesById,
-    checkExpensesExists,
     addExpenses,
     updateExpenses,
     deleteExpensesById,
 
     getAllTypeExpenses,
+    getExpenseTypesById,
+    addExpenseTypes,
+    deleteExpenseTypesById,
 
+    getAllShops,
+    getShopById,
+    addShop,
+    deleteShopById,
+
+    getAllPerson,
+    getPersonById,
+    addPerson,
+    deletePersonById,
+   
+    getAllBanks,
+    getBankById,
+    addBank,
+    deleteBankById,
+   
+    getAllPaymentTypes,
+    getPaymentTypesById,
+    addPaymentTypes,
+    deletePaymentTypesById,
+
+    getIncomes,
+    getIncomeById,
+    addIncome,
+    updateIncome,
+    deleteIncomeById,
+
+    getAllProviderTypes,
+    getProviderTypesById,
+    addProviderTypes,
+    deleteProviderTypesById,
+
+    getIncomeTypesById,
+    getAllIncomeTypes,
+    addIncomeTypes,
+    deleteIncomeTypesById,
 };
