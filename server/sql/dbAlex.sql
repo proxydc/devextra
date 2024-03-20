@@ -47,12 +47,12 @@ CREATE TABLE dc(
 
 /****** CONGES *****************************/
   CREATE TABLE conges(
-    id serial PRIMARY KEY,
-    date_debut timestamp without time zone NOT NULL,
+    id serial PRIMARY KEY,   
     date_fin timestamp without time zone NOT NULL,
     type_conges INTEGER NOT NULL,
 	nbjours double precision NOT NULL,
-    descriptions VARCHAR(256)
+    descriptions VARCHAR(256),
+     date_debut timestamp without time zone NOT NULL
 );
 
   CREATE TABLE compteur(

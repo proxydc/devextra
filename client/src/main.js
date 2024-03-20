@@ -6,7 +6,9 @@ import './assets/jquery.dataTables.min.js';
 import './assets/dataTables.bootstrap5.min.css';
 import './assets/dataTables.bootstrap5.min.js';
 import './assets/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import './assets/popper.min.js';
+import './assets/bootstrap.bundle.min.js';
 
 createApp(App)
     .use(router)

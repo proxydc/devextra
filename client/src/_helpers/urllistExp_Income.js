@@ -16,7 +16,7 @@ class urllistExp_Income {
     static getupdateExpensesUrl(id) {
         return baseURL + "expenses/" + id;
     }
-    static getdeleteExpensesByIdUrl() {
+    static getdeleteExpensesByIdUrl(id) {
         return baseURL + "expenses/" + id;
     }
 
@@ -32,7 +32,7 @@ class urllistExp_Income {
     static getupdateIncomeUrl(id) {
         return baseURL + "income/" + id;
     }
-    static getdeleteIncomeByIdUrl() {
+    static getdeleteIncomeByIdUrl(id) {
         return baseURL + "income/" + id;
     }
 
@@ -45,7 +45,7 @@ class urllistExp_Income {
     static getaddExpenseTypesUrl() {
         return baseURL + "type_expenses/add";
     }
-    static getdeleteExpenseTypesByIdUrl() {
+    static getdeleteExpenseTypesByIdUrl(id) {
         return baseURL + "type_expenses/" + id;
     }
 
@@ -58,7 +58,7 @@ class urllistExp_Income {
     static getaddShopUrl() {
         return baseURL + "shops/add";
     }
-    static getdeleteShopByIdUrl() {
+    static getdeleteShopByIdUrl(id) {
         return baseURL + "shops/" + id;
     }
 
@@ -71,7 +71,7 @@ class urllistExp_Income {
     static getaddPaymentTypesUrl() {
         return baseURL + "payment_types/add";
     }
-    static getdeletePaymentTypesByIdUrl() {
+    static getdeletePaymentTypesByIdUrl(id) {
         return baseURL + "payment_types/" + id;
     }
 
@@ -84,7 +84,7 @@ class urllistExp_Income {
     static getaddPersonUrl() {
         return baseURL + "person/add";
     }
-    static getdeletePersonByIdUrl() {
+    static getdeletePersonByIdUrl(id) {
         return baseURL + "person/" + id;
     }
 
@@ -97,7 +97,7 @@ class urllistExp_Income {
     static getaddBankUrl() {
         return baseURL + "banks/add";
     }
-    static getdeleteBankByIdUrl() {
+    static getdeleteBankByIdUrl(id) {
         return baseURL + "banks/" + id;
     }
 
@@ -110,7 +110,7 @@ class urllistExp_Income {
     static getaddProviderTypesUrl() {
         return baseURL + "provider_types/add";
     }
-    static getdeleteProviderTypesByIdUrl() {
+    static getdeleteProviderTypesByIdUrl(id) {
         return baseURL + "provider_types/" + id;
     }
 
@@ -123,7 +123,7 @@ class urllistExp_Income {
     static getaddIncomeTypesUrl() {
         return baseURL + "income_types/add";
     }
-    static getdeleteIncomeTypesByIdUrl() {
+    static getdeleteIncomeTypesByIdUrl(id) {
         return baseURL + "income_types/" + id;
     }
 

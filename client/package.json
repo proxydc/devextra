@@ -12,6 +12,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.6.5",
     "body-parser": "^1.20.2",
     "bootstrap-icons": "^1.11.3",

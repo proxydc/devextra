@@ -20,6 +20,8 @@ import Soldes from "../conges/Soldes.vue";
 import expenses from "../expenses/expenses.vue";
 import AddExp from "../expenses/AddExp.vue";
 import EditExp from "../expenses/EditExp.vue";
+import expensetypes from "../expenses/expense_types/expenseTypes.vue";
+import AddExpTypes from "../expenses/expense_types/AddExpTypes.vue";
 const routes = [
     {
         path: '/adminLayout',
@@ -41,6 +43,8 @@ const routes = [
             { name: "expenses", component: expenses, path: "/expenses", beforeEnter: authGuard, },
             { name: "AddExp", component: AddExp, path: "/addExpenses", beforeEnter: authGuard, },
             { name: "EditExp", component: EditExp, path: "/editExpenses/:id", beforeEnter: authGuard, },
+            { name: "expensetypes", component: expensetypes, path: "/expensetypes", beforeEnter: authGuard, },
+            { name: "AddExpTypes", component: AddExpTypes, path: "/addExpTypes", beforeEnter: authGuard, },
         ]
     },
     {
