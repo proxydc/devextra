@@ -17,13 +17,14 @@
           </li>
           <li class="nav-item dropdown">
             <button class="nav-link active dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" aria-current="page" v-on:click="pageExpenses">Expenses</button>
+              aria-haspopup="true" aria-expanded="false" aria-current="page">Expenses</button>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" v-on:click="pageExpenses">Manage Expense</a>
               <a class="dropdown-item" v-on:click="pageExpenseTypes">Manage Expense Types</a>
-              <a class="dropdown-item" href="#">Manage Shops</a>
-              <a class="dropdown-item" href="#">Manage Person</a>
-              <a class="dropdown-item" href="#">Manage Banks</a>
-              <a class="dropdown-item" href="#">Manage Payment Types</a>
+              <a class="dropdown-item" v-on:click="pageShops">Manage Shops</a>
+              <a class="dropdown-item" v-on:click="pagePerson">Manage Person</a>
+              <a class="dropdown-item" v-on:click="pageBanks">Manage Banks</a>
+              <a class="dropdown-item" v-on:click="pagePaymentTypes">Manage Payment Types</a>
             </div>
           </li>
         </ul>
@@ -69,6 +70,18 @@ export default {
     },
     pageExpenseTypes() {
       this.$router.push({ name: "expensetypes" });
+    },
+    pageShops() {
+      this.$router.push({ name: "shops" });
+    },
+    pageBanks() {
+      this.$router.push({ name: "banks" });
+    },
+    pagePerson() {
+      this.$router.push({ name: "person" });
+    },
+    pagePaymentTypes() {
+      this.$router.push({ name: "paymenttypes" });
     },
   }
 }

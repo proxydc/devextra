@@ -22,6 +22,15 @@ import AddExp from "../expenses/AddExp.vue";
 import EditExp from "../expenses/EditExp.vue";
 import expensetypes from "../expenses/expense_types/expenseTypes.vue";
 import AddExpTypes from "../expenses/expense_types/AddExpTypes.vue";
+import banks from "../expenses/banks/banks.vue";
+import AddBank from "../expenses/banks/AddBank.vue";
+import paymenttypes from "../expenses/payment_types/paymentTypes.vue";
+import AddPaymentTypes from "../expenses/payment_types/AddPaymentTypes.vue";
+import person from "../expenses/person/person.vue";
+import AddPerson from "../expenses/person/AddPerson.vue";
+import shops from "../expenses/shops/shops.vue";
+import AddShop from "../expenses/shops/AddShop.vue";
+
 const routes = [
     {
         path: '/adminLayout',
@@ -45,6 +54,14 @@ const routes = [
             { name: "EditExp", component: EditExp, path: "/editExpenses/:id", beforeEnter: authGuard, },
             { name: "expensetypes", component: expensetypes, path: "/expensetypes", beforeEnter: authGuard, },
             { name: "AddExpTypes", component: AddExpTypes, path: "/addExpTypes", beforeEnter: authGuard, },
+            { name: "banks", component: banks, path: "/banks", beforeEnter: authGuard, },
+            { name: "AddBank", component: AddBank, path: "/addBank", beforeEnter: authGuard, },
+            { name: "paymenttypes", component: paymenttypes, path: "/paymenttypes", beforeEnter: authGuard, },
+            { name: "AddPaymentTypes", component: AddPaymentTypes, path: "/addPaymentTypes", beforeEnter: authGuard, },
+            { name: "person", component: person, path: "/person", beforeEnter: authGuard, },
+            { name: "AddPerson", component: AddPerson, path: "/addPerson", beforeEnter: authGuard, },
+            { name: "shops", component: shops, path: "/shops", beforeEnter: authGuard, },
+            { name: "AddShop", component: AddShop, path: "/addShop", beforeEnter: authGuard, },
         ]
     },
     {
