@@ -27,23 +27,21 @@
               <a class="dropdown-item" v-on:click="pagePaymentTypes">Manage Payment Types</a>
             </div>
           </li>
+          <li class="nav-item dropdown">
+            <button class="nav-link active dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" aria-current="page">Incomes</button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" v-on:click="pageIncomes">Manage Incomes</a>
+              <a class="dropdown-item" v-on:click="pageIncomeTypes">Manage Income Types</a>
+              <a class="dropdown-item" v-on:click="pageProviderTypes">Manage Provider Types</a>
+            </div>
+          </li>
         </ul>
         <div class="nav justify-content-end">
           <a class="nav-link" aria-current="page" href="/">Se déconnecter</a>
         </div>
       </div>
     </nav>
-    <!--<div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>-->
   </div>
 </template>
 
@@ -82,6 +80,15 @@ export default {
     },
     pagePaymentTypes() {
       this.$router.push({ name: "paymenttypes" });
+    },
+    pageIncomes() {
+      this.$router.push({ name: "incomes" });
+    },
+    pageIncomeTypes() {
+      this.$router.push({ name: "incometypes" });
+    },
+    pageProviderTypes() {
+      this.$router.push({ name: "providertypes" });
     },
   }
 }

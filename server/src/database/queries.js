@@ -105,7 +105,6 @@ const getIncomeById = "select a.*, pr.label as provider_label, p.firstname, b.ba
                         "inner join person p on p.id=a.person_id "+
                         "inner join banks b on b.id=a.credited_bank_id "+
                         "inner join income_types i on i.id=a.income_type_id "+
-                        "order by a.daterecieved desc"+
                         "where a.id = $1";
 
 const addIncome = "insert into income(provider_id, person_id, credited_bank_id, income_type_id, amount, details, daterecieved) values ($1, $2, $3, $4, $5, $6, $7)";

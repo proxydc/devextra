@@ -31,6 +31,14 @@ import AddPerson from "../expenses/person/AddPerson.vue";
 import shops from "../expenses/shops/shops.vue";
 import AddShop from "../expenses/shops/AddShop.vue";
 
+import incomes from "../incomes/incomes.vue";
+import AddIncome from "../incomes/AddIncome.vue";
+import EditIncome from "../incomes/EditIncome.vue";
+import incometypes from "../incomes/income_types/incomeTypes.vue";
+import AddIncomeTypes from "../incomes/income_types/AddIncomeTypes.vue";
+import providertypes from "../incomes/provider_types/providerTypes.vue";
+import AddProviderTypes from "../incomes/provider_types/AddProviderTypes.vue";
+
 const routes = [
     {
         path: '/adminLayout',
@@ -52,7 +60,6 @@ const routes = [
             { name: "expenses", component: expenses, path: "/expenses", beforeEnter: authGuard, },
             { name: "AddExp", component: AddExp, path: "/addExpenses", beforeEnter: authGuard, },
             { name: "EditExp", component: EditExp, path: "/editExp/:id", beforeEnter: authGuard, },
-
             { name: "expensetypes", component: expensetypes, path: "/expensetypes", beforeEnter: authGuard, },
             { name: "AddExpTypes", component: AddExpTypes, path: "/addExpTypes", beforeEnter: authGuard, },
             { name: "banks", component: banks, path: "/banks", beforeEnter: authGuard, },
@@ -63,6 +70,16 @@ const routes = [
             { name: "AddPerson", component: AddPerson, path: "/addPerson", beforeEnter: authGuard, },
             { name: "shops", component: shops, path: "/shops", beforeEnter: authGuard, },
             { name: "AddShop", component: AddShop, path: "/addShop", beforeEnter: authGuard, },
+
+            { name: "incomes", component: incomes, path: "/incomes", beforeEnter: authGuard, },
+            { name: "AddIncome", component: AddIncome, path: "/addIncome", beforeEnter: authGuard, },
+            { name: "EditIncome", component: EditIncome, path: "/editIncome/:id", beforeEnter: authGuard, },
+            { name: "incometypes", component: incometypes, path: "/incometypes", beforeEnter: authGuard, },
+            { name: "AddIncomeTypes", component: AddIncomeTypes, path: "/addIncomeTypes", beforeEnter: authGuard, },
+            { name: "providertypes", component: providertypes, path: "/providertypes", beforeEnter: authGuard, },
+            { name: "AddProviderTypes", component: AddProviderTypes, path: "/addProviderTypes", beforeEnter: authGuard, },
+
+
         ]
     },
     {
