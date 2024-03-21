@@ -49,13 +49,6 @@ export default {
   },
   mounted() {
     document.getElementById("lbnom").focus();
-    $(document).keypress(function (e) {
-      if (e.which === 13) {
-        // enter has been pressed, execute a click on .js-new:
-        $(".js-new").first().click();
-        e.preventDefault();
-      }
-    });
   },
   methods: {
     async addDC() {

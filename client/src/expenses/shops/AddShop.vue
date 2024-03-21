@@ -13,7 +13,7 @@
           <label for="lbshop">Shop Name</label>
           <input type="text" v-model="model.shop.label" placeholder="Enter Shop Name" id="lbshop" required
             class="form-control" />
-          <button type="submit" class="js-new-shop">Add Shop</button>
+          <button type="submit" >Add Shop</button>
         </div>
       </form>
     </div>
