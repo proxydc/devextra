@@ -3,143 +3,112 @@
     <div v-if="error != ''" class="alert alert-danger alert-dismissible fade show">
       <strong>{{ error }}</strong>
     </div>
-    <h1>Edit Candidat</h1>
+    <h1>Edit Expense</h1>
     <div class="container w-50 p-3 my-1 bg-light border border-info">
-      <form class="was-validated" @submit.prevent="updateCandidat">
+      <form class="was-validated" @submit.prevent="updateExp">
         <div class="register">
-          <label for="lbfamilyname">Nom</label>
-          <input type="text" v-model="model.candidat.familyname" class="form-control" id="lbfamilyname" required />
-          <label for="lbfirstname">Prénom</label>
-          <input type="text" id="lbfirstname" v-model="model.candidat.firstname" placeholder="Enter First Name" required
-            class="form-control" />
-          <label for="lbemail">Email</label>
-          <input type="email" v-model="model.candidat.email" placeholder="Enter Email" id="lbemail" required
-            class="form-control" />
-          <label for="lbposte">Poste</label>
-          <input type="text" id="lbposte" v-model="model.candidat.poste" placeholder="Enter poste" class="form-control" />
-          <label for="lbexps">Nb.Exps</label>
-          <input type="text" id="lbexps" v-model="model.candidat.nbexps" placeholder="Enter nb exps" class="form-control" />
-          <label for="lbtags">Tags</label>
-          <input type="text" id="lbtags" v-model="model.candidat.tags" placeholder="Enter tags" class="form-control" />
-         <!-- <div class="example ex1">
-            <h5>Select Nom</h5>
-            <label class="radio red">
-              <input type="radio" v-model="model.candidat.filename" value="1" name="group1" />
-              <span>Complet</span>
-            </label>
-            <label class="radio blue">
-              <input type="radio" v-model="model.candidat.filename" value="2" name="group1" checked />
-              <span>Trigram</span>
-            </label>
-          </div>-->
-          <label for="lbstatus">Status:</label>
+          <label>Type Expenses:</label>
           <div style="overflow:hidden;">
-            <!--<select class="selectpicker show-tick" v-model="model.candidat.dc_status" id="lbstatus">
-              <option v-bind:value="1">Initialisé</option>
-              <option v-bind:value="2">Saisie Encours</option>
-              <option v-bind:value="3">Finalisé</option>
-              <option v-bind:value="4">Terminé</option>
-            </select> 
-            <select name="name" class="form-control" v-model="model.candidat.dc_status">
-              <option v-for="stadc in DcStatusEnum" :value="stadc">{{ stadc }}</option>
-            </select>-->
-            <select name="name" class="selectpicker show-tick" v-model="model.candidat.dc_status">
-              <option v-for="(stadc,index) in DcStatusList" :value="stadc.value" :key="index">{{ stadc.text }}</option>
+            <select name="name" class="selectpicker show-tick" v-model="model.exp.expense_type_id">
+              <option v-for="(stadc, index) in expensetypelist" :value="stadc.id" :key="index">{{ stadc.label }}
+              </option>
             </select>
           </div>
-          <br />
+          <label>Shop Name:</label>
           <div style="overflow:hidden;">
-            <button type="submit" class="js-new">Update Candidat</button>
-            <br /><br />
+            <select name="name" class="selectpicker show-tick" v-model="model.exp.shop_id">
+              <option v-for="(stadc, index) in shoplist" :value="stadc.id" :key="index">{{ stadc.label }}
+              </option>
+            </select>
           </div>
+          <label>Person Name:</label>
+          <div style="overflow:hidden;">
+            <select name="name" class="selectpicker show-tick" v-model="model.exp.person_id">
+              <option v-for="(stadc, index) in personlist" :value="stadc.id" :key="index">{{ stadc.firstname }}
+              </option>
+            </select>
+          </div>
+          <label>Bank Name:</label>
+          <div style="overflow:hidden;">
+            <select name="name" class="selectpicker show-tick" v-model="model.exp.bank_id">
+              <option v-for="(stadc, index) in banklist" :value="stadc.id" :key="index">{{ stadc.bankname }}
+              </option>
+            </select>
+          </div>
+          <label>Payment Type:</label>
+          <div style="overflow:hidden;">
+            <select name="name" class="selectpicker show-tick" v-model="model.exp.payment_id">
+              <option v-for="(stadc, index) in paymenttypelist" :value="stadc.id" :key="index">{{ stadc.label }}
+              </option>
+            </select>
+          </div>
+          <label for="lbamount">Amount</label>
+          <input type="text" v-model="model.exp.amount" placeholder="Enter amount" id="lbamount" required
+            class="form-control" />
+          <label for="lbdetails">Details</label>
+          <input type="text" v-model="model.exp.details" placeholder="Enter details" id="lbdetails" required
+            class="form-control" />
+          <label for="lbdate">Purchase date</label>
+          <input type="date" v-model="model.exp.datepurchase" id="lbdate" class="form-control" required />
+          <button type="submit" class="js-new">Edit Expense</button>
+          <br /><br />
         </div>
       </form>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import urldc from "../_helpers/urllist.js";
-import $ from "jquery";
-import DcStatusEnum from "../_helpers/enum-dcStatus";
+import urlexp from "../_helpers/urllistExp_Income.js";
 export default {
-  name: "EditCandidat",
+  name: "EditExp",
   data() {
     return {
       error: "",
-      DcStatusEnum,
-      DcStatusList: [
-        { value: 1, text: "Initialisé" },
-        { value: 2, text: "Saisie_Encours" },
-        { value: 3, text: "Finalisé" },
-        { value: 4, text: "Terminé" },
-      ],
+      warning: "",
+      expensetypelist: [],
+      banklist: [],
+      shoplist: [],
+      personlist: [],
+      paymenttypelist: [],
+
       model: {
-        candidat: {
-          id: { type: String, required: true },
-          firstname: { type: String, required: true },
-          familyname: { type: String, required: true },
-          email: { type: String, required: true },
-          poste: { type: String, required: true },
-          nbexps: { type: Number, required: true },
-          //filename: 2,
-          dc_status: { type: Number },
-          status_name: { type: String },
-          tags: { type: String },
-        },
-      },
+        exp: {
+          expense_type_id: "",
+          shop_id: "",
+          person_id: "",
+          bank_id: "",
+          payment_id: "",
+          amount: "",
+          details: "",
+          datepurchase: ""
+        }
+      }
+
     };
   },
   mounted() {
-    document.getElementById("lbfamilyname").focus();
-    this.getCandidatData(this.$route.params.id);
+    this.getExpenseTypeList();
+    this.getShopList();
+    this.getPersonList();
+    this.getBankList();
+    this.getPaymentTypeList();
+    document.getElementById("lbamount").focus();
+    this.getExpData(this.$route.params.id);
   },
 
   methods: {
-    getCandidatData(dcId) {
-      const url = urldc.getDcUrl(dcId);
+    getExpData(expId) {
+      const url = urlexp.getExpensesByIdUrl(expId);
       axios
         .get(url)
         .then((res) => {
           console.log(res.data);
-          if (res.status == 200)
-            this.model.candidat = res.data[0];
+          if (res.status == 200) {
+            this.model.exp = res.data[0];
+            this.model.exp.datepurchase = this.getDatePickerDate(this.model.exp.datepurchase);
+          }
           if (res.status == 203) {
             this.error = res.data;
           }
@@ -149,24 +118,27 @@ export default {
           }
         });
     },
-
-    async updateCandidat() {
+    getDatePickerDate(dt) {
+      var d = new Date(dt);
+     return (d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).slice(-2) +'-' +('0' + (d.getDate())).slice(-2));
+    }, 
+    async updateExp() {
       try {
-        const url = urldc.getDcAdminUrl(this.model.candidat.id);
+        const url = urlexp.getupdateExpensesUrl(this.model.exp.id);
         let result = await axios.put(url, {
-          familyname: this.model.candidat.familyname,
-          firstname: this.model.candidat.firstname,
-          email: this.model.candidat.email,
-          dc_status: this.model.candidat.dc_status,
-          tags: this.model.candidat.tags,
-          poste: this.model.candidat.poste,
-          nbexps: this.model.candidat.nbexps,
-          //filename: this.model.candidat.filename,
+          expense_type_id: this.model.exp.expense_type_id,
+          shop_id: this.model.exp.shop_id,
+          person_id: this.model.exp.person_id,
+          bank_id: this.model.exp.bank_id,
+          payment_id: this.model.exp.payment_id,
+          amount: this.model.exp.amount,
+          details: this.model.exp.details,
+          datepurchase: this.model.exp.datepurchase
         });
         console.log(result);
         switch (result.status) {
           case 201:
-            this.$router.push({ name: 'user' })
+            this.$router.push({ name: 'expenses' })
             break;
           case 202:
           case 203:
@@ -178,6 +150,106 @@ export default {
         this.error = err.errors;
       }
     },
+    getExpenseTypeList() {
+      try {
+        const url = urlexp.getAllTypeExpensesUrl();
+        axios.get(url).then(res => {
+          console.log(res.data);
+          switch (res.status) {
+            case 200:
+              this.expensetypelist = res.data;
+              break;
+            default:
+              this.error = "Database error! Status: " + res.status + " Error: " + res.data;
+              break;
+          }
+        });
+      }
+      catch (err) {
+        this.error = err;
+      }
+
+    },
+    getShopList() {
+      try {
+        const url = urlexp.getAllShopsUrl();
+        axios.get(url).then(res => {
+          console.log(res.data);
+          switch (res.status) {
+            case 200:
+              this.shoplist = res.data;
+              break;
+            default:
+              this.error = "Database error! Status: " + res.status + " Error: " + res.data;
+              break;
+          }
+        });
+      }
+      catch (err) {
+        this.error = err;
+      }
+
+    },
+    getBankList() {
+      try {
+        const url = urlexp.getAllBanksUrl();
+        axios.get(url).then(res => {
+          console.log(res.data);
+          switch (res.status) {
+            case 200:
+              this.banklist = res.data;
+              break;
+            default:
+              this.error = "Database error! Status: " + res.status + " Error: " + res.data;
+              break;
+          }
+        });
+      }
+      catch (err) {
+        this.error = err;
+      }
+
+    },
+    getPersonList() {
+      try {
+        const url = urlexp.getAllPersonUrl();
+        axios.get(url).then(res => {
+          console.log(res.data);
+          switch (res.status) {
+            case 200:
+              this.personlist = res.data;
+              break;
+            default:
+              this.error = "Database error! Status: " + res.status + " Error: " + res.data;
+              break;
+          }
+        });
+      }
+      catch (err) {
+        this.error = err;
+      }
+
+    },
+    getPaymentTypeList() {
+      try {
+        const url = urlexp.getAllPaymentTypesUrl();
+        axios.get(url).then(res => {
+          console.log(res.data);
+          switch (res.status) {
+            case 200:
+              this.paymenttypelist = res.data;
+              break;
+            default:
+              this.error = "Database error! Status: " + res.status + " Error: " + res.data;
+              break;
+          }
+        });
+      }
+      catch (err) {
+        this.error = err;
+      }
+
+    },
   },
 };
-</script>../_helpers/enum-dcStatus.js
+</script>

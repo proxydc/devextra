@@ -148,7 +148,7 @@ export default {
       }
     },
     editExpense(expenseId) {
-      this.$router.push({ path: "/editExpense/" + expenseId });
+      this.$router.push({ path: "/editExp/" + expenseId });
     },
   },
 };

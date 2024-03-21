@@ -58,7 +58,7 @@ const getExpensesById = "select a.*, et.label as expense_type_label, s.label as 
                         "inner join payment_types py on py.id=a.payment_id "+ 
                         "where a.id = $1";
 const addExpenses = "insert into expense(expense_type_id, shop_id, person_id, bank_id, payment_id, amount, details, datepurchase) values ($1, $2, $3, $4, $5, $6, $7, $8)";
-const updateExpenses = "update expense set expense_type_id = $2, shop_id = $3, person_id = $4, bank_id = $5, payment_id = $6, amount = $7, datepurchase = $8, details = $9 where id = $1";
+const updateExpenses = "update expense set expense_type_id = $2, shop_id = $3, person_id = $4, bank_id = $5, payment_id = $6, amount = $7, details = $8, datepurchase = $9 where id = $1";
 const deleteExpensesById = "delete from expense where id = $1";
 
 //queries reg type_Expenses

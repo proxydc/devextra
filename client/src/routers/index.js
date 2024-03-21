@@ -51,7 +51,8 @@ const routes = [
             { name: "Soldes", component: Soldes, path: "/soldes", beforeEnter: authGuard, },
             { name: "expenses", component: expenses, path: "/expenses", beforeEnter: authGuard, },
             { name: "AddExp", component: AddExp, path: "/addExpenses", beforeEnter: authGuard, },
-            { name: "EditExp", component: EditExp, path: "/editExpenses/:id", beforeEnter: authGuard, },
+            { name: "EditExp", component: EditExp, path: "/editExp/:id", beforeEnter: authGuard, },
+
             { name: "expensetypes", component: expensetypes, path: "/expensetypes", beforeEnter: authGuard, },
             { name: "AddExpTypes", component: AddExpTypes, path: "/addExpTypes", beforeEnter: authGuard, },
             { name: "banks", component: banks, path: "/banks", beforeEnter: authGuard, },
