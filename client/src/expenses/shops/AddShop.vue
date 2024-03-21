@@ -13,7 +13,7 @@
           <label for="lbshop">Shop Name</label>
           <input type="text" v-model="model.shop.label" placeholder="Enter Shop Name" id="lbshop" required
             class="form-control" />
-          <button type="submit" class="js-new">Add Shop</button>
+          <button type="submit" class="js-new-shop">Add Shop</button>
         </div>
       </form>
     </div>
@@ -41,17 +41,20 @@ export default {
   },
   mounted() {
     document.getElementById("lbshop").focus();
-    $(document).keypress(function (e) {
+    $(document).keyup(function (e) {
       if (e.which === 13) {
+        //alert("iam in add shop2!");
         // enter has been pressed, execute a click on .js-new:
-        $(".js-new").first().click();
+        $(".js-new-shop").first().click();
         e.preventDefault();
+        //Event.stopObserving(document, 'keydown');
       }
     });
   },
   methods: {
     async addShop() {
       try {
+       // alert("iam in add shop!");
         this.error = "";
         this.warning = "";
         const url = urlexp.getaddShopUrl();
