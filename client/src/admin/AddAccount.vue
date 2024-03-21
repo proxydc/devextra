@@ -65,12 +65,14 @@ export default {
       if (e.which === 13) {
         // enter has been pressed, execute a click on .js-new:
         $(".js-new").first().click();
+        e.preventDefault();
       }
     });
   },
   methods: {
     async addAccount() {
       try {
+        alert("iam in account adding");
         this.error = "";
         this.warning = "";
         const url = urlacc.getAddAccUrl();

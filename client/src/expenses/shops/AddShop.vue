@@ -11,7 +11,7 @@
       <form class="was-validated" @submit.prevent="addShop">
         <div class="register">
           <label for="lbshop">Shop Name</label>
-          <input type="text" v-model="model.shop.label" placeholder="Enter Login Name" id="lbshop" required
+          <input type="text" v-model="model.shop.label" placeholder="Enter Shop Name" id="lbshop" required
             class="form-control" />
           <button type="submit" class="js-new">Add Shop</button>
         </div>
@@ -45,6 +45,7 @@ export default {
       if (e.which === 13) {
         // enter has been pressed, execute a click on .js-new:
         $(".js-new").first().click();
+        e.preventDefault();
       }
     });
   },
