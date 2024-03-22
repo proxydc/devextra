@@ -84,7 +84,7 @@ export default {
     this.getProviderList();
     this.getPersonList();
     this.getBankList();
-    this.getIncomeData();
+    this.getIncomeData(this.$route.params.id);
     document.getElementById("lbamount").focus();
   },
   methods: {

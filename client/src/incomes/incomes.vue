@@ -146,6 +146,7 @@ export default {
       }
     },
     editIncome(incomeId) {
+      alert("id"+incomeId);
       this.$router.push({ path: "/editIncome/" + incomeId });
     },
   },

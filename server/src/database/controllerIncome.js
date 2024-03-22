@@ -77,12 +77,12 @@ const updateIncome = async (req, res) => {
     const { provider_id, person_id, credited_bank_id, income_type_id, amount, details, daterecieved } = req.body;
     pool.query(queries.getIncomeById, [id], (error, results) => {
         try {
-            const noExpensesFound = !results.rows.length;
-            if (noExpensesFound) {
+            const noIncomeFound = !results.rows.length;
+            if (noIncomeFound) {
                 res.status(202).json("Income does not exist in the database");
             } else {
                 pool.query(
-                    queries.updateExpenses, [id, provider_id, person_id, credited_bank_id, income_type_id, amount, details, daterecieved],
+                    queries.updateIncome, [id, provider_id, person_id, credited_bank_id, income_type_id, amount, details, daterecieved],
                     (error, results) => {
                         try {
                             if (error) throw error;
