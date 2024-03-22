@@ -4,6 +4,9 @@ const controllerDC = require("./controllerDC");
 const controllerConges = require("./controllerConges");
 const controllerExpenses = require("./controllerExpenses");
 const controllerIncome = require("./controllerIncome");
+const controllerTask = require("./controllerTask");
+const controllerBourse = require("./controllerBourse");
+const controllerSgb = require("./controllerSGB");
 
 const router =  Router();
 
@@ -85,5 +88,24 @@ router.get("/income_types", controllerIncome.getAllIncomeTypes);
 router.get("/income_types/:id", controllerIncome.getIncomeTypesById);
 router.post("/income_types/add", controllerIncome.addIncomeTypes);
 router.delete("/income_types/:id", controllerIncome.deleteIncomeTypesById);
+
+
+router.get("/tasks", controllerTask.getTasks);
+router.post("/task/add", controllerTask.addTask);
+router.get("/task/:id", controllerTask.getTaskById);
+router.put("/task/:id", controllerTask.updateTask);
+router.delete("/task/:id", controllerTask.deleteTaskById);
+
+router.get("/bourses", controllerBourse.getBourses);
+router.post("/bourse/add", controllerBourse.addBourse);
+router.get("/bourse/:id", controllerBourse.getBourseById);
+router.put("/bourse/:id", controllerBourse.updateBourse);
+router.delete("/bourse/:id", controllerBourse.deleteBourseById);
+
+router.get("/sgbs", controllerSgb.getSgbs);
+router.post("/sgb/add", controllerSgb.addSgb);
+router.get("/sgb/:id", controllerSgb.getSgbById);
+router.put("/sgb/:id", controllerSgb.updateSgb);
+router.delete("/sgb/:id", controllerSgb.deleteSgbById);
 
 module.exports = router;

@@ -15,6 +15,9 @@
           <li class="nav-item">
             <button class="nav-link active" aria-current="page" v-on:click="pageConges">Conges</button>
           </li>
+          <li class="nav-item">
+            <button class="nav-link active" aria-current="page" v-on:click="pageTasks">Tasks</button>
+          </li>
           <li class="nav-item dropdown">
             <button class="nav-link active dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" aria-current="page">Expenses</button>
@@ -89,6 +92,9 @@ export default {
     },
     pageProviderTypes() {
       this.$router.push({ name: "providertypes" });
+    },
+    pageTasks() {
+      this.$router.push({ name: "tasks" });
     },
   }
 }

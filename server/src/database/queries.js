@@ -125,6 +125,29 @@ const getIncomeTypesById = "select * from income_types where id = $1";
 const addIncomeTypes = "insert into income_types(label) values ($1)";
 const deleteIncomeTypesById = "delete from income_types where id = $1";
 
+
+//queries reg tasks
+const getTasks= "select a.*, p.firstname from task a, person p where a.person_id = p.id order by a.actiondate asc";
+const getTaskById = "select * from task where id = $1";
+const addTask = "insert into task(task_details, person_id, actiondate) values ($1, $2, $3)";
+const updateTask = "update task set task_details = $2, person_id = $3, actiondate = $4 where id = $1";
+const deleteTaskById = "delete from task where id = $1";
+
+//queries reg bourse
+const getBourses= "select a.*, p.firstname from bourse a, person p where a.person_id = p.id order by a.dossier_date asc";
+const getBourseById = "select * from bourse where id = $1";
+const addBourse = "insert into bourse(person_id, annee, echelon, bourse_amount, bourse_merit, dossier_date, is_validated, impot) values ($1, $2, $3, $4, $5, $6, $7, $8)";
+const updateBourse = "update bourse set person_id = $2, annee = $3, echelon = $4, bourse_amount = $5, bourse_merit = $6, dossier_date = $7, is_validated = $8, impot = $9 where id = $1";
+const deleteBourseById = "delete from bourse where id = $1";
+
+//queries reg bourse
+const getSgbs= "select a.*, p.firstname, n.firstname as nomineename, b.bankname from sgb_bonds a, person p, person n, banks b where a.person_id = p.id and a.nominee_id = n.id and a.bank_id = b.id order by a.end_date asc";
+const getSgbById = "select * from sgb_bonds where id = $1";
+const addSgb = "insert into sgb_bonds(person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, bond_details, amount, purchase_date, starting_date, end_date) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)";
+const updateSgb = "update sgb_bonds set person_id = $2, bank_id = $3, nominee_id = $4, bond_Ids = $5, interest_percentage = $6, units = $7, bond_details = $8, amount = $9, purchase_date = $10, starting_date = $11, end_date = $12 where id = $1";
+const deleteSgbById = "delete from sgb_bonds where id = $1";
+
+
 module.exports = {
     getAuthentification,
     getAccounts,
@@ -204,4 +227,23 @@ module.exports = {
     getAllIncomeTypes,
     addIncomeTypes,
     deleteIncomeTypesById,
+
+    getTasks,
+    getTaskById,
+    addTask,
+    updateTask,
+    deleteTaskById,
+
+    getBourses,
+    getBourseById,
+    addBourse,
+    updateBourse,
+    deleteBourseById,
+
+    getSgbs,
+    getSgbById,
+    addSgb,
+    updateSgb,
+    deleteSgbById,
+
 };

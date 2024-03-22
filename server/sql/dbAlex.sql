@@ -133,3 +133,39 @@ CREATE TABLE provider_types(
     id serial PRIMARY KEY,
     label VARCHAR(128) NOT NULL    
 );
+
+  CREATE TABLE task(
+    id serial PRIMARY KEY,
+    task_details VARCHAR(256) NULL,
+    person_id INTEGER NOT NULL,
+    ActionDate timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP
+);
+
+
+  CREATE TABLE sgb_bonds(
+    id serial PRIMARY KEY,    
+    person_id INTEGER NOT NULL,
+    bank_id INTEGER NOT NULL,
+    nominee_id INTEGER NOT NULL,
+    bond_Ids VARCHAR(256) NULL,    
+    interest_percentage double precision NOT NULL,
+    units INTEGER NOT NULL,
+    bond_details VARCHAR(256) NULL,
+    amount double precision NOT NULL,  
+    purchase_date timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP,
+    starting_date timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP,
+    end_date timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP  
+);
+
+  CREATE TABLE bourse(
+    id serial PRIMARY KEY,    
+    person_id INTEGER NOT NULL,
+    annee INTEGER NOT NULL,
+    echelon INTEGER NOT NULL,
+    bourse_amount double precision NULL,
+    bourse_merit double precision NULL,  
+    dossier_date timestamp without time zone NULL,
+    is_validated BOOLEAN NOT NULL,
+    impot double precision NULL 
+);
+

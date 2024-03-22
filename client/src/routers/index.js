@@ -39,6 +39,10 @@ import AddIncomeTypes from "../incomes/income_types/AddIncomeTypes.vue";
 import providertypes from "../incomes/provider_types/providerTypes.vue";
 import AddProviderTypes from "../incomes/provider_types/AddProviderTypes.vue";
 
+import tasks from "../tasks/tasks.vue";
+import AddTask from "../tasks/AddTask.vue";
+import EditTask from "../tasks/EditTask.vue";
+
 const routes = [
     {
         path: '/adminLayout',
@@ -78,6 +82,10 @@ const routes = [
             { name: "AddIncomeTypes", component: AddIncomeTypes, path: "/addIncomeTypes", beforeEnter: authGuard, },
             { name: "providertypes", component: providertypes, path: "/providertypes", beforeEnter: authGuard, },
             { name: "AddProviderTypes", component: AddProviderTypes, path: "/addProviderTypes", beforeEnter: authGuard, },
+
+            { name: "tasks", component: tasks, path: "/tasks", beforeEnter: authGuard, },
+            { name: "AddTask", component: AddTask, path: "/addTask", beforeEnter: authGuard, },
+            { name: "EditTask", component: EditTask, path: "/editTask/:id", beforeEnter: authGuard, },
 
 
         ]
