@@ -143,8 +143,8 @@ const deleteBourseById = "delete from bourse where id = $1";
 //queries reg bourse
 const getSgbs= "select a.*, p.firstname, n.firstname as nomineename, b.bankname from sgb_bonds a, person p, person n, banks b where a.person_id = p.id and a.nominee_id = n.id and a.bank_id = b.id order by a.end_date asc";
 const getSgbById = "select * from sgb_bonds where id = $1";
-const addSgb = "insert into sgb_bonds(person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, bond_details, amount, purchase_date, starting_date, end_date) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)";
-const updateSgb = "update sgb_bonds set person_id = $2, bank_id = $3, nominee_id = $4, bond_Ids = $5, interest_percentage = $6, units = $7, bond_details = $8, amount = $9, purchase_date = $10, starting_date = $11, end_date = $12 where id = $1";
+const addSgb = "insert into sgb_bonds(person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, unit_price, purchased_unit_price, bond_details, amount, purchase_date, starting_date, end_date) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)";
+const updateSgb = "update sgb_bonds set person_id = $2, bank_id = $3, nominee_id = $4, bond_Ids = $5, interest_percentage = $6, units = $7, unit_price = $8, purchased_unit_price = $9, bond_details = $10, amount = $11, purchase_date = $12, starting_date = $13, end_date = $14 where id = $1";
 const deleteSgbById = "delete from sgb_bonds where id = $1";
 
 

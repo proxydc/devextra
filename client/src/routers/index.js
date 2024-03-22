@@ -30,7 +30,6 @@ import person from "../expenses/person/person.vue";
 import AddPerson from "../expenses/person/AddPerson.vue";
 import shops from "../expenses/shops/shops.vue";
 import AddShop from "../expenses/shops/AddShop.vue";
-
 import incomes from "../incomes/incomes.vue";
 import AddIncome from "../incomes/AddIncome.vue";
 import EditIncome from "../incomes/EditIncome.vue";
@@ -38,10 +37,17 @@ import incometypes from "../incomes/income_types/incomeTypes.vue";
 import AddIncomeTypes from "../incomes/income_types/AddIncomeTypes.vue";
 import providertypes from "../incomes/provider_types/providerTypes.vue";
 import AddProviderTypes from "../incomes/provider_types/AddProviderTypes.vue";
-
 import tasks from "../tasks/tasks.vue";
 import AddTask from "../tasks/AddTask.vue";
 import EditTask from "../tasks/EditTask.vue";
+
+import bourses from "../bourses/bourses.vue";
+import AddBourse from "../bourses/AddBourse.vue";
+import EditBourse from "../bourses/EditBourse.vue";
+
+import sgbs from "../sgbs/sgbs.vue";
+import AddSgb from "../sgbs/AddSgb.vue";
+import EditSgb from "../sgbs/EditSgb.vue";
 
 const routes = [
     {
@@ -86,6 +92,14 @@ const routes = [
             { name: "tasks", component: tasks, path: "/tasks", beforeEnter: authGuard, },
             { name: "AddTask", component: AddTask, path: "/addTask", beforeEnter: authGuard, },
             { name: "EditTask", component: EditTask, path: "/editTask/:id", beforeEnter: authGuard, },
+
+            { name: "sgbs", component: sgbs, path: "/sgbs", beforeEnter: authGuard, },
+            { name: "AddSgb", component: AddSgb, path: "/addSgb", beforeEnter: authGuard, },
+            { name: "EditSgb", component: EditSgb, path: "/editSgb/:id", beforeEnter: authGuard, },
+
+            { name: "bourses", component: bourses, path: "/bourses", beforeEnter: authGuard, },
+            { name: "AddBourse", component: AddBourse, path: "/addBourse", beforeEnter: authGuard, },
+            { name: "EditBourse", component: EditBourse, path: "/editBourse/:id", beforeEnter: authGuard, },
 
 
         ]

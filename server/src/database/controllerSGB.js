@@ -31,10 +31,10 @@ const getSgbById = (req, res) => {
 
 //post-201
 const addSgb = async (req, res) => {
-    const { person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, bond_details, amount, purchase_date, starting_date, end_date } = req.body;
+    const { person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, unit_price, purchased_unit_price, bond_details, amount, purchase_date, starting_date, end_date } = req.body;
     //add sgb to db
     pool.query(
-        queries.addSgb, [person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, bond_details, amount, purchase_date, starting_date, end_date],
+        queries.addSgb, [person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, unit_price, purchased_unit_price, bond_details, amount, purchase_date, starting_date, end_date],
         (error, results) => {
             try {
                 if (error) throw error;
@@ -77,7 +77,7 @@ const deleteSgbById = (req, res) => {
 //put 201
 const updateSgb = async (req, res) => {
     const id = parseInt(req.params.id);
-    const {person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, bond_details, amount, purchase_date, starting_date, end_date} = req.body;
+    const {person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, unit_price, purchased_unit_price, bond_details, amount, purchase_date, starting_date, end_date} = req.body;
     pool.query(queries.getTaskById, [id], (error, results) => {
         try {
             const noSgbFound = !results.rows.length;
@@ -85,7 +85,7 @@ const updateSgb = async (req, res) => {
                 res.status(202).json("SGB does not exist in the database");
             } else {
                 pool.query(
-                    queries.updateTask, [id, person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, bond_details, amount, purchase_date, starting_date, end_date],
+                    queries.updateTask, [id, person_id, bank_id, nominee_id, bond_Ids, interest_percentage, units, unit_price, purchased_unit_price, bond_details, amount, purchase_date, starting_date, end_date],
                     (error, results) => {
                         try {
                             if (error) throw error;

@@ -150,6 +150,8 @@ CREATE TABLE provider_types(
     bond_Ids VARCHAR(256) NULL,    
     interest_percentage double precision NOT NULL,
     units INTEGER NOT NULL,
+    unit_price double precision NOT NULL, 
+    purchased_unit_price double precision NOT NULL, 
     bond_details VARCHAR(256) NULL,
     amount double precision NOT NULL,  
     purchase_date timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP,
