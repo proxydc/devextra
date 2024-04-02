@@ -3,10 +3,10 @@ import axios from "axios";
 
 class FormData {
     static save(id, dc, document, status) {
-        try {
+        try {  
             let generatedDocumentObj = this.getDocumentObject(dc, document);
             this.updateDC(id, generatedDocumentObj, status);
-        } catch (err) {
+        } catch (err) {            
             throw err;
         }
 
@@ -14,11 +14,13 @@ class FormData {
 
     static async updateDC(id, generatedDoc, status) {
         try {
+            alert("iam here1");
             const url = urldc.getDcUrl(id); //`dc/${id}`;
             let result = await axios.put(url, {
                 dc_status: status,
                 document: generatedDoc,
             });
+            alert("iam here");
             console.warn(result);
             if (result.status == 201) {
                 alert(result.data);
@@ -32,6 +34,7 @@ class FormData {
 
         /* Comp fonctionnelles */
         // alert("iam in functional");
+      
         var domNodes = document.querySelectorAll("#fonct input");
         var nodes = [...domNodes];
         dc.functionalAbilities = nodes.map((x) => x.value).filter(function(i) { return i.trim() != ""; });
