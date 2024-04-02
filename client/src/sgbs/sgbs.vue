@@ -20,17 +20,19 @@
           <table id="sgbtable" class="table table-striped" style="width:100%">
             <thead>
               <tr>
-                <th scope="col">Id</th>               
+             <!--   <th scope="col">Id</th>  -->             
                 <th scope="col">Person Name</th>
                 <th scope="col">Bank Name</th>  
                 <th scope="col">Nominee Name</th> 
+                <th scope="col">Guardian Name</th> 
+               <!-- <th scope="col">Investor Id</th> 
                 <th scope="col">Bond Numbers</th>   
-                <th scope="col">Interest</th>   
+                <th scope="col">Interest</th>   -->
                 <th scope="col">Units</th>  
                 <th scope="col">Unit Price</th> 
-                <th scope="col">Purchased Unit Price</th> 
+               <!-- <th scope="col">Purchased Unit Price</th> 
                 <th scope="col">Bond Details</th>
-                <th scope="col">Amount</th>           
+                <th scope="col">Amount</th>    -->       
                 <th scope="col">Purchased Date</th>
                 <th scope="col">Starting Date</th>
                 <th scope="col">Maturity Date</th>
@@ -39,17 +41,19 @@
             </thead>
             <tbody class="table-group-divider">
               <tr v-for="(acRow, index) in this.AcRows" :key="index">
-                <th scope="row">{{ acRow.id }}</th>
+              <!--  <th scope="row">{{ acRow.id }}</th>-->
                 <td class="text-start">{{ acRow.firstname }}</td>
                 <td class="text-start">{{ acRow.bankname }}</td>
                 <td class="text-start">{{ acRow.nomineename }}</td>
-                <td class="text-start">{{ acRow.bond_ids }}</td>
-                <td class="text-start">{{ acRow.interest_percentage }}</td>
+                <td class="text-start">{{ acRow.guardianname }}</td>
+               <!-- <td class="text-start">{{ acRow.investor_id }}</td>
+               <td class="text-start">{{ acRow.bond_ids }}</td>
+                <td class="text-start">{{ acRow.interest_percentage }}</td>-->
                 <td class="text-start">{{ acRow.units }}</td>
                 <td class="text-start">{{ acRow.unit_price }}</td>
-                <td class="text-start">{{ acRow.purchased_unit_price }}</td>
+                <!--<td class="text-start">{{ acRow.purchased_unit_price }}</td>
                 <td class="text-start">{{ acRow.bond_details }}</td>
-                <td class="text-start">{{ acRow.amount }}</td>
+                <td class="text-start">{{ acRow.amount }}</td>-->
                 <td class="text-start">{{ acRow.purchase_date }}</td>
                 <td class="text-start">{{ acRow.starting_date }}</td>
                 <td class="text-start">{{ acRow.end_date }}</td>

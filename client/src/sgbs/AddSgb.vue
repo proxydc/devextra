@@ -31,8 +31,18 @@
               </option>
             </select>
           </div> 
-          <label for="lbamount">Bond Numbers</label>
-          <input type="text" v-model="model.sgb.bond_Ids" placeholder="Enter amount" id="lbamount" required
+          <label>Guardian Name:</label>
+          <div style="overflow:hidden;">
+            <select name="name" class="selectpicker show-tick" v-model="model.sgb.guardian_id">
+              <option v-for="(stadc, index) in personlist" :value="stadc.id" :key="index">{{ stadc.firstname }}
+              </option>
+            </select>
+          </div> 
+          <label for="lbinvestor">Investor Id</label>
+          <input type="text" v-model="model.sgb.investor_id" placeholder="Enter Investor Id" id="lbinvestor" required
+            class="form-control" />
+          <label for="lbbonds">Bond Numbers</label>
+          <input type="text" v-model="model.sgb.bond_ids" placeholder="Enter Bond Numbers" id="lbbonds" required
             class="form-control" />
           <label for="lbdetails">Interest Percentage</label>
           <input type="text" v-model="model.sgb.interest_percentage" placeholder="Enter details" id="lbdetails" required
@@ -85,7 +95,9 @@ export default {
           person_id: "",
           bank_id: "",
           nominee_id: "",
-          bond_Ids: "",
+          guardian_id: "",
+          investor_id: "",
+          bond_ids: "",
           interest_percentage: "",
           units: "",
           unit_price: "",
@@ -155,7 +167,9 @@ export default {
           person_id: this.model.sgb.person_id,
           bank_id: this.model.sgb.bank_id,
           nominee_id: this.model.sgb.nominee_id,
-          bond_Ids: this.model.sgb.bond_Ids,
+          guardian_id: this.model.sgb.guardian_id,
+          investor_id: this.model.sgb.investor_id,
+          bond_ids: this.model.sgb.bond_ids,
           interest_percentage: this.model.sgb.interest_percentage,
           units: this.model.sgb.units,
           unit_price: this.model.sgb.unit_price,

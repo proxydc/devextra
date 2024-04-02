@@ -147,6 +147,8 @@ CREATE TABLE provider_types(
     person_id INTEGER NOT NULL,
     bank_id INTEGER NOT NULL,
     nominee_id INTEGER NOT NULL,
+    guardian_id INTEGER NOT NULL,
+    investor_id BIGINT NOT NULL,
     bond_Ids VARCHAR(256) NULL,    
     interest_percentage double precision NOT NULL,
     units INTEGER NOT NULL,
