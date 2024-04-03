@@ -30,12 +30,13 @@
                 <th scope="col">Interest</th>   -->
                 <th scope="col">Units</th>  
                 <th scope="col">Unit Price</th> 
-               <!-- <th scope="col">Purchased Unit Price</th> 
+               <!-- <th scope="col">Purchased Unit Price</th>  --> 
                 <th scope="col">Bond Details</th>
-                <th scope="col">Amount</th>    -->       
+                <th scope="col">Amount</th>        
                 <th scope="col">Purchased Date</th>
                 <th scope="col">Starting Date</th>
                 <th scope="col">Maturity Date</th>
+                <th scope="col">Int/2</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -51,12 +52,13 @@
                 <td class="text-start">{{ acRow.interest_percentage }}</td>-->
                 <td class="text-start">{{ acRow.units }}</td>
                 <td class="text-start">{{ acRow.unit_price }}</td>
-                <!--<td class="text-start">{{ acRow.purchased_unit_price }}</td>
+                <!--<td class="text-start">{{ acRow.purchased_unit_price }}</td>-->
                 <td class="text-start">{{ acRow.bond_details }}</td>
-                <td class="text-start">{{ acRow.amount }}</td>-->
+               <td class="text-start">{{ acRow.amount }}</td>
                 <td class="text-start">{{ acRow.purchase_date }}</td>
                 <td class="text-start">{{ acRow.starting_date }}</td>
                 <td class="text-start">{{ acRow.end_date }}</td>
+                <td class="text-start">{{ acRow.unit_price*acRow.units*0.025/2 }}</td>
                 <td class="text-start">
                   <button class="bi bi-pencil-square btn btn-outline-success mx-1" @click="editSgb(acRow.id)"
                     v-b-tooltip.hover title="Edit the sgb!">

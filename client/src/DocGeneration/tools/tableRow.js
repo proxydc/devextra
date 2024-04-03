@@ -189,7 +189,7 @@ class tableRow {
                 left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
                 right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
             },
-            width: { size: 68, type: WidthType.PERCENTAGE },
+            width: { size: 67, type: WidthType.PERCENTAGE },
         });
         tasks.forEach(element => {
             tablecell.addChildElement(exppro.getExpTask(element))
@@ -225,7 +225,7 @@ class tableRow {
                             color: "#10b0b7",
                         },
                     },
-                    width: { size: 32, type: WidthType.PERCENTAGE },
+                    width: { size: 33, type: WidthType.PERCENTAGE },
                 }),
             ],
         });
