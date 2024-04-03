@@ -36,6 +36,7 @@
                 <th scope="col">Purchased Date</th>
                 <th scope="col">Starting Date</th>
                 <th scope="col">Maturity Date</th>
+                <th scope="col">Due Month</th>
                 <th scope="col">Int/2</th>
                 <th scope="col">Actions</th>
               </tr>
@@ -58,6 +59,7 @@
                 <td class="text-start">{{ acRow.purchase_date }}</td>
                 <td class="text-start">{{ acRow.starting_date }}</td>
                 <td class="text-start">{{ acRow.end_date }}</td>
+                <td class="text-start">{{ this.getMonth(parseInt(acRow.end_date.substr(3,2))+6) }}</td>
                 <td class="text-start">{{ acRow.unit_price*acRow.units*0.025/2 }}</td>
                 <td class="text-start">
                   <button class="bi bi-pencil-square btn btn-outline-success mx-1" @click="editSgb(acRow.id)"
@@ -102,6 +104,41 @@ export default {
     }
   },
   methods: {
+    getMonth(mon)
+    {
+      alert("mon: "+mon);
+      if(mon>12)
+      {
+        mon-=12;
+      }
+      switch(mon)
+      {
+        case 1:
+          return "Janvier";
+          case 2:
+          return "Fevrier";
+          case 3:
+          return "Mars";
+          case 4:
+          return "Avril";
+          case 5:
+          return "Mai";
+          case 6:
+          return "Juin";
+          case 7:
+          return "Juillet";
+          case 8:
+          return "Aout";
+          case 9:
+          return "Septembre";
+          case 10:
+          return "Octobre";
+          case 11:
+          return "Novembre";
+          case 12:
+          return "Decembre";
+      }
+    },
     getSgbs() {
       try {
         const url = urlsgb.getSgbsUrl();
