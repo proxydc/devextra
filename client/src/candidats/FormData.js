@@ -14,13 +14,11 @@ class FormData {
 
     static async updateDC(id, generatedDoc, status) {
         try {
-            alert("iam here1");
             const url = urldc.getDcUrl(id); //`dc/${id}`;
             let result = await axios.put(url, {
                 dc_status: status,
                 document: generatedDoc,
             });
-            alert("iam here");
             console.warn(result);
             if (result.status == 201) {
                 alert(result.data);
