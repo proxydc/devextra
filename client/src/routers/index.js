@@ -41,6 +41,10 @@ import tasks from "../tasks/tasks.vue";
 import AddTask from "../tasks/AddTask.vue";
 import EditTask from "../tasks/EditTask.vue";
 
+import prets from "../prets/prets.vue";
+import AddPret from "../prets/AddPret.vue";
+import EditPret from "../prets/EditPret.vue";
+
 import bourses from "../bourses/bourses.vue";
 import AddBourse from "../bourses/AddBourse.vue";
 import EditBourse from "../bourses/EditBourse.vue";
@@ -93,6 +97,10 @@ const routes = [
             { name: "tasks", component: tasks, path: "/tasks", beforeEnter: authGuard, },
             { name: "AddTask", component: AddTask, path: "/addTask", beforeEnter: authGuard, },
             { name: "EditTask", component: EditTask, path: "/editTask/:id", beforeEnter: authGuard, },
+
+            { name: "prets", component: prets, path: "/prets", beforeEnter: authGuard, },
+            { name: "AddPret", component: AddPret, path: "/addPret", beforeEnter: authGuard, },
+            { name: "EditPret", component: EditPret, path: "/editPret/:id", beforeEnter: authGuard, },
 
             { name: "sgbs", component: sgbs, path: "/sgbs", beforeEnter: authGuard, },
             { name: "sgbsInt", component: sgbsInt, path: "/sgbsInt", beforeEnter: authGuard, },

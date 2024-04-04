@@ -35,7 +35,7 @@
                 <th scope="col">Interest</th>   -->
                 <th scope="col">Units</th>
                 <th scope="col">Unit Price</th>
-                <!-- <th scope="col">Purchased Unit Price</th>  -->
+               <!--  <th scope="col">Purchased Unit Price</th>  -->
                 <th scope="col">Bond Details</th>
                 <!--  <th scope="col">Amount</th>
                <th scope="col">Purchased Date</th>

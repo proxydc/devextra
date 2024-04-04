@@ -19,6 +19,9 @@
             <button class="nav-link active" aria-current="page" v-on:click="pageTasks">Tasks</button>
           </li>
           <li class="nav-item">
+            <button class="nav-link active" aria-current="page" v-on:click="pagePrets">Prets</button>
+          </li>
+          <li class="nav-item">
             <button class="nav-link active" aria-current="page" v-on:click="pageBourses">Bourses</button>
           </li>
           <li class="nav-item">
@@ -104,6 +107,9 @@ export default {
     },
     pageTasks() {
       this.$router.push({ name: "tasks" });
+    },
+    pagePrets() {
+      this.$router.push({ name: "prets" });
     },
     pageBourses() {
       this.$router.push({ name: "bourses" });

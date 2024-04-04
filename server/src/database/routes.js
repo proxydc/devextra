@@ -5,6 +5,7 @@ const controllerConges = require("./controllerConges");
 const controllerExpenses = require("./controllerExpenses");
 const controllerIncome = require("./controllerIncome");
 const controllerTask = require("./controllerTask");
+const controllerPret = require("./controllerPret");
 const controllerBourse = require("./controllerBourse");
 const controllerSgb = require("./controllerSGB");
 
@@ -96,6 +97,12 @@ router.post("/task/add", controllerTask.addTask);
 router.get("/task/:id", controllerTask.getTaskById);
 router.put("/task/:id", controllerTask.updateTask);
 router.delete("/task/:id", controllerTask.deleteTaskById);
+
+router.get("/prets", controllerPret.getPrets);
+router.post("/pret/add", controllerPret.addPret);
+router.get("/pret/:id", controllerPret.getPretById);
+router.put("/pret/:id", controllerPret.updatePret);
+router.delete("/pret/:id", controllerPret.deletePretById);
 
 router.get("/bourses", controllerBourse.getBourses);
 router.post("/bourse/add", controllerBourse.addBourse);

@@ -173,3 +173,16 @@ CREATE TABLE provider_types(
     impot double precision NULL 
 );
 
+
+  CREATE TABLE pret(
+    id serial PRIMARY KEY,    
+    person_id INTEGER NOT NULL,
+    bank_id INTEGER NOT NULL,
+    pret_amount double precision NULL,
+    mensuel_amount double precision NULL,
+    nb_mois INTEGER NOT NULL,
+    pret_details VARCHAR(256) NULL,
+    starting_date timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP,
+    end_date timestamp without time zone NOT NULL Default CURRENT_TIMESTAMP  
+);
+

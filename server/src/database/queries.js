@@ -133,6 +133,13 @@ const addTask = "insert into task(task_details, person_id, actiondate) values ($
 const updateTask = "update task set task_details = $2, person_id = $3, actiondate = $4 where id = $1";
 const deleteTaskById = "delete from task where id = $1";
 
+//queries reg prets
+const getPrets= "select a.*, p.firstname, b.bankname from pret a, person p, banks b where a.person_id = p.id and a.bank_id = b.id order by a.starting_date asc";
+const getPretById = "select * from pret where id = $1";
+const addPret = "insert into pret(person_id, bank_id, pret_amount, mensuel_amount, nb_mois, pret_details,starting_date, end_date) values ($1, $2, $3, $4, $5, $6, $7, $8)";
+const updatePret = "update pret set person_id = $2, bank_id = $3, pret_amount = $4, mensuel_amount = $5, nb_mois = $6, pret_details = $7,starting_date = $8, end_date = $9 where id = $1";
+const deletePretById = "delete from pret where id = $1";
+
 //queries reg bourse
 const getBourses= "select a.*, p.firstname from bourse a, person p where a.person_id = p.id order by a.dossier_date asc";
 const getBourseById = "select * from bourse where id = $1";
@@ -234,6 +241,12 @@ module.exports = {
     addTask,
     updateTask,
     deleteTaskById,
+
+    getPrets,
+    getPretById,
+    addPret,
+    updatePret,
+    deletePretById,
 
     getBourses,
     getBourseById,
