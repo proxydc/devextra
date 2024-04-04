@@ -24,6 +24,9 @@
           <li class="nav-item">
             <button class="nav-link active" aria-current="page" v-on:click="pageSgbs">SGB</button>
           </li>
+          <li class="nav-item">
+            <button class="nav-link active" aria-current="page" v-on:click="pageSgbsInt">SGB-Interest</button>
+          </li>
           <li class="nav-item dropdown">
             <button class="nav-link active dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" aria-current="page">Expenses</button>
@@ -107,6 +110,9 @@ export default {
     },
     pageSgbs() {
       this.$router.push({ name: "sgbs" });
+    },
+    pageSgbsInt() {
+      this.$router.push({ name: "sgbsInt" });
     },
   }
 }

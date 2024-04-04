@@ -46,6 +46,7 @@ import AddBourse from "../bourses/AddBourse.vue";
 import EditBourse from "../bourses/EditBourse.vue";
 
 import sgbs from "../sgbs/sgbs.vue";
+import sgbsInt from "../sgbs/sgbsInt.vue";
 import AddSgb from "../sgbs/AddSgb.vue";
 import EditSgb from "../sgbs/EditSgb.vue";
 
@@ -94,6 +95,7 @@ const routes = [
             { name: "EditTask", component: EditTask, path: "/editTask/:id", beforeEnter: authGuard, },
 
             { name: "sgbs", component: sgbs, path: "/sgbs", beforeEnter: authGuard, },
+            { name: "sgbsInt", component: sgbsInt, path: "/sgbsInt", beforeEnter: authGuard, },
             { name: "AddSgb", component: AddSgb, path: "/addSgb", beforeEnter: authGuard, },
             { name: "EditSgb", component: EditSgb, path: "/editSgb/:id", beforeEnter: authGuard, },
 

@@ -7,6 +7,9 @@ class urllist_Sgbs {
     static getSgbsUrl() {
         return baseURL + "sgbs";
     }
+    static getSgbsIntUrl() {
+        return baseURL + "sgbsInt";
+    }
     static getSgbByIdUrl(id) {
         return baseURL + "sgb/" + id;
     }

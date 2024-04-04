@@ -16,6 +16,19 @@ const getSgbs = (req, res) => {
 };
 
 //get 200
+const getSgbsInt = (req, res) => {
+    pool.query(queries.getSgbsInt, (error, results) => {
+        try {
+            if (error) throw error;
+            res.status(200).json(results.rows);
+        } catch (err) {
+            console.log("catch: " + err);
+            res.status(203).json({ error: "Error Database! " + err });
+        }
+    });
+};
+
+//get 200
 const getSgbById = (req, res) => {
     const id = parseInt(req.params.id);
     pool.query(queries.getSgbById, [id], (error, results) => {
@@ -104,6 +117,7 @@ const updateSgb = async (req, res) => {
 };
 module.exports = {
     getSgbs,
+    getSgbsInt,
     getSgbById,
     addSgb,
     deleteSgbById,

@@ -141,7 +141,8 @@ const updateBourse = "update bourse set person_id = $2, annee = $3, echelon = $4
 const deleteBourseById = "delete from bourse where id = $1";
 
 //queries reg bourse
-const getSgbs= "select a.*, p.firstname, n.firstname as nomineename, g.firstname as guardianname, b.bankname from sgb_bonds a, person p, person n, person g, banks b where a.person_id = p.id and a.nominee_id = n.id and a.guardian_id = g.id and a.bank_id = b.id order by a.end_date asc";
+const getSgbs = "select a.*, p.firstname, n.firstname as nomineename, g.firstname as guardianname, b.bankname from sgb_bonds a, person p, person n, person g, banks b where a.person_id = p.id and a.nominee_id = n.id and a.guardian_id = g.id and a.bank_id = b.id order by a.end_date asc";
+const getSgbsInt = "select a.*, p.firstname, n.firstname as nomineename, g.firstname as guardianname, b.bankname from sgb_bonds a, person p, person n, person g, banks b where a.person_id = p.id and a.nominee_id = n.id and a.guardian_id = g.id and a.bank_id = b.id order by a.end_date asc";
 const getSgbById = "select * from sgb_bonds where id = $1";
 const addSgb = "insert into sgb_bonds(person_id, bank_id, nominee_id, guardian_id, investor_id, bond_ids, interest_percentage, units, unit_price, purchased_unit_price, bond_details, amount, purchase_date, starting_date, end_date) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14,$15)";
 const updateSgb = "update sgb_bonds set person_id = $2, bank_id = $3, nominee_id = $4, guardian_id = $5, investor_id = $6, bond_ids = $7, interest_percentage = $8, units = $9, unit_price = $10, purchased_unit_price = $11, bond_details = $12, amount = $13, purchase_date = $14, starting_date = $15, end_date = $16 where id = $1";
@@ -241,6 +242,7 @@ module.exports = {
     deleteBourseById,
 
     getSgbs,
+    getSgbsInt,
     getSgbById,
     addSgb,
     updateSgb,

@@ -104,6 +104,7 @@ router.put("/bourse/:id", controllerBourse.updateBourse);
 router.delete("/bourse/:id", controllerBourse.deleteBourseById);
 
 router.get("/sgbs", controllerSgb.getSgbs);
+router.get("/sgbsInt", controllerSgb.getSgbsInt);
 router.post("/sgb/add", controllerSgb.addSgb);
 router.get("/sgb/:id", controllerSgb.getSgbById);
 router.put("/sgb/:id", controllerSgb.updateSgb);

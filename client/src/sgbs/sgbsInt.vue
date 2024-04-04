@@ -38,13 +38,12 @@
                 <!-- <th scope="col">Purchased Unit Price</th>  -->
                 <th scope="col">Bond Details</th>
                 <!--  <th scope="col">Amount</th>
-               <th scope="col">Purchased Date</th>-->
-                <th scope="col">Starting Date</th>
+               <th scope="col">Purchased Date</th>
+                <th scope="col">Starting Date</th>-->
                 <th scope="col">Maturity Date</th>
-                <th scope="col">Due Month</th>
+                <th scope="col">Due Month I</th>
                 <th scope="col">Due Month II</th>
                 <th scope="col">Int/2</th>
-                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -62,21 +61,13 @@
                 <!--<td class="text-start">{{ acRow.purchased_unit_price }}</td>-->
                 <td class="text-start">{{ acRow.bond_details }}</td>
               <!--   <td class="text-start">{{ acRow.amount }}</td>
-                <td class="text-start">{{ acRow.purchase_date }}</td>-->
-                <td class="text-start">{{ acRow.starting_date }}</td>
+                <td class="text-start">{{ acRow.purchase_date }}</td>
+                <td class="text-start">{{ acRow.starting_date }}</td>-->
                 <td class="text-start">{{ acRow.end_date }}</td>
                 <td class="text-start">{{ this.getMonth(parseInt(acRow.end_date.substr(3, 2))) }}</td>
                 <td class="text-start">{{ this.getMonth(parseInt(acRow.end_date.substr(3, 2)) + 6) }}</td>
                 <td class="text-start">{{ parseInt(acRow.unit_price * acRow.units * 0.025 / 2) }}</td>
-                <td class="text-start">
-                  <button class="bi bi-pencil-square btn btn-outline-success mx-1" @click="editSgb(acRow.id)"
-                    v-b-tooltip.hover title="Edit the sgb!">
-                  </button>
-               <!--   <button type="button" class="bi bi-trash3 btn btn-outline-danger mx-1" @click="deleteSgb(acRow.id)"
-                    v-b-tooltip.hover title="Delete the sgb!">
-                  </button>-->
-                </td>
-              </tr>
+               </tr>
             </tbody>
           </table>
         </div>
@@ -91,7 +82,7 @@ import Admin_Layout from "../admin/admin_Layout.vue";
 import urlsgb from "../_helpers/urllist_Sgbs.js";
 import $ from "jquery";
 export default {
-  name: "sgbs",
+  name: "sgbsInt",
   components: { Admin_Layout },
   data() {
     return {
@@ -151,7 +142,7 @@ export default {
     },
     getSgbs() {
       try {
-        const url = urlsgb.getSgbsUrl();
+        const url = urlsgb.getSgbsIntUrl();
         axios.get(url).then(res => {
           console.log(res.data);
           switch (res.status) {
