@@ -31,10 +31,10 @@ const getPretById = (req, res) => {
 
 //post-201
 const addPret = async (req, res) => {
-    const { person_id, bank_id, pret_amount, mensuel_amount, nb_mois, pret_details,starting_date, end_date } = req.body;
+    const { person_id, bank_id, pret_amount, mensuel_amount, nb_mois, interest, pret_details,starting_date, end_date } = req.body;
     //add pret to db
     pool.query(
-        queries.addPret, [person_id, bank_id, pret_amount, mensuel_amount, nb_mois, pret_details,starting_date, end_date],
+        queries.addPret, [person_id, bank_id, pret_amount, mensuel_amount, nb_mois, interest, pret_details,starting_date, end_date],
         (error, results) => {
             try {
                 if (error) throw error;
@@ -77,7 +77,7 @@ const deletePretById = (req, res) => {
 //put 201
 const updatePret = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { person_id, bank_id, pret_amount, mensuel_amount, nb_mois, pret_details,starting_date, end_date } = req.body;
+    const { person_id, bank_id, pret_amount, mensuel_amount, nb_mois, interest, pret_details,starting_date, end_date } = req.body;
     pool.query(queries.getPretById, [id], (error, results) => {
         try {
             const noPretFound = !results.rows.length;
@@ -85,7 +85,7 @@ const updatePret = async (req, res) => {
                 res.status(202).json("Pret does not exist in the database");
             } else {
                 pool.query(
-                    queries.updatePret, [id,  person_id, bank_id, pret_amount, mensuel_amount, nb_mois, pret_details,starting_date, end_date ],
+                    queries.updatePret, [id,  person_id, bank_id, pret_amount, mensuel_amount, nb_mois, interest, pret_details,starting_date, end_date ],
                     (error, results) => {
                         try {
                             if (error) throw error;

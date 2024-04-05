@@ -10,9 +10,6 @@
     <div class="container w-50 p-3 my-1 bg-light border border-info">
       <form class="was-validated" @submit.prevent="addPret">
         <div class="register">
-          <label for="lbdetails">Pret Details</label>
-          <input type="text" v-model="model.pret.pret_details" placeholder="Enter details" id="lbdetails" required
-            class="form-control" />          
           <label>Person Name:</label>
           <div style="overflow:hidden;">
             <select name="name" class="selectpicker show-tick" v-model="model.pret.person_id">
@@ -20,8 +17,32 @@
               </option>
             </select>
           </div>  
-          <label for="lbdate">Action date</label>
-          <input type="date" v-model="model.pret.actiondate" id="lbdate" class="form-control" required />
+          <label>Bank Name:</label>
+          <div style="overflow:hidden;">
+            <select name="name" class="selectpicker show-tick" v-model="model.pret.bank_id">
+              <option v-for="(stadc, index) in banklist" :value="stadc.id" :key="index">{{ stadc.bankname }}
+              </option>
+            </select>
+          </div>  
+          <label for="lbdetails">Pret Amount</label>
+          <input type="text" v-model="model.pret.pret_amount" placeholder="Enter details" id="lbdetails" required
+            class="form-control" />  
+          <label for="lbdetails">Mensuel</label>
+          <input type="text" v-model="model.pret.mensuel_amount" placeholder="Enter details" id="lbdetails" required
+            class="form-control" />          
+            <label for="lbdetails">Nb.Mois</label>
+          <input type="text" v-model="model.pret.nb_mois" placeholder="Enter details" id="lbdetails" required
+            class="form-control" />
+            <label for="lbdetails">Interest</label>
+          <input type="text" v-model="model.pret.interest" placeholder="Enter details" id="lbdetails" required
+            class="form-control" />    
+            <label for="lbdetails">Pret Details</label>
+          <input type="text" v-model="model.pret.pret_details" placeholder="Enter details" id="lbdetails" required
+            class="form-control" />  
+          <label for="lbdate1">Starting date</label>
+          <input type="date" v-model="model.pret.starting_date" id="lbdate1" class="form-control" required />
+          <label for="lbdate2">End date</label>
+          <input type="date" v-model="model.pret.end_date" id="lbdate2" class="form-control" required />
           <button type="submit" class="js-new">Add Pret</button>
           <br /><br />
         </div>
@@ -86,7 +107,7 @@ export default {
           console.log(res.data);
           switch (res.status) {
             case 200:
-              this.personlist = res.data;
+              this.banklist = res.data;
               break;
             default:
               this.error = "Database error! Status: " + res.status + " Error: " + res.data;
@@ -104,10 +125,16 @@ export default {
         this.error = "";
         this.warning = "";
         const url = urlpret.getaddPretUrl();
-        let result = await axios.post(url, {
-          pret_details: this.model.pret.pret_details,
-          person_id: this.model.pret.person_id,          
-          actiondate: this.model.pret.actiondate
+        let result = await axios.post(url, {        
+          person_id: this.model.pret.person_id,   
+          bank_id: this.model.pret.bank_id,  
+          pret_amount: this.model.pret.pret_amount,  
+          mensuel_amount: this.model.pret.mensuel_amount,  
+          nb_mois: this.model.pret.nb_mois,  
+          interest: this.model.pret.interest,  
+          pret_details: this.model.pret.pret_details,       
+          starting_date: this.model.pret.starting_date,
+          end_date: this.model.pret.end_date
         });
         console.log(result);
         switch (result.status) {

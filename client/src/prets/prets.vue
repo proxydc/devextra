@@ -26,6 +26,7 @@
                 <th scope="col">Pret Amount</th>
                 <th scope="col">Mensuality</th>
                 <th scope="col">NB.Mois</th>
+                <th scope="col">Interest</th>
                 <th scope="col">Pret Details</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
@@ -40,6 +41,7 @@
                 <td class="text-start">{{ acRow.pret_amount }}</td>
                 <td class="text-start">{{ acRow.mensuel_amount }}</td>
                 <td class="text-start">{{ acRow.nb_mois }}</td>
+                <td class="text-start">{{ acRow.interest }}</td>
                 <td class="text-start">{{ acRow.pret_details }}</td>
                 <td class="text-start">{{ acRow.starting_date }}</td>
                 <td class="text-start">{{ acRow.end_date }}</td>

@@ -3,23 +3,23 @@
     <div v-if="error != ''" class="alert alert-danger alert-dismissible fade show">
       <strong>{{ error }}</strong>
     </div>
-    <h1>Edit Task</h1>
+    <h1>Edit Pret</h1>
     <div class="container w-50 p-3 my-1 bg-light border border-info">
-      <form class="was-validated" @submit.prevent="updateTask">
+      <form class="was-validated" @submit.prevent="updatePret">
         <div class="register">
-          <label for="lbdetails">Task Details</label>
-          <input type="text" v-model="model.task.task_details" placeholder="Enter details" id="lbdetails" required
+          <label for="lbdetails">Pret Details</label>
+          <input type="text" v-model="model.pret.pret_details" placeholder="Enter details" id="lbdetails" required
             class="form-control" />          
           <label>Person Name:</label>
           <div style="overflow:hidden;">
-            <select name="name" class="selectpicker show-tick" v-model="model.task.person_id">
+            <select name="name" class="selectpicker show-tick" v-model="model.pret.person_id">
               <option v-for="(stadc, index) in personlist" :value="stadc.id" :key="index">{{ stadc.firstname }}
               </option>
             </select>
           </div>  
           <label for="lbdate">Action date</label>
-          <input type="date" v-model="model.task.actiondate" id="lbdate" class="form-control" required />
-          <button type="submit" class="js-new">Update Task</button>
+          <input type="date" v-model="model.pret.actiondate" id="lbdate" class="form-control" required />
+          <button type="submit" class="js-new">Update Pret</button>
           <br /><br />
         </div>
       </form>
@@ -29,9 +29,9 @@
 
 <script>
 import axios from "axios";
-import urltask from "../_helpers/urllist_Tasks.js";
+import urlpret from "../_helpers/urllist_Prets.js";
 export default {
-  name: "EditTask",
+  name: "EditPret",
   data() {
     return {
       error: "",
@@ -39,8 +39,8 @@ export default {
       personlist: [],
 
       model: {
-        task: {
-          task_details: "",
+        pret: {
+          pret_details: "",
           person_id: "",
           actiondate: ""
         }
@@ -50,13 +50,13 @@ export default {
   },
   mounted() {
     this.getPersonList();
-    this.getTaskData(this.$route.params.id) 
+    this.getPretData(this.$route.params.id) 
     document.getElementById("lbdetails").focus();
   },
   methods: {
     getPersonList() {
       try {
-        const url = urltask.getAllPersonUrl();
+        const url = urlpret.getAllPersonUrl();
         axios.get(url).then(res => {
           console.log(res.data);
           switch (res.status) {
@@ -74,15 +74,15 @@ export default {
       }
 
     },
-    getTaskData(taskId) {
-      const url = urltask.getTaskByIdUrl(taskId);
+    getPretData(pretId) {
+      const url = urlpret.getPretByIdUrl(pretId);
       axios
         .get(url)
         .then((res) => {
           console.log(res.data);
           if (res.status == 200) {
-            this.model.task = res.data[0];
-            this.model.task.actiondate = this.getDatePickerDate(this.model.task.actiondate);
+            this.model.pret = res.data[0];
+            this.model.pret.actiondate = this.getDatePickerDate(this.model.pret.actiondate);
           }
           if (res.status == 203) {
             this.error = res.data;
@@ -97,18 +97,18 @@ export default {
       var d = new Date(dt);
      return (d.getFullYear() + '-' + ('0' + (d.getMonth()+1)).slice(-2) +'-' +('0' + (d.getDate())).slice(-2));
     }, 
-    async updateTask() {
+    async updatePret() {
       try {
-        const url = urltask.getupdateTaskUrl(this.model.task.id);
+        const url = urlpret.getupdatePretUrl(this.model.pret.id);
         let result = await axios.put(url, {
-          task_details: this.model.task.task_details,
-          person_id: this.model.task.person_id,          
-          actiondate: this.model.task.actiondate
+          pret_details: this.model.pret.pret_details,
+          person_id: this.model.pret.person_id,          
+          actiondate: this.model.pret.actiondate
         });
         console.log(result);
         switch (result.status) {
           case 201:
-            this.$router.push({ name: 'tasks' })
+            this.$router.push({ name: 'prets' })
             break;
           case 202:
           case 203:
